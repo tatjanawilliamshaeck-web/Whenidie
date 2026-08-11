@@ -1,0 +1,17 @@
+---
+description: Use only project assets from /assets; no icon libraries or placeholder graphics
+alwaysApply: true
+---
+
+# Assets and graphics
+
+- **Use assets only from the `/assets` folder.** Do not redraw, simplify, or replace them; preserve their styling exactly.
+- **Do not import icon libraries** (e.g. Font Awesome, Heroicons). Use the SVG files in `assets/` instead.
+- **Do not generate placeholder graphics.**
+
+## Usage mapping
+
+- **Logo.svg**: hero, nav, footer, empty states, branded highlights. Native transparency, scales cleanly.
+- **daisy-watermark.svg**: subtle background watermark only (hero, footer, section transitions).
+- **petal-empty.svg / petal-filled.svg**: progress states (DaisyProgress).
+- **icon-* / illustration-***: use per existing patterns; no new decorative icon packs.

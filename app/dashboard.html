@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your plan – When I Die™</title>
+    <meta name="description" content="Your When I Die™ dashboard: progress, questions, and who you've shared with." />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="page-app page-dashboard">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="dashboard.html" class="logo">
+          <img src="../assets/Logo.svg" alt="When I Die™" class="logo-image" width="120" height="48" />
+        </a>
+        <nav class="nav">
+          <span class="nav-user" id="nav-user-email"></span>
+          <a href="../index.html">Home</a>
+          <button type="button" class="btn secondary-btn btn--small" id="btn-logout">Log out</button>
+        </nav>
+      </div>
+      <div id="announcement-bar" class="announcement-bar" role="region" aria-label="Announcement">
+        <span class="announcement-bar__text">No doom. No guilt. Snacks encouraged.</span>
+        <button type="button" class="announcement-bar__dismiss" id="announcement-dismiss" aria-label="Dismiss">×</button>
+      </div>
+    </header>
+
+    <main class="app-main dashboard-main" id="main-content">
+      <div class="container">
+        <div id="dashboard-gate" class="dashboard-gate" hidden>
+          <div class="dashboard-gate-spinner" aria-hidden="true"></div>
+          <p>Loading your plan…</p>
+        </div>
+        <div id="dashboard-content" class="dashboard-content" hidden>
+          <div class="dashboard-layout">
+            <aside class="dashboard-sidebar" aria-label="Progress and milestones">
+              <div class="progress-cycle" role="region" aria-labelledby="progress-cycle-label">
+                <h2 id="progress-cycle-label" class="progress-cycle__heading">Progress</h2>
+                <div id="daisy-progress-wrap" class="daisy-progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Overall progress">
+                  <div id="daisy-progress-container"></div>
+                  <span class="progress-cycle__center progress-cycle__center--daisy">
+                    <span id="progress-count" class="progress-cycle__count">0</span>
+                    <span class="progress-cycle__sep">/</span>
+                    <span id="progress-total" class="progress-cycle__total">0</span>
+                  </span>
+                </div>
+                <p class="progress-cycle__label">answered</p>
+              </div>
+              <nav class="chapter-nav" aria-label="Chapters and questions">
+                <h3 class="chapter-nav__heading">Chapters</h3>
+                <ul id="level-progress-list" class="chapter-question-nav" aria-label="Jump to any question"></ul>
+              </nav>
+            </aside>
+
+            <div class="dashboard-center">
+              <section class="dashboard-hero dashboard-hero--compact">
+                <h1>Your plan</h1>
+                <p class="dashboard-tagline">Hey, <span id="user-display-name">there</span>. One question at a time.</p>
+              </section>
+
+              <section class="dashboard-section dashboard-question-current" id="question-current-section">
+                <div id="question-card-container" class="question-card-container">
+                  <div id="question-card" class="question-card-single" role="article">
+                    <h2 id="question-card-title" class="question-card-single__title"></h2>
+                    <p id="question-card-prompt" class="question-card-single__prompt"></p>
+                    <div id="question-card-suggestions" class="question-card-single__suggestions" hidden aria-label="Suggested ideas">
+                      <span class="question-card-single__suggestions-label">Suggested ideas</span>
+                      <div id="question-card-suggestions-list" class="question-card-suggestions-list"></div>
+                    </div>
+                    <div id="question-card-input-wrap" class="question-card-single__input"></div>
+                    <button type="button" id="question-card-story-toggle" class="question-card-story-toggle" hidden aria-expanded="false">
+                      <span class="question-card-story-toggle__icon" aria-hidden="true"></span>
+                      <span id="question-card-story-toggle-text">Tell the story behind it</span>
+                    </button>
+                    <div id="question-card-story-wrap" class="question-card-single__story question-card-single__story--expandable" hidden aria-hidden="true">
+                      <label id="question-card-story-label" class="auth-label"></label>
+                      <textarea id="question-card-story-input" class="auth-input auth-textarea" rows="3" placeholder="Tell the story behind it (optional)"></textarea>
+                    </div>
+                    <p id="question-card-counter" class="question-card-single__counter" aria-hidden="true"></p>
+                  </div>
+                </div>
+                <div class="question-nav-actions">
+                  <div class="question-nav-actions__left">
+                    <button type="button" class="btn secondary-btn btn--nav" id="btn-question-prev" aria-label="Previous question">Back</button>
+                    <button type="button" class="btn ghost-btn btn--nav question-nav-skip" id="btn-question-skip" aria-label="Skip this question">Skip</button>
+                  </div>
+                  <button type="button" class="btn primary-btn btn--nav" id="btn-question-next" aria-label="Next question">Next</button>
+                </div>
+              </section>
+
+              <section class="dashboard-section dashboard-preview dashboard-preview--compact" aria-labelledby="plan-preview-heading">
+                <div class="plan-preview-watermark" aria-hidden="true"></div>
+                <h2 id="plan-preview-heading" class="plan-preview-heading-with-icon"><img src="../assets/Logo.svg" alt="" class="plan-preview-heading-daisy plan-preview-heading-daisy-img" width="80" height="32" aria-hidden="true" /> Your Plan</h2>
+                <div id="plan-summary-daisy-wrap" class="plan-summary-daisy-wrap" hidden aria-hidden="true"></div>
+                <div id="plan-header" class="plan-header" hidden>
+                  <p class="plan-header-date">Last updated: <span id="plan-header-date"></span></p>
+                  <div class="plan-preview-actions">
+                    <a href="#question-current-section" class="btn secondary-btn">Edit answers</a>
+                    <button type="button" class="btn primary-btn" id="btn-print-plan">Print / Save as PDF</button>
+                  </div>
+                </div>
+                <div id="plan-expand-collapse" class="plan-expand-collapse" hidden>
+                  <button type="button" class="btn ghost-btn btn--small" id="plan-expand-all">Expand all</button>
+                  <button type="button" class="btn ghost-btn btn--small" id="plan-collapse-all">Collapse all</button>
+                </div>
+                <div id="plan-preview" class="plan-preview"></div>
+              </section>
+            </div>
+
+            <aside class="dashboard-sidebar dashboard-sidebar--right" aria-label="Inspiration and progress">
+              <div id="autosave-indicator" class="autosave-indicator" hidden>Saved</div>
+              <div id="chapter-progress-wrap" class="chapter-progress-wrap">
+                <h3 class="chapter-progress__heading">Progress</h3>
+                <div id="chapter-daisy-container" class="chapter-daisy-container" aria-hidden="true"></div>
+                <div id="question-level-daisy-container" class="question-level-daisy-container" aria-hidden="true"></div>
+                <p id="chapter-progress-text" class="chapter-progress__text">0 of 0 questions answered in this chapter</p>
+              </div>
+              <div id="question-inspiration" class="question-inspiration" hidden>
+                <h3 class="question-inspiration__title">Need inspiration?</h3>
+                <p id="question-inspiration-text" class="question-inspiration__text"></p>
+              </div>
+              <div id="encouragement-wrap" class="encouragement-wrap" hidden>
+                <p id="encouragement-text" class="encouragement-text"></p>
+              </div>
+              <div id="next-unanswered-wrap" class="next-unanswered-wrap" hidden>
+                <p id="next-unanswered-text" class="next-unanswered-text"></p>
+                <button type="button" class="btn secondary-btn btn--small" id="btn-jump-next-unanswered">Jump to next unanswered question</button>
+              </div>
+              <div id="skipped-questions-wrap" class="skipped-questions-wrap" hidden>
+                <h3 class="skipped-questions-heading">Come back to</h3>
+                <ul id="skipped-questions-list" class="skipped-questions-list" aria-label="Skipped or unanswered questions"></ul>
+              </div>
+              <p id="right-sidebar-fallback" class="right-sidebar-fallback">Take your time. You can come back and edit anytime.</p>
+            </aside>
+          </div>
+          <p id="questions-empty" class="questions-empty" hidden>No questions loaded yet. <button type="button" class="btn-ghost-text" id="btn-retry-questions">Refresh the page</button>.</p>
+
+          <div class="invitation-bridge" aria-hidden="true">
+            <span class="invitation-bridge__text">Your plan gets even better when someone you trust knows about it.</span>
+          </div>
+
+          <section id="dashboard-shared" class="dashboard-section dashboard-shared access-management" aria-labelledby="invitation-heading">
+            <div class="invitation-card">
+              <p class="invitation-eyebrow">Share your plan</p>
+              <h2 id="invitation-heading" class="invitation-heading">Choose someone you trust</h2>
+              <p class="invitation-intro">If something ever happens, they can access your plan. You stay in control.</p>
+              <ul class="share-reassurance" aria-hidden="true">
+                <li>They won't see anything unless you send the link</li>
+                <li>You can revoke access anytime</li>
+              </ul>
+              <form id="share-form" class="share-form share-form--redesign">
+              <div class="share-form-block">
+                <label class="auth-label" for="share-email">Who do you trust with this?</label>
+                <div class="share-form-row">
+                  <input type="email" id="share-email" class="auth-input" placeholder="their@email.com" required autocomplete="email" />
+                  <select id="share-relationship" class="auth-input share-relationship" aria-label="Relationship (optional)">
+                    <option value="">Relationship (optional)</option>
+                    <option value="Partner">Partner</option>
+                    <option value="Sibling">Sibling</option>
+                    <option value="Friend">Friend</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="share-form-block share-message-block">
+                <span class="auth-label">How do you want to tell them?</span>
+                <div class="message-style-pills" role="group" aria-label="Message tone">
+                  <button type="button" class="message-style-pill active" data-style="responsible" aria-pressed="true">Responsible</button>
+                  <button type="button" class="message-style-pill" data-style="funny">Funny</button>
+                  <button type="button" class="message-style-pill" data-style="sweet">Sweet</button>
+                  <button type="button" class="message-style-pill" data-style="smartass">Smartass</button>
+                  <button type="button" class="message-style-pill" data-style="custom" aria-pressed="false">Write my own</button>
+                  <button type="button" class="message-style-pill message-style-pill--surprise" data-style="surprise">Surprise me</button>
+                </div>
+                <label class="auth-label" for="share-message-body">Message they'll receive</label>
+                <textarea id="share-message-body" class="auth-input auth-textarea share-message-body" rows="5" placeholder="Edit your message here…"></textarea>
+                <div class="share-message-actions">
+                  <button type="submit" class="btn primary-btn" id="share-submit-btn">Invite them</button>
+                  <button type="button" class="btn secondary-btn btn--small" id="copy-message-btn">Copy message</button>
+                </div>
+              </div>
+              <div id="share-categories-wrap" class="share-categories-wrap" hidden>
+                <span class="auth-label">What can they see?</span>
+                <label class="share-category-option"><input type="checkbox" id="share-full-plan" checked /> Full plan</label>
+                <div id="share-category-checkboxes" class="share-category-checkboxes"></div>
+              </div>
+            </form>
+            <section id="sent-invites-section" class="sent-invites-section" hidden aria-labelledby="sent-invites-heading">
+              <h2 id="sent-invites-heading" class="sent-invites-heading">People you've shared with</h2>
+              <p id="shared-summary" class="shared-summary" hidden></p>
+              <div id="recent-activity" class="recent-activity" hidden></div>
+              <div id="shared-overview-wrap" class="shared-overview-wrap" hidden>
+              <div class="shared-overview-header" aria-hidden="true">
+                <span class="shared-overview-col shared-overview-who">Who</span>
+                <span class="shared-overview-col shared-overview-what">What they can see</span>
+                <span class="shared-overview-col shared-overview-sent">Link sent</span>
+                <span class="shared-overview-col shared-overview-opened">Opened?</span>
+                <span class="shared-overview-col shared-overview-actions">Actions</span>
+              </div>
+              <div id="shared-list" class="shared-list"></div>
+            </div>
+            </section>
+            </div>
+          </section>
+        </div>
+        <div id="dashboard-no-config" class="dashboard-gate" hidden>
+          <p>To use the dashboard, add your Supabase URL and anon key in <code>app/config.js</code> and run the SQL in <code>supabase/migrations/001_schema.sql</code> in your Supabase project.</p>
+          <a href="../index.html" class="btn primary-btn">Back to home</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- Answer modal -->
+    <div id="answer-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="answer-modal-title" hidden>
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <span id="answer-modal-counter" class="modal-counter" aria-hidden="true"></span>
+            <h2 id="answer-modal-title" class="modal-title"></h2>
+          </div>
+          <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div id="modal-error" class="modal-error" role="alert" hidden>
+            <span id="modal-error-text"></span>
+            <button type="button" class="btn secondary-btn btn--small" id="modal-error-retry">Try again</button>
+          </div>
+          <p id="answer-modal-body" class="answer-modal-body"></p>
+          <p id="answer-modal-scene-intro" class="answer-modal-scene-intro" hidden></p>
+          <p id="answer-modal-suggestions" class="answer-modal-suggestions" hidden></p>
+          <div id="answer-modal-choices-wrap" class="answer-modal-choices-wrap" hidden role="group" aria-label="Choose one">
+            <div id="answer-modal-choices" class="answer-modal-choices"></div>
+          </div>
+          <label class="auth-label" for="answer-input" id="answer-input-label">Your answer</label>
+          <textarea id="answer-input" class="auth-input auth-textarea" rows="4" placeholder=""></textarea>
+          <div id="answer-modal-follow-wrap" class="answer-modal-follow-wrap" hidden>
+            <label class="auth-label" for="answer-input-follow" id="answer-follow-label"></label>
+            <textarea id="answer-input-follow" class="auth-input auth-textarea answer-input-follow" rows="3" placeholder=""></textarea>
+          </div>
+          <p class="modal-clear-wrap" id="answer-clear-wrap" hidden>
+            <button type="button" class="btn-ghost-text" id="answer-clear-btn">Clear answer</button>
+          </p>
+        </div>
+        <p class="modal-hint">You can come back and edit anytime.</p>
+        <div class="modal-footer modal-footer--with-nav">
+          <button type="button" class="btn secondary-btn" id="answer-prev" aria-label="Previous question">← Previous</button>
+          <div class="modal-footer-actions">
+            <button type="button" class="btn secondary-btn" id="answer-skip">Not now</button>
+            <button type="button" class="btn primary-btn" id="answer-save" data-default-text="Save">Save</button>
+          </div>
+          <button type="button" class="btn secondary-btn" id="answer-next" aria-label="Next question">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unlock modal (when a chapter unlocks) -->
+    <div id="unlock-modal" class="unlock-modal" role="dialog" aria-modal="true" aria-labelledby="unlock-heading" hidden>
+      <div class="unlock-backdrop" id="unlock-backdrop"></div>
+      <div class="unlock-content">
+        <h2 id="unlock-heading" class="unlock-heading">New chapter unlocked</h2>
+        <p id="unlock-chapter-name" class="unlock-chapter-name"></p>
+        <button type="button" class="btn primary-btn" id="unlock-continue-btn">Keep going</button>
+      </div>
+    </div>
+
+    <!-- Relief Screen (after Chapter 2 complete) -->
+    <div id="relief-modal" class="relief-modal" role="dialog" aria-modal="true" aria-labelledby="relief-heading" hidden>
+      <div class="relief-backdrop" id="relief-backdrop"></div>
+      <div class="relief-content">
+        <div class="relief-glow" aria-hidden="true"></div>
+        <div class="relief-check" aria-hidden="true">✓</div>
+        <h2 id="relief-heading" class="relief-heading">That's a really good thing you just did.</h2>
+        <p class="relief-subtext">Most people never organize this stuff.<br />You just made things much easier for the people who care about you.</p>
+        <p class="relief-reinforce" id="relief-humor">If something ever happens, the people you trust won't have to guess or search for important things.</p>
+        <div class="relief-actions">
+          <button type="button" class="btn primary-btn relief-cta" id="relief-continue-btn">Keep going</button>
+          <a href="#dashboard-shared" class="btn secondary-btn" id="relief-invite-btn">Invite someone you trust</a>
+          <button type="button" class="btn secondary-btn" id="relief-finish-later-btn">Finish later</button>
+        </div>
+        <button type="button" class="relief-close" id="relief-close" aria-label="Close">&times;</button>
+      </div>
+    </div>
+
+    <!-- Milestone celebration (when a chapter is completed) -->
+    <div id="milestone-modal" class="milestone-modal" role="dialog" aria-modal="true" aria-labelledby="milestone-heading" hidden>
+      <div class="milestone-backdrop" id="milestone-backdrop"></div>
+      <div class="milestone-content">
+        <div class="milestone-glow" aria-hidden="true"></div>
+        <p id="milestone-icon" class="milestone-icon" aria-hidden="true"></p>
+        <h2 id="milestone-heading" class="milestone-heading">Milestone complete</h2>
+        <p id="milestone-message" class="milestone-message"></p>
+        <div id="milestone-share-wrap" class="milestone-share-wrap" hidden>
+          <p class="milestone-share-text">Share your progress with someone you trust so they know about your plan.</p>
+          <a href="#dashboard-shared" class="btn secondary-btn milestone-share-btn" id="milestone-share-btn">Invite someone you trust</a>
+        </div>
+        <div class="milestone-actions">
+          <button type="button" class="btn primary-btn" id="milestone-continue-btn">Continue</button>
+        </div>
+        <button type="button" class="milestone-close" id="milestone-close" aria-label="Close">&times;</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/daisy-progress.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

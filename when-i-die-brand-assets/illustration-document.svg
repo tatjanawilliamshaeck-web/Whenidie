@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+
+<defs>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.10"/>
+  </filter>
+  <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="1.2" stdDeviation="1.8" flood-color="#000000" flood-opacity="0.08"/>
+  </filter>
+  <radialGradient id="paperGlow" cx="50%" cy="50%" r="60%">
+    <stop offset="0%" stop-color="#FFF7E7"/>
+    <stop offset="100%" stop-color="#F4E8D4"/>
+  </radialGradient>
+  <linearGradient id="leafGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#71C75A"/>
+    <stop offset="100%" stop-color="#3E9F48"/>
+  </linearGradient>
+  <linearGradient id="blueDrop" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#8FE1FF"/>
+    <stop offset="100%" stop-color="#58B9E7"/>
+  </linearGradient>
+  <linearGradient id="petalYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFD95B"/>
+    <stop offset="100%" stop-color="#F2BF2E"/>
+  </linearGradient>
+  <linearGradient id="cream" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFF8EA"/>
+    <stop offset="100%" stop-color="#F8EBD8"/>
+  </linearGradient>
+  <style>
+    .ink{stroke:#1F2328;stroke-linecap:round;stroke-linejoin:round}
+    .rough{stroke:#1F2328;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.8}
+    .thin{stroke:#1F2328;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2}
+    .label{font-family:Inter,Arial,sans-serif}
+  </style>
+</defs>
+
+<g filter="url(#softShadow)">
+<ellipse cx="32" cy="53" rx="22" ry="6" fill="#EAE6DF"/>
+<g transform="rotate(-6 30 28)">
+  <rect x="13" y="12" width="28" height="36" rx="3" fill="#FFF7EE" class="thin"/>
+  <path d="M20 21h14M20 28h15M20 35h11" class="thin" stroke="#9B9B9B"/>
+  <path d="M30 38c2-4 8-4 10 0 1 2 0 5-2 7l-6 6-6-6c-2-2-3-5-2-7 2-4 8-4 10 0z" fill="#F4C5B6" opacity=".9"/>
+</g>
+<g transform="rotate(8 40 25)" opacity=".8"><rect x="28" y="14" width="20" height="30" rx="3" fill="#FFF2DC" class="thin"/></g>
+</g>
+</svg>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invite – When I Die™</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="page-app page-view-invite">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="../index.html" class="logo">
+          <img src="../assets/Logo.svg" alt="When I Die™" class="logo-image" width="120" height="48" />
+        </a>
+        <nav class="nav">
+          <a href="../index.html">Home</a>
+        </nav>
+      </div>
+      <div class="announcement-bar">No doom. No guilt. Snacks encouraged.</div>
+    </header>
+
+    <main class="app-main" id="main-content">
+      <div class="container container--narrow">
+        <div class="auth-card view-invite-card">
+          <div id="invite-status">
+            <p class="view-invite-loading">Loading…</p>
+          </div>
+          <div id="invite-plan" class="invite-plan" hidden></div>
+          <p class="auth-footer" style="margin-top:1.5rem;"><a href="../index.html">Go to homepage</a></p>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var token = params.get('token');
+        var statusEl = document.getElementById('invite-status');
+        var planEl = document.getElementById('invite-plan');
+        var questionsById = {};
+
+        function escapeHtml(s) {
+          if (!s) return '';
+          var div = document.createElement('div');
+          div.textContent = s;
+          return div.innerHTML;
+        }
+
+        function parseAnswerValue(q, value) {
+          if (!value) return null;
+          var fieldType = (q && q.fieldType) || (q && q.format) || 'open';
+          if (fieldType === 'choice_with_story' || fieldType === 'pick_one' || fieldType === 'short_text_story' || fieldType === 'memory_trigger') {
+            try { if (typeof value === 'string' && value.charAt(0) === '{') return JSON.parse(value); } catch (e) {}
+          }
+          return value;
+        }
+        function getDisplayValue(q, value) {
+          if (!value) return '';
+          var parsed = parseAnswerValue(q, value);
+          if (parsed && typeof parsed === 'object') {
+            if (parsed.choice !== undefined) {
+              var parts = [parsed.choice]; if (parsed.story) parts.push(parsed.story);
+              return parts.join('\n\n');
+            }
+            if (parsed.primary !== undefined) {
+              var parts = [parsed.primary]; if (parsed.story) parts.push(parsed.story);
+              return parts.join('\n\n');
+            }
+            if (parsed.main !== undefined) return parsed.followUp ? parsed.main + '\n\n' + parsed.followUp : parsed.main;
+          }
+          return String(value);
+        }
+        function loadQuestions(cb) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', '../data/questions.json');
+          xhr.onload = function () {
+            if (xhr.status === 200) try { JSON.parse(xhr.responseText).forEach(function (q) { questionsById[q.id] = q; }); } catch (e) {}
+            if (cb) cb();
+          };
+          xhr.onerror = function () { if (cb) cb(); };
+          xhr.send();
+        }
+
+        if (!token) {
+          statusEl.innerHTML = '<p class="view-invite-message">This invite link is invalid or has expired.</p>';
+          return;
+        }
+
+        var supabase = window.widSupabase;
+        if (!supabase) {
+          statusEl.innerHTML = '<p class="view-invite-message">Something went wrong. Please try again later.</p>';
+          return;
+        }
+
+        supabase.rpc('record_invite_open', { token: token }).catch(function () {});
+
+        loadQuestions(function () {
+          supabase.rpc('get_plan_for_invite', { token: token })
+            .then(function (res) {
+              var data = res.data;
+            if (data && data.plan && data.plan.length > 0) {
+              statusEl.innerHTML =
+                '<h1 class="auth-title">Shared plan</h1>' +
+                '<p class="view-invite-message">Someone has shared part of their When I Die™ plan with you.</p>';
+              planEl.innerHTML = data.plan.map(function (item) {
+                var q = questionsById[item.question_id];
+                var display = getDisplayValue(q, item.value);
+                return '<div class="invite-plan-item"><h3 class="invite-plan-title">' + escapeHtml(item.title) + '</h3><p class="invite-plan-value">' + escapeHtml(display) + '</p></div>';
+              }).join('');
+              planEl.hidden = false;
+            } else {
+              statusEl.innerHTML =
+              '<h1 class="auth-title">You’re on the list</h1>' +
+              '<p class="view-invite-message">Someone has shared their When I Die™ plan with you. When they’re ready to give you access, you’ll be able to view it here. No account needed.</p>' +
+              '<p class="view-invite-message view-invite-sub">Thanks for being someone they trust.</p>';
+            }
+          }
+          })
+            .catch(function () {
+              statusEl.innerHTML = '<p class="view-invite-message">This invite link may have expired. Ask the person who sent it to send a new one.</p>';
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

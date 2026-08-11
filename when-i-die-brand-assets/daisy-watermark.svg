@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 260" fill="none">
+<g opacity="0.18">
+  <ellipse cx="108" cy="54" rx="20" ry="44" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="152" cy="70" rx="20" ry="44" transform="rotate(38 152 70)" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="170" cy="118" rx="20" ry="44" transform="rotate(83 170 118)" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="146" cy="162" rx="20" ry="44" transform="rotate(126 146 162)" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="97" cy="178" rx="20" ry="44" transform="rotate(176 97 178)" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="54" cy="162" rx="20" ry="44" transform="rotate(-128 54 162)" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="30" cy="118" rx="20" ry="44" transform="rotate(-84 30 118)" stroke="#DCCFBE" stroke-width="4"/>
+  <ellipse cx="48" cy="71" rx="20" ry="44" transform="rotate(-39 48 71)" stroke="#DCCFBE" stroke-width="4"/>
+  <path d="M100 82c7-12 24-13 32-1 8-12 25-11 32 1 6 11 2 25-8 34l-24 23-24-23c-10-9-14-23-8-34z" stroke="#DCCFBE" stroke-width="4"/>
+  <path d="M111 136c5 28 7 54 3 78-5 30-16 49-18 74" stroke="#DCCFBE" stroke-width="6" stroke-linecap="round"/>
+  <path d="M161 186c12 10 20 20 19 34-1 12-10 19-21 18-13-1-19-11-18-22 2-12 9-20 20-30z" stroke="#DCCFBE" stroke-width="4"/>
+  <path d="M151 227c10 9 16 18 15 29-1 10-9 16-18 15-11-1-15-9-14-18 1-10 7-17 17-26z" stroke="#DCCFBE" stroke-width="4"/>
+</g>
+</svg>

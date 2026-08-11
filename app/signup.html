@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join the free beta – When I Die™</title>
+    <meta name="description" content="Join the free beta and start your When I Die™ plan in under a minute." />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="page-app page-signup">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="../index.html" class="logo">
+          <img src="../assets/Logo.svg" alt="When I Die™" class="logo-image" width="120" height="48" />
+        </a>
+        <nav class="nav">
+          <a href="login.html">Log in</a>
+          <a href="../index.html">Home</a>
+        </nav>
+      </div>
+      <div class="announcement-bar">No doom. No guilt. Snacks encouraged.</div>
+    </header>
+
+    <main class="app-main" id="main-content">
+      <div class="container container--narrow">
+        <div class="auth-card">
+          <h1 class="auth-title">Join the free beta</h1>
+          <p class="auth-subtitle">Start your plan in under a minute. Free. No doom, no guilt.</p>
+
+          <div id="auth-error" class="auth-error" role="alert" hidden>
+            <span id="auth-error-text"></span>
+            <button type="button" class="auth-error-close" aria-label="Dismiss">×</button>
+          </div>
+
+          <p class="auth-why">We only use your email to save your plan and, if you like, send one question a month. No spam.</p>
+          <form id="signup-form" class="auth-form">
+            <label class="auth-label" for="signup-email">Email</label>
+            <input type="email" id="signup-email" name="email" class="auth-input" required autocomplete="email" placeholder="you@example.com" />
+
+            <label class="auth-label" for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="password" class="auth-input" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" />
+
+            <label class="auth-label" for="signup-name">Display name <span class="auth-optional">(optional)</span></label>
+            <input type="text" id="signup-name" name="display_name" class="auth-input" autocomplete="name" placeholder="How you want to appear in your plan" />
+
+            <button type="submit" class="btn primary-btn auth-btn" id="signup-submit" data-default-text="Start my plan">Start my plan</button>
+          </form>
+
+          <p class="auth-footer">Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      (function () {
+        if (window.widSupabase) {
+          window.widSupabase.auth.getSession().then(function (res) {
+            if (res.data && res.data.session) window.location.href = 'dashboard.html';
+          });
+        }
+        var form = document.getElementById('signup-form');
+        var errorEl = document.getElementById('auth-error');
+        var submitBtn = document.getElementById('signup-submit');
+
+        function showError(msg) {
+          document.getElementById('auth-error-text').textContent = msg;
+          errorEl.hidden = false;
+        }
+        function hideError() {
+          errorEl.hidden = true;
+        }
+        document.querySelector('.auth-error-close') && document.querySelector('.auth-error-close').addEventListener('click', hideError);
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          hideError();
+          var defaultText = submitBtn.getAttribute('data-default-text') || submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Starting…';
+
+          var supabase = window.widSupabase;
+          if (!supabase) {
+            showError('App not configured. Add your Supabase URL and anon key in app/config.js.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultText;
+            return;
+          }
+
+          var rawEmail = document.getElementById('signup-email').value;
+          // Normalize: trim, lowercase, remove invisible/zero-width characters
+          var email = rawEmail.trim().toLowerCase().replace(/[\u200B-\u200D\uFEFF]/g, '');
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showError('That doesn’t look like an email. Double-check and try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultText;
+            return;
+          }
+          if (password && password.length < 6) {
+            showError('Password needs at least 6 characters. Pick something you’ll remember.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultText;
+            return;
+          }
+          var password = document.getElementById('signup-password').value;
+          var displayName = document.getElementById('signup-name').value.trim();
+
+          supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: { data: { display_name: displayName || null } }
+          }).then(function (res) {
+            if (res.error) {
+              var msg = res.error.message || 'Something went wrong.';
+              if (msg.indexOf('already registered') !== -1 || msg.indexOf('already exists') !== -1) msg = 'That email is already signed up. Try logging in, or use a different email.';
+              else if (msg.indexOf('Invalid login') !== -1 || msg.indexOf('invalid') !== -1 && msg.indexOf('email') !== -1) msg = 'That email doesn’t look right. Check it and try again.';
+              else if (msg.indexOf('Password') !== -1 || msg.indexOf('password') !== -1) msg = 'Password needs at least 6 characters. Pick something you’ll remember.';
+              showError(msg);
+              submitBtn.disabled = false;
+              submitBtn.textContent = defaultText;
+              return;
+            }
+            if (res.data.user && !res.data.session) {
+              showError('Almost there! Check your email for a confirmation link, then log in.');
+              submitBtn.disabled = false;
+              submitBtn.textContent = defaultText;
+              return;
+            }
+            window.location.href = 'dashboard.html';
+          }).catch(function (err) {
+            var msg = err && err.message ? err.message : 'Something went wrong. Try again in a moment.';
+            if (msg.indexOf('already registered') !== -1 || msg.indexOf('already exists') !== -1) msg = 'That email is already signed up. Try logging in.';
+            showError(msg);
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultText;
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

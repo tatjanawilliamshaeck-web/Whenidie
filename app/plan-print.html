@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My plan – When I Die™</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="plan-print.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="page-print">
+    <div class="print-actions no-print">
+      <a href="dashboard.html" class="btn secondary-btn">← Back to dashboard</a>
+      <button type="button" class="btn primary-btn" id="print-btn">Print / Save as PDF</button>
+      <p class="print-actions-hint">Use the button above to save this page as a PDF.</p>
+    </div>
+    <div id="print-content" class="print-content">
+      <div class="print-header">
+        <img src="../assets/Logo.svg" alt="When I Die™" width="120" height="48" class="print-logo" />
+        <p class="print-brand">When I Die™</p>
+        <h1 class="print-title">Your Personal Plan</h1>
+        <p class="print-subtitle">No doom. No guilt. Snacks encouraged.</p>
+        <p class="print-date">Generated <span id="print-date"></span></p>
+      </div>
+      <div id="print-body" class="print-body"></div>
+      <footer class="print-footer">
+        <p>This document was created with When I Die™. Your answers are private. We never sell your data.</p>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/plan-print.js"></script>
+  </body>
+</html>
