@@ -1,0 +1,155 @@
+/* When I Die™ – Printable plan (branded) */
+
+.page-print {
+  background: #fff;
+  color: var(--fg);
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.print-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.print-actions-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  width: 100%;
+}
+
+.print-content {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.print-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.print-logo {
+  display: block;
+  margin: 0 auto 0.75rem;
+}
+
+.print-section-daisy {
+  vertical-align: middle;
+}
+
+.print-brand {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.print-title {
+  font-family: "Playfair Display", system-ui, serif;
+  font-size: 1.75rem;
+  margin: 0 0 0.25rem;
+  color: var(--fg);
+}
+
+.print-subtitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.print-date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.print-body {
+  margin-bottom: 2rem;
+}
+
+.print-section {
+  margin-bottom: 2rem;
+  page-break-inside: avoid;
+}
+
+.print-section:not(:first-child) {
+  page-break-before: auto;
+}
+
+.print-section-title {
+  font-family: "Playfair Display", system-ui, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(55, 65, 81, 0.15);
+}
+
+.print-plan-item {
+  margin-bottom: 1.5rem;
+  page-break-inside: avoid;
+}
+
+.print-plan-item h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green);
+  margin: 0 0 0.35rem;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.print-plan-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--fg);
+  white-space: pre-wrap;
+}
+
+.print-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(55, 65, 81, 0.2);
+  font-size: 0.8rem;
+  color: var(--muted);
+  page-break-inside: avoid;
+}
+
+.print-footer p {
+  margin: 0;
+}
+
+.print-empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .page-print {
+    padding: 0;
+    max-width: none;
+  }
+
+  .print-header {
+    border-bottom-color: var(--fg);
+  }
+
+  .print-plan-item h3 {
+    color: var(--fg);
+  }
+
+  body {
+    background: #fff;
+  }
+}
