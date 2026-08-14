@@ -53,14 +53,12 @@ export function QuestionCard({
   const [storyExpanded, setStoryExpanded] = useState(!!initialStory);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
+  // Parent renders this with `key={question.id}`, so a fresh instance (and fresh
+  // state above) mounts per question — no reset effect needed.
   useEffect(() => {
-    setPrimary(initialPrimary);
-    setStory(initialStory);
-    setStoryExpanded(!!initialStory);
     const t = setTimeout(() => inputRef.current?.focus(), 80);
     return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [question.id]);
+  }, []);
 
   function commit(nextPrimary = primary, nextStory = story) {
     onSave(buildValue(question, nextPrimary, nextStory));

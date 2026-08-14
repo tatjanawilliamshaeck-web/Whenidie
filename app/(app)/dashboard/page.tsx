@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { QUESTIONS, RELIEF_CHAPTER, CHAPTER_META } from "@/lib/questions";
@@ -266,12 +267,12 @@ export default function DashboardPage() {
       </a>
       <header className="site-header">
         <div className="container header-inner">
-          <a href="/dashboard" className="logo">
+          <Link href="/dashboard" className="logo">
             <Image src="/assets/Logo.svg" alt="When I Die™" className="logo-image" width={120} height={48} />
-          </a>
+          </Link>
           <nav className="nav">
             <span className="nav-user">{userEmail}</span>
-            <a href="/">Home</a>
+            <Link href="/">Home</Link>
             <button type="button" className="btn secondary-btn btn--small" onClick={handleLogout}>
               Log out
             </button>
@@ -317,6 +318,7 @@ export default function DashboardPage() {
 
               <section className="dashboard-section dashboard-question-current" id="question-current-section">
                 <QuestionCard
+                  key={currentQuestion.id}
                   question={currentQuestion}
                   index={currentIndex}
                   total={QUESTIONS.length}

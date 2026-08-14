@@ -10,12 +10,15 @@ type PrintPlan = { updatedAt: string; sections: PrintSection[] };
 export default function PlanPrintPage() {
   const [plan, setPlan] = useState<PrintPlan | null>(null);
 
+  // localStorage isn't available during server render, so this can't be computed
+  // during render — it has to run post-mount.
   useEffect(() => {
     try {
       const stored = localStorage.getItem("wid-print-plan");
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed && Array.isArray(parsed.sections)) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
           setPlan(parsed);
           localStorage.removeItem("wid-print-plan");
           return;

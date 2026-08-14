@@ -22,6 +22,10 @@ const TONE_LABELS: Record<(typeof TONE_STYLES)[number], string> = {
   surprise: "Surprise me",
 };
 
+function pickRandom<T>(list: T[]): T {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
 function inviteLink(token: string | null): string {
   if (!token || typeof window === "undefined") return "";
   return `${window.location.origin}/view-invite?token=${encodeURIComponent(token)}`;
@@ -53,8 +57,7 @@ export function ShareSection({
   function selectTone(style: (typeof TONE_STYLES)[number]) {
     setTone(style);
     if (style === "surprise") {
-      const list = INVITE_MESSAGE_TEMPLATES.surprise as string[];
-      setMessage(list[Math.floor(Math.random() * list.length)]);
+      setMessage(pickRandom(INVITE_MESSAGE_TEMPLATES.surprise as string[]));
     } else if (style === "custom") {
       // keep current message, let them write their own
     } else {

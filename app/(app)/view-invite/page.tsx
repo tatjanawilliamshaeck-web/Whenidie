@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { AuthHeader } from "@/components/AuthHeader";
 import { createClient } from "@/lib/supabase/client";
@@ -12,14 +13,13 @@ type PlanItem = { question_id: string; value: string };
 function ViewInviteContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
-  const [status, setStatus] = useState<"loading" | "no-token" | "no-plan" | "error" | "ready">("loading");
+  const [status, setStatus] = useState<"loading" | "no-token" | "no-plan" | "error" | "ready">(() =>
+    token ? "loading" : "no-token"
+  );
   const [plan, setPlan] = useState<PlanItem[]>([]);
 
   useEffect(() => {
-    if (!token) {
-      setStatus("no-token");
-      return;
-    }
+    if (!token) return;
     const supabase = createClient();
     (async () => {
       try {
@@ -80,7 +80,7 @@ function ViewInviteContent() {
             </>
           ) : null}
           <p className="auth-footer" style={{ marginTop: "1.5rem" }}>
-            <a href="/">Go to homepage</a>
+            <Link href="/">Go to homepage</Link>
           </p>
         </div>
       </div>
