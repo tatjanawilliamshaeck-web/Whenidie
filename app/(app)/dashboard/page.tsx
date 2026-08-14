@@ -24,6 +24,7 @@ import { ChapterNav } from "@/components/dashboard/ChapterNav";
 import { QuestionCard } from "@/components/dashboard/QuestionCard";
 import { PlanPreview } from "@/components/dashboard/PlanPreview";
 import { ShareSection, type Share } from "@/components/dashboard/ShareSection";
+import { NotifyContactsStep } from "@/components/dashboard/NotifyContactsStep";
 import { MilestoneModal, UnlockModal, ReliefModal, Toast } from "@/components/dashboard/CelebrationModals";
 
 export default function DashboardPage() {
@@ -48,6 +49,7 @@ export default function DashboardPage() {
   const [milestone, setMilestone] = useState<{ level: number; pendingUnlock: string | null; pendingRelief: boolean } | null>(null);
   const [unlockName, setUnlockName] = useState<string | null>(null);
   const [reliefLine, setReliefLine] = useState<string | null>(null);
+  const [showNotifyStep, setShowNotifyStep] = useState(false);
   const reliefSeenRef = useRef(false);
 
   useEffect(() => {
@@ -83,7 +85,16 @@ export default function DashboardPage() {
         map[r.question_id] = { value: r.value, updated_at: r.updated_at };
       });
       setAnswers(map);
-      setShares((shareRows as Share[]) || []);
+      const loadedShares = (shareRows as Share[]) || [];
+      setShares(loadedShares);
+
+      let notifyDismissed = false;
+      try {
+        notifyDismissed = sessionStorage.getItem("wid-notify-step-dismissed") === "1";
+      } catch {
+        // ignore
+      }
+      if (loadedShares.length === 0 && !notifyDismissed) setShowNotifyStep(true);
 
       const firstUnanswered = QUESTIONS.findIndex((q) => !hasAnswerValue(q, map[q.id]?.value || ""));
       setCurrentIndex(firstUnanswered >= 0 ? firstUnanswered : 0);
@@ -202,29 +213,63 @@ export default function DashboardPage() {
     goToQuestion(getFirstQuestionIndexForChapter(chapterNum));
   }
 
-  async function handleAddShare(email: string, allowedCategories: string[] | null) {
+  async function handleAddShare(emails: string[], allowedCategories: string[] | null, message: string) {
     if (!userId) return;
-    const payload: Record<string, unknown> = {
-      user_id: userId,
-      email,
-      role: "viewer",
-      invite_token: crypto.randomUUID().replace(/-/g, ""),
-      invite_sent_at: new Date().toISOString(),
-    };
-    if (allowedCategories) payload.allowed_question_ids = questionIdsForCategories(allowedCategories);
-    const { data, error } = await getSupabase().from("shares").upsert(payload, { onConflict: "user_id,email" }).select();
-    if (error || !data?.length) {
-      showToast(error?.message || "Could not add.");
-      return;
+    const newShares: Share[] = [];
+    let failures = 0;
+
+    for (const email of emails) {
+      const payload: Record<string, unknown> = {
+        user_id: userId,
+        email,
+        role: "viewer",
+        invite_token: crypto.randomUUID().replace(/-/g, ""),
+        invite_sent_at: new Date().toISOString(),
+      };
+      if (allowedCategories) payload.allowed_question_ids = questionIdsForCategories(allowedCategories);
+      const { data, error } = await getSupabase().from("shares").upsert(payload, { onConflict: "user_id,email" }).select();
+      if (error || !data?.length) {
+        failures += 1;
+        continue;
+      }
+      const newShare = data[0] as Share;
+      newShares.push(newShare);
+
+      if (newShare.invite_token) {
+        const link = `${window.location.origin}/view-invite?token=${encodeURIComponent(newShare.invite_token)}`;
+        fetch("/api/invites/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, message, inviteLink: link }),
+        }).catch(() => {});
+      }
     }
-    const newShare = data[0] as Share;
-    setShares((prev) => [newShare, ...prev.filter((s) => s.id !== newShare.id)]);
-    if (newShare.invite_token && navigator.clipboard) {
-      const link = `${window.location.origin}/view-invite?token=${encodeURIComponent(newShare.invite_token)}`;
-      navigator.clipboard.writeText(link).catch(() => {});
+
+    if (newShares.length) {
+      setShares((prev) => [...newShares, ...prev.filter((s) => !newShares.some((n) => n.id === s.id))]);
+      showToast(
+        failures
+          ? `Sent to ${newShares.length}, ${failures} failed.`
+          : INVITE_SUCCESS_TOASTS[Math.floor(Math.random() * INVITE_SUCCESS_TOASTS.length)]
+      );
+      window.setTimeout(() => tryShowRelief(), 800);
+    } else {
+      showToast("Could not add. Try again.");
     }
-    showToast(INVITE_SUCCESS_TOASTS[Math.floor(Math.random() * INVITE_SUCCESS_TOASTS.length)]);
-    window.setTimeout(() => tryShowRelief(), 800);
+  }
+
+  function dismissNotifyStep() {
+    setShowNotifyStep(false);
+    try {
+      sessionStorage.setItem("wid-notify-step-dismissed", "1");
+    } catch {
+      // ignore
+    }
+  }
+
+  async function handleNotifyContacts(emails: string[], message: string) {
+    await handleAddShare(emails, null, message);
+    dismissNotifyStep();
   }
 
   async function handleRemoveShare(id: string) {
@@ -338,27 +383,31 @@ export default function DashboardPage() {
                 </p>
               </section>
 
-              <section className="dashboard-section dashboard-question-current" id="question-current-section">
-                <QuestionCard
-                  key={currentQuestion.id}
-                  question={currentQuestion}
-                  index={currentIndex}
-                  total={QUESTIONS.length}
-                  rawValue={getAnswerFor(answers, currentQuestion)}
-                  onSave={(value) => saveAnswer(currentQuestion, value)}
-                  onPrev={() => goToQuestion(currentIndex - 1)}
-                  onNext={() => {
-                    if (currentIndex >= QUESTIONS.length - 1) {
-                      document.getElementById("plan-preview-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      return;
-                    }
-                    goToQuestion(currentIndex + 1);
-                  }}
-                  onSkip={() => {
-                    if (currentIndex < QUESTIONS.length - 1) goToQuestion(currentIndex + 1);
-                  }}
-                />
-              </section>
+              {showNotifyStep ? (
+                <NotifyContactsStep onNotify={handleNotifyContacts} onSkip={dismissNotifyStep} />
+              ) : (
+                <section className="dashboard-section dashboard-question-current" id="question-current-section">
+                  <QuestionCard
+                    key={currentQuestion.id}
+                    question={currentQuestion}
+                    index={currentIndex}
+                    total={QUESTIONS.length}
+                    rawValue={getAnswerFor(answers, currentQuestion)}
+                    onSave={(value) => saveAnswer(currentQuestion, value)}
+                    onPrev={() => goToQuestion(currentIndex - 1)}
+                    onNext={() => {
+                      if (currentIndex >= QUESTIONS.length - 1) {
+                        document.getElementById("plan-preview-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        return;
+                      }
+                      goToQuestion(currentIndex + 1);
+                    }}
+                    onSkip={() => {
+                      if (currentIndex < QUESTIONS.length - 1) goToQuestion(currentIndex + 1);
+                    }}
+                  />
+                </section>
+              )}
 
               <section className="dashboard-section dashboard-preview dashboard-preview--compact" id="plan-preview-section" aria-labelledby="plan-preview-heading">
                 <div className="plan-preview-watermark" aria-hidden="true" />

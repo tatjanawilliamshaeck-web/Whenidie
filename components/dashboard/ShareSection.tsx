@@ -39,7 +39,7 @@ export function ShareSection({
   onToast,
 }: {
   shares: Share[];
-  onAddShare: (email: string, allowedCategories: string[] | null) => Promise<void>;
+  onAddShare: (emails: string[], allowedCategories: string[] | null, message: string) => Promise<void>;
   onRemoveShare: (id: string) => void;
   onCopy: (text: string) => void;
   onToast: (message: string) => void;
@@ -67,10 +67,22 @@ export function ShareSection({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const trimmed = email.trim().toLowerCase();
-    if (!trimmed) return;
+    const emails = Array.from(
+      new Set(
+        email
+          .split(/[,\n]/)
+          .map((e) => e.trim().toLowerCase())
+          .filter(Boolean)
+      )
+    );
+    if (!emails.length) return;
+    const invalid = emails.filter((e) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
+    if (invalid.length) {
+      onToast(`Not a valid email: ${invalid[0]}`);
+      return;
+    }
     setSubmitting(true);
-    await onAddShare(trimmed, fullPlan ? null : categories.length ? categories : null);
+    await onAddShare(emails, fullPlan ? null : categories.length ? categories : null, message);
     setSubmitting(false);
     setEmail("");
     setFullPlan(true);
@@ -97,12 +109,15 @@ export function ShareSection({
             <label className="auth-label" htmlFor="share-email">
               Who do you trust with this?
             </label>
+            <p className="auth-why" style={{ marginTop: 0 }}>
+              Add one or more emails, separated by commas.
+            </p>
             <div className="share-form-row">
               <input
-                type="email"
+                type="text"
                 id="share-email"
                 className="auth-input"
-                placeholder="their@email.com"
+                placeholder="their@email.com, another@email.com"
                 required
                 autoComplete="email"
                 value={email}
