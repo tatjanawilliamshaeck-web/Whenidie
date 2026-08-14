@@ -64,6 +64,15 @@ export function QuestionCard({
     onSave(buildValue(question, nextPrimary, nextStory));
   }
 
+  // Read straight from the DOM on blur rather than the `primary`/`story` state
+  // closures — avoids any risk of committing a stale value if blur fires before
+  // a state update from the last keystroke has been applied.
+  function commitFromDom() {
+    const primaryEl = inputRef.current;
+    const nextPrimary = primaryEl ? primaryEl.value : primary;
+    onSave(buildValue(question, nextPrimary, story));
+  }
+
   const hasStoryField = question.fieldType === "short_text_story" || question.fieldType === "choice_with_story";
   const maxLen =
     question.fieldType === "short_text" || question.fieldType === "short_text_story"
@@ -124,7 +133,7 @@ export function QuestionCard({
               maxLength={maxLen}
               value={primary}
               onChange={(e) => setPrimary(e.target.value)}
-              onBlur={() => commit()}
+              onBlur={commitFromDom}
             />
           ) : (
             <textarea
@@ -135,7 +144,7 @@ export function QuestionCard({
               maxLength={maxLen}
               value={primary}
               onChange={(e) => setPrimary(e.target.value)}
-              onBlur={() => commit()}
+              onBlur={commitFromDom}
             />
           )}
         </div>
