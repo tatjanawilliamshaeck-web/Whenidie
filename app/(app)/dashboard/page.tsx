@@ -304,12 +304,21 @@ export default function DashboardPage() {
                 <h2 id="progress-cycle-label" className="progress-cycle__heading">
                   Progress
                 </h2>
-                <DaisyProgress total={QUESTIONS.length} completed={answeredCount} variant="hero" />
-                <span className="progress-cycle__center progress-cycle__center--daisy">
-                  <span className="progress-cycle__count">{answeredCount}</span>
-                  <span className="progress-cycle__sep">/</span>
-                  <span className="progress-cycle__total">{QUESTIONS.length}</span>
-                </span>
+                <div
+                  className="daisy-progress-wrap daisy-progress-wrap--hero"
+                  role="progressbar"
+                  aria-valuenow={QUESTIONS.length > 0 ? Math.round((answeredCount / QUESTIONS.length) * 100) : 0}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label="Overall progress"
+                >
+                  <DaisyProgress total={QUESTIONS.length} completed={answeredCount} variant="hero" />
+                  <span className="progress-cycle__center progress-cycle__center--daisy">
+                    <span className="progress-cycle__count">{answeredCount}</span>
+                    <span className="progress-cycle__sep">/</span>
+                    <span className="progress-cycle__total">{QUESTIONS.length}</span>
+                  </span>
+                </div>
                 <p className="progress-cycle__label">answered</p>
               </div>
               <ChapterNav

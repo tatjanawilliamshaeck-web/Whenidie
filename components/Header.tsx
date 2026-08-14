@@ -55,7 +55,7 @@ export function Header() {
           <StartCtaLink
             className="nav-cta wid-cta-start"
             loggedOutText="Start"
-            loggedInText="Go to your plan"
+            loggedInText="Your plan"
           />
         </nav>
       </div>
