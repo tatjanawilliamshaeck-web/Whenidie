@@ -46,7 +46,10 @@ export default function SignupPage() {
     const { data, error: signUpError } = await supabase.auth.signUp({
       email: normalizedEmail,
       password,
-      options: { data: { display_name: displayName.trim() || null } },
+      options: {
+        data: { display_name: displayName.trim() || null },
+        emailRedirectTo: `${window.location.origin}/login`,
+      },
     });
 
     if (signUpError) {
