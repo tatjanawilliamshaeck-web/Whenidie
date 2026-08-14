@@ -28,7 +28,14 @@ import { MilestoneModal, UnlockModal, ReliefModal, Toast } from "@/components/da
 
 export default function DashboardPage() {
   const router = useRouter();
-  const supabase = createClient();
+  // Lazily created on first use (never during render) — the Supabase browser
+  // client touches `document`, which doesn't exist during Next's server-side
+  // prerender pass for this client component.
+  const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null);
+  function getSupabase() {
+    if (!supabaseRef.current) supabaseRef.current = createClient();
+    return supabaseRef.current;
+  }
 
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null>(null);
@@ -46,7 +53,7 @@ export default function DashboardPage() {
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      const { data: userRes } = await supabase.auth.getUser();
+      const { data: userRes } = await getSupabase().auth.getUser();
       const user = userRes.user;
       if (!user) {
         router.replace("/login");
@@ -59,9 +66,9 @@ export default function DashboardPage() {
       if (metaName) setDisplayName(metaName);
 
       const [{ data: profile }, { data: answerRows }, { data: shareRows }] = await Promise.all([
-        supabase.from("profiles").select("display_name").eq("id", user.id).single(),
-        supabase.from("answers").select("question_id, value, updated_at").eq("user_id", user.id),
-        supabase
+        getSupabase().from("profiles").select("display_name").eq("id", user.id).single(),
+        getSupabase().from("answers").select("question_id, value, updated_at").eq("user_id", user.id),
+        getSupabase()
           .from("shares")
           .select("id, email, invite_token, invite_sent_at, opened_at, allowed_question_ids")
           .eq("user_id", user.id)
@@ -93,7 +100,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = getSupabase().auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_OUT" || !session) {
         router.replace("/login?message=session-ended");
       }
@@ -140,7 +147,7 @@ export default function DashboardPage() {
     setAnswers(nextAnswers);
 
     if (!userId) return;
-    await supabase.from("answers").upsert(
+    await getSupabase().from("answers").upsert(
       { user_id: userId, question_id: question.id, value, updated_at: new Date().toISOString() },
       { onConflict: "user_id,question_id" }
     );
@@ -199,7 +206,7 @@ export default function DashboardPage() {
     if (!userId) return;
     const payload: Record<string, unknown> = { user_id: userId, email, role: "viewer" };
     if (allowedCategories) payload.allowed_question_ids = questionIdsForCategories(allowedCategories);
-    const { data, error } = await supabase.from("shares").upsert(payload, { onConflict: "user_id,email" }).select();
+    const { data, error } = await getSupabase().from("shares").upsert(payload, { onConflict: "user_id,email" }).select();
     if (error || !data?.length) {
       showToast(error?.message || "Could not add.");
       return;
@@ -216,7 +223,7 @@ export default function DashboardPage() {
 
   async function handleRemoveShare(id: string) {
     if (!userId) return;
-    await supabase.from("shares").delete().eq("id", id).eq("user_id", userId);
+    await getSupabase().from("shares").delete().eq("id", id).eq("user_id", userId);
     setShares((prev) => prev.filter((s) => s.id !== id));
   }
 
@@ -238,7 +245,7 @@ export default function DashboardPage() {
   }
 
   async function handleLogout() {
-    await supabase.auth.signOut();
+    await getSupabase().auth.signOut();
     router.push("/");
   }
 
