@@ -204,7 +204,13 @@ export default function DashboardPage() {
 
   async function handleAddShare(email: string, allowedCategories: string[] | null) {
     if (!userId) return;
-    const payload: Record<string, unknown> = { user_id: userId, email, role: "viewer" };
+    const payload: Record<string, unknown> = {
+      user_id: userId,
+      email,
+      role: "viewer",
+      invite_token: crypto.randomUUID().replace(/-/g, ""),
+      invite_sent_at: new Date().toISOString(),
+    };
     if (allowedCategories) payload.allowed_question_ids = questionIdsForCategories(allowedCategories);
     const { data, error } = await getSupabase().from("shares").upsert(payload, { onConflict: "user_id,email" }).select();
     if (error || !data?.length) {
