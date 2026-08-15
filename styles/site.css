@@ -2193,7 +2193,7 @@ h2 {
 }
 
 .page-hero-inner {
-  max-width: 48rem;
+  max-width: 100%;
 }
 
 .page-hero-nav {
