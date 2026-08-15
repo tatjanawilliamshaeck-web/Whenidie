@@ -72,6 +72,10 @@ export function QuestionCard({
   }
 
   const hasStoryField = question.fieldType === "short_text_story" || question.fieldType === "choice_with_story";
+  // choice_with_story questions can tailor the follow-up prompt to whichever
+  // choice was picked (e.g. "What should happen to the ashes?" only makes
+  // sense once "Cremation" is selected) instead of one generic prompt.
+  const effectiveStoryPrompt = (primary && question.storyPromptByChoice?.[primary]) || question.storyPrompt;
   const maxLen =
     question.fieldType === "short_text" || question.fieldType === "short_text_story"
       ? question.maxLength || 120
@@ -109,21 +113,26 @@ export function QuestionCard({
 
         <div className="question-card-single__input">
           {question.fieldType === "choice_with_story" && question.choices ? (
-            <div className="question-card-choices" role="group" aria-label="Choose one">
-              {question.choices.map((c) => (
-                <button
-                  key={c}
-                  type="button"
-                  className={`answer-choice${c === primary ? " answer-choice--active" : ""}`}
-                  onClick={() => {
-                    setPrimary(c);
-                    commit(c, story);
-                  }}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
+            <>
+              <div className="question-card-choices" role="group" aria-label="Choose one">
+                {question.choices.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    className={`answer-choice${c === primary ? " answer-choice--active" : ""}`}
+                    onClick={() => {
+                      setPrimary(c);
+                      commit(c, story);
+                    }}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+              {primary && question.choiceDescriptions?.[primary] ? (
+                <p className="question-card-choice-description">{question.choiceDescriptions[primary]}</p>
+              ) : null}
+            </>
           ) : question.fieldType === "short_text" || question.fieldType === "short_text_story" ? (
             <input
               ref={inputRef as React.RefObject<HTMLInputElement>}
@@ -158,11 +167,11 @@ export function QuestionCard({
               onClick={() => setStoryExpanded((v) => !v)}
             >
               <span className="question-card-story-toggle__icon" aria-hidden="true" />
-              <span>{question.storyPrompt || "Tell the story behind it"}</span>
+              <span>{effectiveStoryPrompt || "Tell the story behind it"}</span>
             </button>
             {storyExpanded ? (
               <div className="question-card-single__story question-card-single__story--expandable">
-                <label className="auth-label">{question.storyPrompt || "Tell the story behind it (optional)"}</label>
+                <label className="auth-label">{effectiveStoryPrompt || "Tell the story behind it (optional)"}</label>
                 <textarea
                   className="auth-input auth-textarea"
                   rows={3}
