@@ -37,12 +37,20 @@ export function ShareSection({
   onRemoveShare,
   onCopy,
   onToast,
+  eyebrow = "Share your plan",
+  heading = "Choose someone you trust",
+  intro = "If something ever happens, they can access your plan. You stay in control.",
+  footer,
 }: {
   shares: Share[];
   onAddShare: (emails: string[], allowedCategories: string[] | null, message: string) => Promise<void>;
   onRemoveShare: (id: string) => void;
   onCopy: (text: string) => void;
   onToast: (message: string) => void;
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  footer?: React.ReactNode;
 }) {
   const [email, setEmail] = useState("");
   const [tone, setTone] = useState<(typeof TONE_STYLES)[number]>("responsible");
@@ -94,11 +102,11 @@ export function ShareSection({
   return (
     <section id="dashboard-shared" className="dashboard-section dashboard-shared access-management" aria-labelledby="invitation-heading">
       <div className="invitation-card">
-        <p className="invitation-eyebrow">Share your plan</p>
+        <p className="invitation-eyebrow">{eyebrow}</p>
         <h2 id="invitation-heading" className="invitation-heading">
-          Choose someone you trust
+          {heading}
         </h2>
-        <p className="invitation-intro">If something ever happens, they can access your plan. You stay in control.</p>
+        <p className="invitation-intro">{intro}</p>
         <ul className="share-reassurance" aria-hidden="true">
           <li>They won&apos;t see anything unless you send the link</li>
           <li>You can revoke access anytime</li>
@@ -199,6 +207,8 @@ export function ShareSection({
             </div>
           ) : null}
         </form>
+
+        {footer}
 
         {shares.length > 0 ? (
           <section className="sent-invites-section" aria-labelledby="sent-invites-heading">

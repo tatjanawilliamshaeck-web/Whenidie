@@ -7,6 +7,7 @@ export function MilestoneModal({
   message,
   icon,
   showShareCta,
+  tone = "light",
   onClose,
   onShare,
 }: {
@@ -14,19 +15,20 @@ export function MilestoneModal({
   message: string;
   icon: string;
   showShareCta: boolean;
+  tone?: "light" | "heavy";
   onClose: () => void;
   onShare: () => void;
 }) {
   return (
-    <div className="milestone-modal" role="dialog" aria-modal="true" aria-labelledby="milestone-heading">
+    <div className={`milestone-modal${tone === "heavy" ? " milestone-modal--quiet" : ""}`} role="dialog" aria-modal="true" aria-labelledby="milestone-heading">
       <div className="milestone-backdrop" onClick={onClose} />
       <div className="milestone-content">
-        <div className="milestone-glow" aria-hidden="true" />
+        {tone === "light" ? <div className="milestone-glow" aria-hidden="true" /> : null}
         <p className="milestone-icon" aria-hidden="true">
           <Image src={icon} alt="" width={32} height={32} />
         </p>
         <h2 id="milestone-heading" className="milestone-heading">
-          {chapterName} complete!
+          {tone === "heavy" ? `${chapterName} — done.` : `${chapterName} complete!`}
         </h2>
         <p className="milestone-message">{message}</p>
         {showShareCta ? (

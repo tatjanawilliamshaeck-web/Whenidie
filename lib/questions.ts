@@ -18,6 +18,11 @@ export type Question = {
   choices?: string[];
 };
 
+// "tone" controls how the chapter-complete celebration reacts: `light` chapters
+// (send-off logistics, weird stuff) get the full glow/confetti-style treatment;
+// `heavy` chapters (who to notify, practical loose ends, personal reflections)
+// get a quieter, more respectful acknowledgment instead — same information,
+// less bounce.
 export const CHAPTER_META = [
   {
     level: 1,
@@ -25,6 +30,7 @@ export const CHAPTER_META = [
     tagline: "Quick practical info.",
     completionMessage: "Nice. You've already done more planning than most humans.",
     icon: "/assets/icon-document.svg",
+    tone: "heavy",
   },
   {
     level: 2,
@@ -32,6 +38,7 @@ export const CHAPTER_META = [
     tagline: "Prevent confusion and detective work.",
     completionMessage: "Future chaos reduced.",
     icon: "/assets/icon-checklist.svg",
+    tone: "heavy",
   },
   {
     level: 3,
@@ -39,6 +46,7 @@ export const CHAPTER_META = [
     tagline: "Event planning.",
     completionMessage: "Your send-off is taking shape.",
     icon: "/assets/icon-music.svg",
+    tone: "light",
   },
   {
     level: 4,
@@ -46,6 +54,7 @@ export const CHAPTER_META = [
     tagline: "Meaningful reflections.",
     completionMessage: "This is the part people will care about most.",
     icon: "/assets/icon-notebook.svg",
+    tone: "heavy",
   },
   {
     level: 5,
@@ -53,6 +62,7 @@ export const CHAPTER_META = [
     tagline: "Personality and humor.",
     completionMessage: "Your legacy now includes chaos.",
     icon: "/assets/icon-chat.svg",
+    tone: "light",
   },
 ] as const;
 

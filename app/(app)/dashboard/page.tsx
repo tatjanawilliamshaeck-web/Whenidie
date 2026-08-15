@@ -24,7 +24,6 @@ import { ChapterNav } from "@/components/dashboard/ChapterNav";
 import { QuestionCard } from "@/components/dashboard/QuestionCard";
 import { PlanPreview } from "@/components/dashboard/PlanPreview";
 import { ShareSection, type Share } from "@/components/dashboard/ShareSection";
-import { NotifyContactsStep } from "@/components/dashboard/NotifyContactsStep";
 import { MilestoneModal, UnlockModal, ReliefModal, Toast } from "@/components/dashboard/CelebrationModals";
 
 export default function DashboardPage() {
@@ -268,7 +267,7 @@ export default function DashboardPage() {
       );
       window.setTimeout(() => tryShowRelief(), 800);
     } else {
-      showToast("Could not add. Try again.");
+      showToast("Hmm, that didn't land. Try again?");
     }
   }
 
@@ -281,8 +280,8 @@ export default function DashboardPage() {
     }
   }
 
-  async function handleNotifyContacts(emails: string[], message: string) {
-    await handleAddShare(emails, null, message);
+  async function handleOnboardingAddShare(emails: string[], allowedCategories: string[] | null, message: string) {
+    await handleAddShare(emails, allowedCategories, message);
     dismissNotifyStep();
   }
 
@@ -318,7 +317,7 @@ export default function DashboardPage() {
     return (
       <div className="dashboard-gate">
         <div className="dashboard-gate-spinner" aria-hidden="true" />
-        <p>Getting your plan ready…</p>
+        <p>Fluffing the petals…</p>
       </div>
     );
   }
@@ -398,7 +397,21 @@ export default function DashboardPage() {
               </section>
 
               {showNotifyStep ? (
-                <NotifyContactsStep onNotify={handleNotifyContacts} onSkip={dismissNotifyStep} />
+                <ShareSection
+                  shares={shares}
+                  onAddShare={handleOnboardingAddShare}
+                  onRemoveShare={handleRemoveShare}
+                  onCopy={copyText}
+                  onToast={showToast}
+                  eyebrow="First things first"
+                  heading="Who should we tell you've started a plan?"
+                  intro="They'll get a short note letting them know, and can check in on your progress anytime. They won't see your actual answers unless you choose to share them."
+                  footer={
+                    <button type="button" className="btn ghost-btn btn--small" onClick={dismissNotifyStep} style={{ marginTop: "0.5rem" }}>
+                      Skip for now
+                    </button>
+                  }
+                />
               ) : (
                 <section className="dashboard-section dashboard-question-current" id="question-current-section">
                   <QuestionCard
@@ -487,17 +500,21 @@ export default function DashboardPage() {
             </aside>
           </div>
 
-          <div className="invitation-bridge" aria-hidden="true">
-            <span className="invitation-bridge__text">Your plan gets even better when someone you trust knows about it.</span>
-          </div>
+          {!showNotifyStep ? (
+            <>
+              <div className="invitation-bridge" aria-hidden="true">
+                <span className="invitation-bridge__text">Your plan gets even better when someone you trust knows about it.</span>
+              </div>
 
-          <ShareSection
-            shares={shares}
-            onAddShare={handleAddShare}
-            onRemoveShare={handleRemoveShare}
-            onCopy={copyText}
-            onToast={showToast}
-          />
+              <ShareSection
+                shares={shares}
+                onAddShare={handleAddShare}
+                onRemoveShare={handleRemoveShare}
+                onCopy={copyText}
+                onToast={showToast}
+              />
+            </>
+          ) : null}
         </div>
       </main>
 
@@ -511,6 +528,7 @@ export default function DashboardPage() {
                 chapterName={meta?.name || `Chapter ${milestone.level}`}
                 message={meta?.completionMessage || "You completed this chapter."}
                 icon={meta?.icon || "/assets/icon-document.svg"}
+                tone={meta?.tone || "light"}
                 showShareCta={shares.length === 0}
                 onClose={closeMilestone}
                 onShare={() => {

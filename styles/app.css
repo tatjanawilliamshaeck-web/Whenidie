@@ -2464,6 +2464,12 @@ body.milestone-modal-open {
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* Heavy-tone chapters (who to notify, practical loose ends, personal
+   reflections) get a quieter acknowledgment — no pop, no glow. */
+.milestone-modal--quiet .milestone-content {
+  animation: none;
+}
+
 .milestone-glow {
   position: absolute;
   top: -30px;
