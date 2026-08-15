@@ -28,7 +28,6 @@ export function QuestionCard({
   onSave,
   onPrev,
   onNext,
-  onSkip,
 }: {
   question: Question;
   index: number;
@@ -37,7 +36,6 @@ export function QuestionCard({
   onSave: (value: string) => void;
   onPrev: () => void;
   onNext: () => void;
-  onSkip: () => void;
 }) {
   const parsed = parseAnswerValue(question, rawValue);
   const initialPrimary =
@@ -95,8 +93,10 @@ export function QuestionCard({
                   type="button"
                   className="question-card-suggestion-pill"
                   onClick={() => {
+                    // Pre-fill only — don't auto-save. These are inspiration, not
+                    // one-click answers; the normal save-on-blur still applies once
+                    // they've reviewed/edited it.
                     setPrimary(s);
-                    commit(s, story);
                     inputRef.current?.focus();
                   }}
                 >
@@ -184,9 +184,6 @@ export function QuestionCard({
               Back
             </button>
           ) : null}
-          <button type="button" className="btn ghost-btn btn--nav question-nav-skip" onClick={onSkip} aria-label="Skip this question">
-            Skip
-          </button>
         </div>
         <button type="button" className="btn primary-btn btn--nav" onClick={onNext} aria-label="Next question">
           {index >= total - 1 ? "View my plan" : "Next"}

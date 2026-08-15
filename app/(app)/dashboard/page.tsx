@@ -94,7 +94,11 @@ export default function DashboardPage() {
       } catch {
         // ignore
       }
-      if (loadedShares.length === 0 && !notifyDismissed) setShowNotifyStep(true);
+      // Show once they've felt some progress (2+ answers), not as the very
+      // first thing a brand-new user sees before experiencing any value.
+      if (loadedShares.length === 0 && !notifyDismissed && getAnsweredCount(map) >= 2) {
+        setShowNotifyStep(true);
+      }
 
       const firstUnanswered = QUESTIONS.findIndex((q) => !hasAnswerValue(q, map[q.id]?.value || ""));
       setCurrentIndex(firstUnanswered >= 0 ? firstUnanswered : 0);
@@ -193,6 +197,16 @@ export default function DashboardPage() {
     } else {
       if (pendingUnlockName) setUnlockName(pendingUnlockName);
       if (pendingRelief) tryShowRelief(true);
+    }
+
+    if (shares.length === 0 && getAnsweredCount(nextAnswers) === 2) {
+      let notifyDismissed = false;
+      try {
+        notifyDismissed = sessionStorage.getItem("wid-notify-step-dismissed") === "1";
+      } catch {
+        // ignore
+      }
+      if (!notifyDismissed) setShowNotifyStep(true);
     }
   }
 
@@ -401,9 +415,6 @@ export default function DashboardPage() {
                         return;
                       }
                       goToQuestion(currentIndex + 1);
-                    }}
-                    onSkip={() => {
-                      if (currentIndex < QUESTIONS.length - 1) goToQuestion(currentIndex + 1);
                     }}
                   />
                 </section>

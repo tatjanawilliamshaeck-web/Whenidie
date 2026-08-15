@@ -227,6 +227,17 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  /* Put the actual question above the chapter list/progress chrome on mobile
+     instead of forcing a long scroll past 29 questions to reach it. */
+  .dashboard-center {
+    order: 1;
+  }
+  .dashboard-sidebar {
+    order: 2;
+  }
+  .dashboard-sidebar--right {
+    order: 3;
+  }
   .question-nav-actions {
     flex-direction: column;
     align-items: stretch;
