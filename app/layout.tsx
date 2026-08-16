@@ -27,18 +27,22 @@ export const metadata: Metadata = {
     description:
       "Start in 10 minutes. Capture the essentials. Private. Only shared with people you choose. When I Die™.",
     type: "website",
-    images: ["/assets/Logo.svg"],
+    images: ["/assets/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "When I Die™ – Make life easier for the people you love",
     description:
       "Start in 10 minutes. Capture the essentials. Private. Only shared with people you choose. When I Die™.",
-    images: ["/assets/Logo.svg"],
+    images: ["/assets/logo.png"],
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>{children}</body>

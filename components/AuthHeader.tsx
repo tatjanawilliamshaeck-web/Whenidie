@@ -1,12 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function AuthHeader({ links }: { links: { href: string; label: string }[] }) {
+export function AuthHeader({
+  links,
+}: {
+  links: { href: string; label: string }[];
+}) {
   return (
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="logo">
-          <Image src="/assets/Logo.svg" alt="When I Die™" className="logo-image" width={120} height={48} priority />
+          <Image
+            src="/assets/logo.png"
+            alt="When I Die™"
+            className="logo-image"
+            width={120}
+            height={48}
+            priority
+          />
         </Link>
         <nav className="nav">
           {links.map((link) => (
@@ -16,7 +27,9 @@ export function AuthHeader({ links }: { links: { href: string; label: string }[]
           ))}
         </nav>
       </div>
-      <div className="announcement-bar">No doom. No guilt. Snacks encouraged.</div>
+      <div className="announcement-bar">
+        No doom. No guilt. Snacks encouraged.
+      </div>
     </header>
   );
 }

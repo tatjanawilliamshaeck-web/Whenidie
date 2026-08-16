@@ -18,7 +18,8 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   const prefix = locale === "de" ? "/de" : "";
-  const backLabel = locale === "de" ? "← Zurück zur Startseite" : "← Back to home";
+  const backLabel =
+    locale === "de" ? "← Zurück zur Startseite" : "← Back to home";
   const homeLabel = locale === "de" ? "Start" : "Home";
 
   return (
@@ -39,7 +40,13 @@ export function PageHero({
             </nav>
           </div>
           <div className="page-hero-brand">
-            <Image src="/assets/Logo.svg" alt="When I Die™" className="page-hero-logo" width={120} height={48} />
+            <Image
+              src="/assets/logo.png"
+              alt="When I Die™"
+              className="page-hero-logo"
+              width={120}
+              height={48}
+            />
           </div>
           <p className="eyebrow">{eyebrow}</p>
           <h1 className="page-title">{title}</h1>

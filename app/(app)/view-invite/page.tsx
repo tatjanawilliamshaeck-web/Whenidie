@@ -13,9 +13,9 @@ type PlanItem = { question_id: string; value: string };
 function ViewInviteContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
-  const [status, setStatus] = useState<"loading" | "no-token" | "no-plan" | "error" | "ready">(() =>
-    token ? "loading" : "no-token"
-  );
+  const [status, setStatus] = useState<
+    "loading" | "no-token" | "no-plan" | "error" | "ready"
+  >(() => (token ? "loading" : "no-token"));
   const [plan, setPlan] = useState<PlanItem[]>([]);
 
   useEffect(() => {
@@ -24,7 +24,9 @@ function ViewInviteContent() {
     (async () => {
       try {
         await supabase.rpc("record_invite_open", { token });
-        const { data, error } = await supabase.rpc("get_plan_for_invite", { token });
+        const { data, error } = await supabase.rpc("get_plan_for_invite", {
+          token,
+        });
         if (error) {
           setStatus("error");
           return;
@@ -46,29 +48,42 @@ function ViewInviteContent() {
     <main className="app-main" id="main-content">
       <div className="container container--narrow">
         <div className="auth-card view-invite-card">
-          {status === "loading" ? <p className="view-invite-loading">Loading…</p> : null}
+          {status === "loading" ? (
+            <p className="view-invite-loading">Loading…</p>
+          ) : null}
           {status === "no-token" || status === "error" ? (
-            <p className="view-invite-message">This invite link is invalid or has expired.</p>
+            <p className="view-invite-message">
+              This invite link is invalid or has expired.
+            </p>
           ) : null}
           {status === "no-plan" ? (
             <>
               <h1 className="auth-title">You&rsquo;re on the list</h1>
               <p className="view-invite-message">
-                Someone has shared their When I Die™ plan with you. When they&rsquo;re ready to
-                give you access, you&rsquo;ll be able to view it here. No account needed.
+                Someone has shared their When I Die™ plan with you. When
+                they&rsquo;re ready to give you access, you&rsquo;ll be able to
+                view it here. No account needed.
               </p>
-              <p className="view-invite-message view-invite-sub">Thanks for being someone they trust.</p>
+              <p className="view-invite-message view-invite-sub">
+                Thanks for being someone they trust.
+              </p>
             </>
           ) : null}
           {status === "ready" ? (
             <>
               <h1 className="auth-title">Shared plan</h1>
-              <p className="view-invite-message">Someone has shared part of their When I Die™ plan with you.</p>
+              <p className="view-invite-message">
+                Someone has shared part of their When I Die™ plan with you.
+              </p>
               <div className="invite-plan">
                 {plan.map((item) => {
-                  const question = QUESTIONS.find((q) => q.id === item.question_id);
+                  const question = QUESTIONS.find(
+                    (q) => q.id === item.question_id,
+                  );
                   const title = question?.title || item.question_id;
-                  const display = question ? getDisplayValue(question, item.value) : item.value;
+                  const display = question
+                    ? getDisplayValue(question, item.value)
+                    : item.value;
                   return (
                     <div className="invite-plan-item" key={item.question_id}>
                       <h3 className="invite-plan-title">{title}</h3>

@@ -4,19 +4,27 @@ import { useEffect, useRef, useState } from "react";
 import type { Question } from "@/lib/questions";
 import { parseAnswerValue } from "@/lib/plan";
 
-function buildValue(question: Question, primary: string, story: string): string {
+function buildValue(
+  question: Question,
+  primary: string,
+  story: string,
+): string {
   if (question.fieldType === "choice_with_story") {
     if (!primary) return "";
-    return story.trim() ? JSON.stringify({ choice: primary, story: story.trim() }) : primary;
+    return story.trim()
+      ? JSON.stringify({ choice: primary, story: story.trim() })
+      : primary;
   }
   if (question.fieldType === "short_text_story") {
     let p = primary.trim();
     const s = story.trim();
-    if (question.maxLength && p.length > question.maxLength) p = p.slice(0, question.maxLength);
+    if (question.maxLength && p.length > question.maxLength)
+      p = p.slice(0, question.maxLength);
     return s ? JSON.stringify({ primary: p, story: s }) : p;
   }
   let v = primary.trim();
-  if (question.maxLength && v.length > question.maxLength) v = v.slice(0, question.maxLength);
+  if (question.maxLength && v.length > question.maxLength)
+    v = v.slice(0, question.maxLength);
   return v;
 }
 
@@ -40,11 +48,12 @@ export function QuestionCard({
   const parsed = parseAnswerValue(question, rawValue);
   const initialPrimary =
     parsed && typeof parsed === "object"
-      ? parsed.choice ?? parsed.primary ?? ""
+      ? (parsed.choice ?? parsed.primary ?? "")
       : typeof parsed === "string"
         ? parsed
         : "";
-  const initialStory = (parsed && typeof parsed === "object" && parsed.story) || "";
+  const initialStory =
+    (parsed && typeof parsed === "object" && parsed.story) || "";
 
   const [primary, setPrimary] = useState(initialPrimary);
   const [story, setStory] = useState(initialStory);
@@ -71,13 +80,18 @@ export function QuestionCard({
     onSave(buildValue(question, nextPrimary, story));
   }
 
-  const hasStoryField = question.fieldType === "short_text_story" || question.fieldType === "choice_with_story";
+  const hasStoryField =
+    question.fieldType === "short_text_story" ||
+    question.fieldType === "choice_with_story";
   // choice_with_story questions can tailor the follow-up prompt to whichever
   // choice was picked (e.g. "What should happen to the ashes?" only makes
   // sense once "Cremation" is selected) instead of one generic prompt.
-  const effectiveStoryPrompt = (primary && question.storyPromptByChoice?.[primary]) || question.storyPrompt;
+  const effectiveStoryPrompt =
+    (primary && question.storyPromptByChoice?.[primary]) ||
+    question.storyPrompt;
   const maxLen =
-    question.fieldType === "short_text" || question.fieldType === "short_text_story"
+    question.fieldType === "short_text" ||
+    question.fieldType === "short_text_story"
       ? question.maxLength || 120
       : question.maxLength || 2000;
 
@@ -88,8 +102,13 @@ export function QuestionCard({
         <p className="question-card-single__prompt">{question.body}</p>
 
         {question.suggestions.length > 0 ? (
-          <div className="question-card-single__suggestions" aria-label="Suggested ideas">
-            <span className="question-card-single__suggestions-label">Suggested ideas</span>
+          <div
+            className="question-card-single__suggestions"
+            aria-label="Suggested ideas"
+          >
+            <span className="question-card-single__suggestions-label">
+              Suggested ideas
+            </span>
             <div className="question-card-suggestions-list">
               {question.suggestions.map((s) => (
                 <button
@@ -114,7 +133,11 @@ export function QuestionCard({
         <div className="question-card-single__input">
           {question.fieldType === "choice_with_story" && question.choices ? (
             <>
-              <div className="question-card-choices" role="group" aria-label="Choose one">
+              <div
+                className="question-card-choices"
+                role="group"
+                aria-label="Choose one"
+              >
                 {question.choices.map((c) => (
                   <button
                     key={c}
@@ -130,10 +153,13 @@ export function QuestionCard({
                 ))}
               </div>
               {primary && question.choiceDescriptions?.[primary] ? (
-                <p className="question-card-choice-description">{question.choiceDescriptions[primary]}</p>
+                <p className="question-card-choice-description">
+                  {question.choiceDescriptions[primary]}
+                </p>
               ) : null}
             </>
-          ) : question.fieldType === "short_text" || question.fieldType === "short_text_story" ? (
+          ) : question.fieldType === "short_text" ||
+            question.fieldType === "short_text_story" ? (
             <input
               ref={inputRef as React.RefObject<HTMLInputElement>}
               type="text"
@@ -166,12 +192,18 @@ export function QuestionCard({
               aria-expanded={storyExpanded}
               onClick={() => setStoryExpanded((v) => !v)}
             >
-              <span className="question-card-story-toggle__icon" aria-hidden="true" />
+              <span
+                className="question-card-story-toggle__icon"
+                aria-hidden="true"
+              />
               <span>{effectiveStoryPrompt || "Tell the story behind it"}</span>
             </button>
             {storyExpanded ? (
               <div className="question-card-single__story question-card-single__story--expandable">
-                <label className="auth-label">{effectiveStoryPrompt || "Tell the story behind it (optional)"}</label>
+                <label className="auth-label">
+                  {effectiveStoryPrompt ||
+                    "Tell the story behind it (optional)"}
+                </label>
                 <textarea
                   className="auth-input auth-textarea"
                   rows={3}
@@ -189,12 +221,22 @@ export function QuestionCard({
       <div className="question-nav-actions">
         <div className="question-nav-actions__left">
           {index > 0 ? (
-            <button type="button" className="btn secondary-btn btn--nav" onClick={onPrev} aria-label="Previous question">
+            <button
+              type="button"
+              className="btn secondary-btn btn--nav"
+              onClick={onPrev}
+              aria-label="Previous question"
+            >
               Back
             </button>
           ) : null}
         </div>
-        <button type="button" className="btn primary-btn btn--nav" onClick={onNext} aria-label="Next question">
+        <button
+          type="button"
+          className="btn primary-btn btn--nav"
+          onClick={onNext}
+          aria-label="Next question"
+        >
           {index >= total - 1 ? "View my plan" : "Next"}
         </button>
       </div>

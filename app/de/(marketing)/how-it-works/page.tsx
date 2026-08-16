@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SectionCta } from "@/components/SectionCta";
 import { SubpageStickyCta } from "@/components/SubpageStickyCta";
@@ -151,12 +150,6 @@ export default function HowItWorksPageDe() {
               </li>
             </ul>
           </div>
-
-          <p className="section-copy small-link" style={{ marginTop: "2rem" }}>
-            <Link href="/de#what-you-get" className="small-link-a">
-              Sieh, was du bekommst →
-            </Link>
-          </p>
 
           <hr className="section-divider" aria-hidden="true" />
 

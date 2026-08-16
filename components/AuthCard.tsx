@@ -25,7 +25,12 @@ export function AuthCard({
           {error ? (
             <div className="auth-error" role="alert">
               <span>{error}</span>
-              <button type="button" className="auth-error-close" aria-label="Dismiss" onClick={onDismissError}>
+              <button
+                type="button"
+                className="auth-error-close"
+                aria-label="Dismiss"
+                onClick={onDismissError}
+              >
                 ×
               </button>
             </div>

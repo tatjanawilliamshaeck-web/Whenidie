@@ -4,7 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import type { Locale } from "@/lib/i18n";
 
-export function StickyCta({ watchSectionId, locale = "en" }: { watchSectionId: string; locale?: Locale }) {
+export function StickyCta({
+  watchSectionId,
+  locale = "en",
+}: {
+  watchSectionId: string;
+  locale?: Locale;
+}) {
   const [visible, setVisible] = useState(false);
   const inViewRef = useRef(false);
 
@@ -19,7 +25,7 @@ export function StickyCta({ watchSectionId, locale = "en" }: { watchSectionId: s
           if (entry.isIntersecting) setVisible(false);
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     observer.observe(section);
 
@@ -35,7 +41,10 @@ export function StickyCta({ watchSectionId, locale = "en" }: { watchSectionId: s
     };
   }, [watchSectionId]);
 
-  const text = locale === "de" ? "Starte deinen Plan in unter einer Minute." : "Start your plan in under a minute.";
+  const text =
+    locale === "de"
+      ? "Starte deinen Plan in unter einer Minute."
+      : "Start your plan in under a minute.";
   const loggedOutText = locale === "de" ? "Plan starten" : "Start your plan";
   const loggedInText = locale === "de" ? "Zu deinem Plan" : "Go to your plan";
 
@@ -45,7 +54,11 @@ export function StickyCta({ watchSectionId, locale = "en" }: { watchSectionId: s
       aria-hidden={!visible}
     >
       <span className="sticky-cta-text">{text}</span>
-      <StartCtaLink className="btn secondary-btn sticky-cta-btn wid-cta-start" loggedOutText={loggedOutText} loggedInText={loggedInText} />
+      <StartCtaLink
+        className="btn secondary-btn sticky-cta-btn wid-cta-start"
+        loggedOutText={loggedOutText}
+        loggedInText={loggedInText}
+      />
     </div>
   );
 }

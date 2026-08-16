@@ -12,8 +12,15 @@ export function friendlySignupError(message: string): string {
 }
 
 export function friendlyLoginError(message: string): string {
+  if (message.includes("Email not confirmed")) {
+    return "Please confirm your email first — check your inbox for the link.";
+  }
   if (message.includes("Invalid login") || message.includes("invalid")) {
     return "Email or password didn’t match. Try again or use “Forgot password?”";
   }
   return message || "Invalid email or password.";
+}
+
+export function isUnconfirmedEmailError(message: string): boolean {
+  return message.includes("Email not confirmed");
 }

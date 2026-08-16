@@ -21,7 +21,7 @@ export default function AboutPageDe() {
       >
         <p
           className="section-copy"
-          style={{ maxWidth: "36rem", marginTop: "1rem" }}
+          style={{ maxWidth: "48rem", marginTop: "1rem" }}
         >
           When I Die™ ist nicht einfach Nachlassplanung oder ein digitaler
           Tresor. Es ist{" "}
@@ -34,7 +34,7 @@ export default function AboutPageDe() {
         </p>
         <p
           className="section-copy"
-          style={{ maxWidth: "36rem", marginTop: "0.75rem" }}
+          style={{ maxWidth: "48rem", marginTop: "0.75rem" }}
         >
           Du bekommst ein echtes Konto und Dashboard: Beantworte Fragen in
           deinem eigenen Tempo, sieh deinen Fortschritt, und wenn du bereit

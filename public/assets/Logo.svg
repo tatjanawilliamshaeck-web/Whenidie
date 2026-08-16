@@ -1,54 +1,5 @@
-<svg width="420" height="420" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="When I Die logo">
-  <defs>
-    <style type="text/css">
-      .outline { stroke: #000000; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-      .petal { fill: #F7F7F7; stroke: #000000; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
-      .heart { fill: #F4CC45; stroke: #000000; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
-      .stem { fill: #29B44A; stroke: #000000; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
-      .leaf { fill: #72D456; stroke: #000000; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
-      .water { fill: #4E9CDA; }
-      .waterRipple1 { fill: #99CBF3; }
-      .waterRipple2 { fill: #B8DCF5; stroke: #000000; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
-      .teardrop { fill: #F7F7F7; stroke: #000000; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
-      .wordmark { fill: #000000; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; letter-spacing: -0.03em; }
-      .tm { fill: #000000; font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
-    </style>
-    <!-- Teardrop shape: point up, round bottom -->
-  </defs>
-
-  <!-- Puddle: draw first, kept well above wordmark so no blue under text -->
-  <g transform="translate(512 275)">
-    <ellipse class="water" cx="0" cy="488" rx="110" ry="30" />
-    <ellipse class="waterRipple1" cx="0" cy="485" rx="62" ry="14" />
-    <ellipse class="waterRipple2" cx="0" cy="485" rx="62" ry="14" />
-  </g>
-
-  <!-- Flower + stem + leaves + teardrops (on top of puddle) -->
-  <g transform="translate(512 275)">
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(0)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(45)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(90)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(135)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(180)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(225)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(270)" />
-    <ellipse class="petal" cx="0" cy="-112" rx="34" ry="84" transform="rotate(315)" />
-
-    <path class="heart" d="M 0 6 C -8 -12, -30 -28, -54 -28 C -85 -28, -108 -5, -108 27 C -108 58, -85 82, -56 106 L 0 153 L 56 106 C 85 82, 108 58, 108 27 C 108 -5, 85 -28, 54 -28 C 30 -28, 8 -12, 0 6 Z" />
-
-    <path class="stem" d="M -10 145 C -12 190, -16 244, -20 304 C -24 362, -25 426, -17 475 L 8 475 C 3 425, 6 355, 14 286 C 20 230, 21 183, 20 145 Z" />
-
-    <path class="leaf" d="M -76 336 C -125 317, -164 289, -186 248 C -140 246, -97 267, -54 307 C -60 317, -67 327, -76 336 Z" />
-    <path class="leaf" d="M 16 300 C 62 275, 109 251, 160 253 C 137 292, 95 321, 39 334 C 33 324, 25 313, 16 300 Z" />
-
-    <!-- Three teardrops to the right, slightly above the puddle (dripping) -->
-    <path class="teardrop" transform="translate(165 200) scale(1.4)" d="M 0 -22 C 14 -22, 22 0, 0 28 C -22 0, -14 -22, 0 -22 Z" />
-    <path class="teardrop" transform="translate(158 280) scale(1.2)" d="M 0 -22 C 14 -22, 22 0, 0 28 C -22 0, -14 -22, 0 -22 Z" />
-    <path class="teardrop" transform="translate(168 355) scale(1)" d="M 0 -22 C 14 -22, 22 0, 0 28 C -22 0, -14 -22, 0 -22 Z" />
-  </g>
-
-  <!-- Wordmark (clear gap below puddle) -->
-  <text x="512" y="840" text-anchor="middle" class="wordmark" font-size="150">When I</text>
-  <text x="512" y="970" text-anchor="middle" class="wordmark" font-size="150">Die</text>
-  <text x="626" y="925" class="tm" font-size="42">TM</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1536" role="img" aria-labelledby="title desc">
+  <title id="title">When I Die trademark logo</title>
+  <desc id="desc">Approved heart-centered daisy above the words When I Die trademark.</desc>
+  <image href="logo.png" width="1536" height="1536" preserveAspectRatio="xMidYMid meet"/>
 </svg>

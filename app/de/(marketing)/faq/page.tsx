@@ -3,181 +3,194 @@ import Image from "next/image";
 import Link from "next/link";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { SubpageStickyCta } from "@/components/SubpageStickyCta";
-import {
-  FaqCategoryAccordion,
-  type FaqCategory,
-} from "@/components/FaqCategoryAccordion";
 
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Häufig gestellte Fragen zu When I Die™: loslegen, Fragen, Teilen, Datenschutz, Preise und mehr.",
+    "Häufig gestellte Fragen zu When I Die™: Loslegen, Preise, Funktionsweise, Teilen deines Plans und mehr.",
 };
 
-const FAQ_CATEGORIES: FaqCategory[] = [
+const FAQ_ITEMS: { question: string; answer: React.ReactNode }[] = [
   {
-    id: "faq-getting-started",
-    label: "Loslegen",
-    items: [
-      {
-        question: "Wie mache ich mit?",
-        answer:
-          "Klick auf Start oder Kostenlos beitreten, gib deinen Namen ein — den, unter dem du auf Einladungen und im Nachruf stehen möchtest — und schon bist du dabei. Dauert unter einer Minute. Snacks optional, aber empfohlen.",
-      },
-      {
-        question: "Was passiert nach der Anmeldung?",
-        answer:
-          "Du landest direkt in deinem Dashboard: Fortschritt, kommende Fragen und ein Bereich „Mit wem du geteilt hast“. Beantworte deine erste Frage, wann immer du bereit bist — niemand verlangt, dass du gleich dein ganzes Leben aufarbeitest.",
-      },
-      {
-        question: "Was passiert zuerst?",
-        answer:
-          "Wir schicken dir eine erste kleine Frage — etwas Entspanntes wie das Einzugslied oder die Kleiderordnung. Zwei Minuten, eine Antwort, und dein Plan hat offiziell begonnen.",
-      },
-      {
-        question: "Was, wenn ich eine Woche aussetze?",
-        answer:
-          "Kein schlechtes Gewissen nötig. Die Fragen laufen dir nicht davon. Komm zurück, wann immer du willst — dein Fortschritt bleibt genau da, wo du ihn gelassen hast.",
-      },
-      {
-        question: "Was, wenn ich (oft) meine Meinung ändere?",
-        answer:
-          "Damit rechnen wir fest. Ändere jede Antwort, so oft du willst. Dein Plan ist lebendig, nicht einlaminiert.",
-      },
-      {
-        question: "Was unterscheidet das von anderen End-of-Life-Tools?",
-        answer:
-          "Wir nehmen es todernst, das Thema unterhaltsam zu machen — damit du es wirklich durchziehst. Und wir hören nicht bei der Dokumentation auf: Perspektivisch kannst du deine Wünsche verbindlich festlegen und mit Anbietern verknüpfen (Bestattung, Gedenkfeier, Vermächtnis), damit deine Liebsten einem Plan folgen können, statt zu raten.",
-      },
-    ],
+    question: "Wie mache ich mit?",
+    answer: (
+      <p>
+        Klick auf <strong>Start</strong> und leg los. Du könntest morgen sterben
+        – oder aus reinem Trotz 103 werden. So oder so: Ein Plan kann nicht
+        schaden.
+      </p>
+    ),
   },
   {
-    id: "faq-prompts",
-    label: "Fragen",
-    items: [
-      {
-        question: "Was wird gefragt?",
-        answer: (
-          <>
-            Zum Beispiel: Wie soll dein großer Abgang aussehen? Welcher Song
-            soll <em>nur über deine Leiche</em> gespielt werden? Wo sollten
-            Menschen zuerst nach wichtigen Unterlagen suchen? Eine Mischung aus
-            Persönlichem und Praktischem, mit gerade genug Humor, damit du
-            nachdenkst und dabei lächelst.
-          </>
-        ),
-      },
-      {
-        question: "Wie lange dauern die Fragen?",
-        answer:
-          "Etwa ein bis drei Minuten. Wenn du mehr zu sagen hast, ist auch dafür Platz.",
-      },
-      {
-        question: "Kann ich pausieren oder überspringen?",
-        answer:
-          "Klar. Klick auf „Überspringen“ oder „Später erinnern“. Keine Serien zum Verteidigen, kein schlechtes Gewissen.",
-      },
-    ],
+    question: "Ist es wirklich kostenlos?",
+    answer: (
+      <p>
+        Ja. Ein Konto ist und bleibt kostenlos. Wir finden, jeder sollte seinen
+        Liebsten das Geschenk eines Plans machen können – nicht nur die, die
+        bereit sind, für ein weiteres Abo zu zahlen. Seelenfrieden sollte nicht
+        hinter einer Bezahlschranke stecken.
+      </p>
+    ),
   },
   {
-    id: "faq-sharing",
-    label: "Teilen",
-    items: [
-      {
-        question: "Wer kann meinen Plan sehen?",
-        answer:
-          "Standardmäßig privat. Du entscheidest, wen du einlädst und genau, was diese Person sehen darf — alles oder nur das Wichtigste.",
-      },
-      {
-        question: "Welche Rollen kann ich vergeben?",
-        answer:
-          "Eigentümer:in (du): bearbeitet, teilt, exportiert und löscht alles. Vertraute Person: sieht nur, was du freigibst. „Im Notfall“-Kontakt: wird bei Bedarf benachrichtigt (optional). Zugriff kannst du jederzeit hinzufügen, entfernen oder ändern.",
-      },
-      {
-        question: "Muss ich sofort Menschen einladen?",
-        answer:
-          "Nein. Er bleibt privat, bis du so weit bist. Dein Plan gehört dir — geteilt wird erst, wenn du es entscheidest.",
-      },
-      {
-        question: "Wie lade ich jemanden ein, meinen Plan zu sehen?",
-        answer:
-          "Geh in deinem Dashboard zu „Mit wem du geteilt hast“ und füge die E-Mail-Adresse hinzu. Wir verschicken eine Einladung; die Person sieht (oder bearbeitet, falls erlaubt) je nach zugewiesener Rolle. Zugriff kannst du jederzeit wieder entziehen.",
-      },
-    ],
+    question: "Wie funktioniert das?",
+    answer: (
+      <>
+        <p>
+          Sobald du dabei bist, landest du auf deinem Dashboard. Dort siehst du
+          deinen Fortschritt, beantwortest anstehende Fragen und verwaltest, mit
+          wem du deinen Plan geteilt hast.
+        </p>
+        <p>
+          Wir stellen kleine, machbare Fragen zu deiner Beerdigung, Gedenkfeier,
+          deinem Vermächtnis und den Dingen, die deine Liebsten wissen müssen.
+          Fang mit etwas Leichtem an – deinem Einzugslied oder der
+          Kleiderordnung – und Stück für Stück wird daraus dein Plan.
+        </p>
+        <p>
+          Kein riesiger Fragebogen. Kein Ordner mit drei Ringen. Du musst deinen
+          ganzen Tod nicht an einem Nachmittag lösen.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-privacy",
-    label: "Datenschutz",
-    items: [
-      {
-        question: "Wie sind meine Daten geschützt?",
-        answer:
-          "Verschlüsselung nach bewährten Standards bei Übertragung und Speicherung, starke Authentifizierung und minimale Datenerhebung — nur das, was für den Betrieb des Dienstes nötig ist.",
-      },
-      {
-        question: "Kann ich meinen Plan löschen oder herunterladen?",
-        answer:
-          "Ja. Du kannst deinen Plan jederzeit herunterladen oder löschen. Es sind deine Daten.",
-      },
-    ],
+    question: "Muss ich eine App herunterladen?",
+    answer: (
+      <>
+        <p>
+          Nein. Alles passiert in deinem privaten Portal auf unserer Website. Es
+          gibt keine App zum Herunterladen, und du beantwortest auch keine
+          Fragen per SMS oder E-Mail.
+        </p>
+        <p>
+          Melde dich einfach an, wann immer du bereit bist. Deine Fragen,
+          Antworten und dein Fortschritt warten dort auf dich – leise, wie ein
+          höflicher kleiner Geist.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-legal",
-    label: "Recht und Daten",
-    items: [
-      {
-        question: "Ist das ein rechtsgültiges Dokument?",
-        answer:
-          "Nein. When I Die™ ergänzt dein Testament oder deine Patientenverfügung, indem es die menschlichen Teile klar und teilbar macht. Wir geben keine medizinische oder rechtliche Beratung.",
-      },
-      {
-        question: "Was speichert ihr?",
-        answer:
-          "Deine Antworten, deine Freigabe-Einstellungen und die Metadaten, die der Dienst braucht (zum Beispiel deine E-Mail-Adresse). Nichts, was du nicht erwarten würdest.",
-      },
-    ],
+    question: "Muss ich jede Woche Fragen beantworten?",
+    answer: (
+      <>
+        <p>
+          Auf keinen Fall. Beantworte eine Frage, beantworte zehn, oder
+          verschwinde drei Monate, weil das Leben dazwischenkam. Dein
+          Fortschritt bleibt gespeichert, und deine unbeantworteten Fragen
+          warten geduldig.
+        </p>
+        <p>
+          Wenn es eine Weile her ist, schicken wir dir vielleicht eine sanfte
+          Erinnerung. Wir stupsen an; du entscheidest, wann du dich mit deiner
+          Sterblichkeit befasst. Der Tod mag unausweichlich sein – das hier muss
+          trotzdem nicht bis Freitag fertig sein.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-pricing",
-    label: "Preise",
-    items: [
-      {
-        question: "Gibt es eine kostenlose Version?",
-        answer:
-          "Ja — die Beta ist kostenlos, während wir sie gemeinsam mit euch weiterentwickeln. Kostenpflichtige Pläne kommen später dazu: klein, transparent und jederzeit kündbar. Kompliziert machen wir höchstens den Tod — nicht die Preise.",
-      },
-    ],
+    question: "Kann ich meine Antworten ändern?",
+    answer: (
+      <>
+        <p>Klar. Du kannst jede Antwort jederzeit aktualisieren.</p>
+        <p>
+          Wechsle die Blumen. Tausch die Playlist. Lade den einen Cousin wieder
+          aus. Lade ihn wieder ein. Dein Plan ist lebendig, nicht einlaminiert.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-more",
-    label: "Mehr",
-    items: [
-      {
-        question: "Wie funktioniert der Export?",
-        answer:
-          "Teile einen Link, exportiere ein übersichtliches PDF oder drucke einzelne Abschnitte aus. Später kommen einfache druckbare Sets dazu — Ordner, aber mit Stil.",
-      },
-      {
-        question: "Wie oft schreibt ihr mir?",
-        answer:
-          "Meist einmal pro Woche mit einer Frage. Du kannst pausieren oder auf monatliche Erinnerungen umstellen.",
-      },
-      {
-        question: "Wie lösche ich mein Konto?",
-        answer:
-          "Einstellungen → Konto löschen. Wir bestätigen zweimal und entfernen anschließend deine Daten.",
-      },
-      {
-        question: "Ist die Seite barrierefrei?",
-        answer:
-          "Wir achten auf sauberes Markup, Tastaturnavigation und lesbaren Kontrast. Fällt dir etwas auf, das wir übersehen haben? Sag uns Bescheid, wir beheben es.",
-      },
-      {
-        question: "Funktioniert das auch für die Wahlfamilie?",
-        answer:
-          "Ja. Du entscheidest, wer wichtig ist — und was jede Person sehen darf.",
-      },
-    ],
+    question: "Wie bekommen meine Liebsten meinen Plan?",
+    answer: (
+      <>
+        <p>
+          Du teilst ihn, während du noch quicklebendig bist – genau das ist der
+          Punkt. Sie erhalten eine Benachrichtigung, und du entscheidest, ob sie
+          deinen gesamten Plan sehen dürfen oder nur ausgewählte Teile.
+        </p>
+        <p>
+          Niemand meldet uns deinen Tod, und nach deinem Ableben wird nichts
+          automatisch freigegeben. Dein Plan nützt nur etwas, wenn die richtigen
+          Menschen wissen, dass es ihn gibt – wähl also Menschen, denen du
+          zutraust, nach deinen Wünschen zu handeln.
+        </p>
+        <p>
+          Wir helfen dir, deinen Plan festzuhalten und zu teilen, aber wir
+          können niemanden zwingen, sich daran zu halten. Unsere Kräfte sind
+          beeindruckend, aber weder rechtlich noch übernatürlich bindend.
+        </p>
+        <p>
+          Und wähl nicht nur eine Person. Selbst dein zuverlässigster Freund
+          könnte sein Handy verlieren, ins Kloster ziehen oder unter Druck
+          aussteigen. Backups: nicht nur für Festplatten.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Kann ich meinen Plan herunterladen oder ausdrucken?",
+    answer: (
+      <p>
+        Auf jeden Fall. Bevorzugst du gutes altmodisches Papier? Lade deinen
+        Plan herunter, druck ihn aus, und bewahr ihn dort auf, wo deine Liebsten
+        ihn auch wirklich finden – nicht unter einem mysteriösen Stapel
+        Bedienungsanleitungen.
+      </p>
+    ),
+  },
+  {
+    question: "Ist das ein rechtsgültiges Testament?",
+    answer: (
+      <>
+        <p>
+          Nein. Dein Plan hilft dir, deine Wünsche festzuhalten und zu
+          kommunizieren, ersetzt aber kein rechtsgültiges Testament oder andere
+          offizielle Dokumente.
+        </p>
+        <p>
+          Sieh uns als die extrem hilfreiche Gebrauchsanweisung – nicht als die
+          Rechtsunterlagen.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Kann ich mein Konto und meine Daten löschen?",
+    answer: (
+      <>
+        <p>
+          Auf jeden Fall. Du kannst dein Konto und deine Daten jederzeit
+          endgültig löschen.
+        </p>
+        <p>
+          Kein schlechtes Gewissen, keine unangenehme Trennung und keine
+          spukenden E-Mails von uns.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Was unterscheidet euch von anderen End-of-Life-Tools?",
+    answer: (
+      <>
+        <p>
+          Wir nehmen es todernst, Planung menschlich – und sogar lustig – zu
+          machen, damit du es wirklich durchziehst.
+        </p>
+        <p>
+          Statt dir einen Berg Papierkram in die Hand zu drücken und dir viel
+          Glück zu wünschen, helfen wir dir, deinen Plan eine kleine Frage nach
+          der anderen aufzubauen. Und wir hören nicht bei der Dokumentation auf.
+          Mit der Zeit kannst du deine Wünsche mit Bestattungs-, Gedenk- und
+          Vermächtnis-Diensten verknüpfen – damit deine Liebsten deinem Plan
+          folgen können, statt ratlos herumzustehen und zu fragen: &bdquo;Was,
+          glaubst du, hätten sie gewollt?&ldquo;
+        </p>
+      </>
+    ),
   },
 ];
 
@@ -202,7 +215,7 @@ export default function FaqPageDe() {
             </div>
             <div className="page-hero-brand">
               <Image
-                src="/assets/Logo.svg"
+                src="/assets/logo.png"
                 alt="When I Die™"
                 className="page-hero-logo"
                 width={120}
@@ -217,13 +230,16 @@ export default function FaqPageDe() {
               Wir haben Antworten. Ganz ohne Juristendeutsch, Weihrauch oder
               betretenes Schweigen.
             </p>
-            <p className="faq-intro">
-              Wähl ein Thema, um Antworten zu sehen. Immer nur ein Abschnitt ist
-              geöffnet, damit es übersichtlich bleibt.
-            </p>
           </div>
 
-          <FaqCategoryAccordion categories={FAQ_CATEGORIES} />
+          <div className="faq-flat-list">
+            {FAQ_ITEMS.map((item) => (
+              <article className="faq-flat-item" key={item.question}>
+                <h2>{item.question}</h2>
+                <div className="faq-flat-answer">{item.answer}</div>
+              </article>
+            ))}
+          </div>
 
           <div className="faq-cta">
             <p className="faq-cta-text">Bereit?</p>

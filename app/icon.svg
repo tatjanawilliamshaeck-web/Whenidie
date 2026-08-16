@@ -1,8 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <circle cx="16" cy="18" r="8" fill="#e8f4fc"/>
-  <path fill="#1ca45a" d="M16 8c-1 0-2 .5-2.5 1.2L16 12l2.5-2.8C18 8.5 17 8 16 8z"/>
-  <path fill="#f9c846" d="M16 6l-1.5 3L11 10l3.5-.5L16 14l1.5-4.5L21 10l-3.5-1L16 6z"/>
-  <circle cx="16" cy="10" r="2" fill="#f9c846"/>
-  <path fill="none" stroke="#1ca45a" stroke-width="1.2" d="M16 16v6"/>
-  <path fill="#1ca45a" d="M14 20l2 2 2-2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="When I Die flower">
+  <rect width="64" height="64" rx="12" fill="#F7F3EA"/>
+  <g fill="#fff" stroke="#171918" stroke-width="3.8" stroke-linejoin="round">
+    <ellipse cx="32" cy="16" rx="6" ry="12"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(36 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(72 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(108 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(144 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(180 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(216 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(252 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(288 32 31)"/>
+    <ellipse cx="32" cy="16" rx="6" ry="12" transform="rotate(324 32 31)"/>
+  </g>
+  <path d="M32 46c-5-5-16-12-16-22 0-8 10-12 16-4 6-8 16-4 16 4 0 10-11 17-16 22Z" fill="#FFC629" stroke="#171918" stroke-width="3.8" stroke-linejoin="round"/>
+  <path d="M32 46v11" stroke="#2DBE60" stroke-width="4" stroke-linecap="round"/>
 </svg>
+

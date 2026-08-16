@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { INVITE_MESSAGE_TEMPLATES, categoriesForQuestionIds, getQuestionsByCategory } from "@/lib/plan";
+import {
+  INVITE_MESSAGE_TEMPLATES,
+  categoriesForQuestionIds,
+  getQuestionsByCategory,
+} from "@/lib/plan";
 
 export type Share = {
   id: string;
@@ -12,7 +16,14 @@ export type Share = {
   allowed_question_ids: string[] | null;
 };
 
-const TONE_STYLES = ["responsible", "funny", "sweet", "smartass", "custom", "surprise"] as const;
+const TONE_STYLES = [
+  "responsible",
+  "funny",
+  "sweet",
+  "smartass",
+  "custom",
+  "surprise",
+] as const;
 const TONE_LABELS: Record<(typeof TONE_STYLES)[number], string> = {
   responsible: "Responsible",
   funny: "Funny",
@@ -43,7 +54,11 @@ export function ShareSection({
   footer,
 }: {
   shares: Share[];
-  onAddShare: (emails: string[], allowedCategories: string[] | null, message: string) => Promise<void>;
+  onAddShare: (
+    emails: string[],
+    allowedCategories: string[] | null,
+    message: string,
+  ) => Promise<void>;
   onRemoveShare: (id: string) => void;
   onCopy: (text: string) => void;
   onToast: (message: string) => void;
@@ -54,7 +69,9 @@ export function ShareSection({
 }) {
   const [email, setEmail] = useState("");
   const [tone, setTone] = useState<(typeof TONE_STYLES)[number]>("responsible");
-  const [message, setMessage] = useState(INVITE_MESSAGE_TEMPLATES.responsible as string);
+  const [message, setMessage] = useState(
+    INVITE_MESSAGE_TEMPLATES.responsible as string,
+  );
   const [fullPlan, setFullPlan] = useState(true);
   const [categories, setCategories] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
@@ -80,8 +97,8 @@ export function ShareSection({
         email
           .split(/[,\n]/)
           .map((e) => e.trim().toLowerCase())
-          .filter(Boolean)
-      )
+          .filter(Boolean),
+      ),
     );
     if (!emails.length) return;
     const invalid = emails.filter((e) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
@@ -90,7 +107,11 @@ export function ShareSection({
       return;
     }
     setSubmitting(true);
-    await onAddShare(emails, fullPlan ? null : categories.length ? categories : null, message);
+    await onAddShare(
+      emails,
+      fullPlan ? null : categories.length ? categories : null,
+      message,
+    );
     setSubmitting(false);
     setEmail("");
     setFullPlan(true);
@@ -100,7 +121,11 @@ export function ShareSection({
   }
 
   return (
-    <section id="dashboard-shared" className="dashboard-section dashboard-shared access-management" aria-labelledby="invitation-heading">
+    <section
+      id="dashboard-shared"
+      className="dashboard-section dashboard-shared access-management"
+      aria-labelledby="invitation-heading"
+    >
       <div className="invitation-card">
         <p className="invitation-eyebrow">{eyebrow}</p>
         <h2 id="invitation-heading" className="invitation-heading">
@@ -112,7 +137,10 @@ export function ShareSection({
           <li>You can revoke access anytime</li>
         </ul>
 
-        <form className="share-form share-form--redesign" onSubmit={handleSubmit}>
+        <form
+          className="share-form share-form--redesign"
+          onSubmit={handleSubmit}
+        >
           <div className="share-form-block">
             <label className="auth-label" htmlFor="share-email">
               Who do you trust with this?
@@ -136,7 +164,11 @@ export function ShareSection({
 
           <div className="share-form-block share-message-block">
             <span className="auth-label">How do you want to tell them?</span>
-            <div className="message-style-pills" role="group" aria-label="Message tone">
+            <div
+              className="message-style-pills"
+              role="group"
+              aria-label="Message tone"
+            >
               {TONE_STYLES.map((style) => (
                 <button
                   key={style}
@@ -161,7 +193,11 @@ export function ShareSection({
               onChange={(e) => setMessage(e.target.value)}
             />
             <div className="share-message-actions">
-              <button type="submit" className="btn primary-btn" disabled={submitting}>
+              <button
+                type="submit"
+                className="btn primary-btn"
+                disabled={submitting}
+              >
                 {submitting ? "Inviting…" : "Invite them"}
               </button>
               <button
@@ -185,7 +221,12 @@ export function ShareSection({
             <div className="share-categories-wrap">
               <span className="auth-label">What can they see?</span>
               <label className="share-category-option">
-                <input type="checkbox" checked={fullPlan} onChange={(e) => setFullPlan(e.target.checked)} /> Full plan
+                <input
+                  type="checkbox"
+                  checked={fullPlan}
+                  onChange={(e) => setFullPlan(e.target.checked)}
+                />{" "}
+                Full plan
               </label>
               <div className="share-category-checkboxes">
                 {categoryGroups.map((g) => (
@@ -196,7 +237,9 @@ export function ShareSection({
                       checked={categories.includes(g.category)}
                       onChange={(e) => {
                         setCategories((prev) =>
-                          e.target.checked ? [...prev, g.category] : prev.filter((c) => c !== g.category)
+                          e.target.checked
+                            ? [...prev, g.category]
+                            : prev.filter((c) => c !== g.category),
                         );
                       }}
                     />{" "}
@@ -211,7 +254,10 @@ export function ShareSection({
         {footer}
 
         {shares.length > 0 ? (
-          <section className="sent-invites-section" aria-labelledby="sent-invites-heading">
+          <section
+            className="sent-invites-section"
+            aria-labelledby="sent-invites-heading"
+          >
             <h2 id="sent-invites-heading" className="sent-invites-heading">
               People you&apos;ve shared with
             </h2>
@@ -226,22 +272,40 @@ export function ShareSection({
                 <span className="recent-activity-label">Recent activity</span>
                 {opened
                   .slice()
-                  .sort((a, b) => new Date(b.opened_at!).getTime() - new Date(a.opened_at!).getTime())
+                  .sort(
+                    (a, b) =>
+                      new Date(b.opened_at!).getTime() -
+                      new Date(a.opened_at!).getTime(),
+                  )
                   .slice(0, 5)
                   .map((s) => (
                     <span className="recent-activity-item" key={s.id}>
-                      {s.email} opened your plan · {new Date(s.opened_at!).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                      {s.email} opened your plan ·{" "}
+                      {new Date(s.opened_at!).toLocaleDateString(undefined, {
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </span>
                   ))}
               </div>
             ) : null}
             <div className="shared-overview-wrap shared-list--overview">
               <div className="shared-overview-header" aria-hidden="true">
-                <span className="shared-overview-col shared-overview-who">Who</span>
-                <span className="shared-overview-col shared-overview-what">What they can see</span>
-                <span className="shared-overview-col shared-overview-sent">Link sent</span>
-                <span className="shared-overview-col shared-overview-opened">Opened?</span>
-                <span className="shared-overview-col shared-overview-actions">Actions</span>
+                <span className="shared-overview-col shared-overview-who">
+                  Who
+                </span>
+                <span className="shared-overview-col shared-overview-what">
+                  What they can see
+                </span>
+                <span className="shared-overview-col shared-overview-sent">
+                  Link sent
+                </span>
+                <span className="shared-overview-col shared-overview-opened">
+                  Opened?
+                </span>
+                <span className="shared-overview-col shared-overview-actions">
+                  Actions
+                </span>
               </div>
               <div className="shared-list">
                 {shares.map((s) => {
@@ -249,19 +313,39 @@ export function ShareSection({
                   const shareCategories = s.allowed_question_ids?.length
                     ? categoriesForQuestionIds(s.allowed_question_ids)
                     : [];
-                  const whatStr = shareCategories.length ? shareCategories.join(", ") : "Full plan";
-                  const sentStr = s.invite_sent_at ? new Date(s.invite_sent_at).toLocaleDateString(undefined, { dateStyle: "medium" }) : "—";
+                  const whatStr = shareCategories.length
+                    ? shareCategories.join(", ")
+                    : "Full plan";
+                  const sentStr = s.invite_sent_at
+                    ? new Date(s.invite_sent_at).toLocaleDateString(undefined, {
+                        dateStyle: "medium",
+                      })
+                    : "—";
                   return (
-                    <div className="shared-item shared-item--overview" key={s.id}>
+                    <div
+                      className="shared-item shared-item--overview"
+                      key={s.id}
+                    >
                       <span className="shared-overview-col shared-overview-who">
                         <span className="shared-item-email">{s.email}</span>
                       </span>
-                      <span className="shared-overview-col shared-overview-what">{whatStr}</span>
-                      <span className="shared-overview-col shared-overview-sent">{sentStr}</span>
+                      <span className="shared-overview-col shared-overview-what">
+                        {whatStr}
+                      </span>
+                      <span className="shared-overview-col shared-overview-sent">
+                        {sentStr}
+                      </span>
                       <span className="shared-overview-col shared-overview-opened">
                         {s.opened_at ? (
-                          <span className="shared-opened-yes" title="They opened the link">
-                            Yes, {new Date(s.opened_at).toLocaleDateString(undefined, { dateStyle: "medium" })}
+                          <span
+                            className="shared-opened-yes"
+                            title="They opened the link"
+                          >
+                            Yes,{" "}
+                            {new Date(s.opened_at).toLocaleDateString(
+                              undefined,
+                              { dateStyle: "medium" },
+                            )}
                           </span>
                         ) : (
                           <span className="shared-opened-no">Not yet</span>
@@ -280,7 +364,11 @@ export function ShareSection({
                             Copy link
                           </button>
                         ) : null}
-                        <button type="button" className="shared-item-remove" onClick={() => onRemoveShare(s.id)}>
+                        <button
+                          type="button"
+                          className="shared-item-remove"
+                          onClick={() => onRemoveShare(s.id)}
+                        >
                           Revoke access
                         </button>
                       </span>
@@ -291,7 +379,10 @@ export function ShareSection({
             </div>
           </section>
         ) : (
-          <p className="empty-shared">You haven&apos;t shared with anyone yet. Add someone below when you&apos;re ready.</p>
+          <p className="empty-shared">
+            You haven&apos;t shared with anyone yet. Add someone below when
+            you&apos;re ready.
+          </p>
         )}
       </div>
     </section>

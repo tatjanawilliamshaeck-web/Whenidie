@@ -20,21 +20,37 @@ export function MilestoneModal({
   onShare: () => void;
 }) {
   return (
-    <div className={`milestone-modal${tone === "heavy" ? " milestone-modal--quiet" : ""}`} role="dialog" aria-modal="true" aria-labelledby="milestone-heading">
+    <div
+      className={`milestone-modal${tone === "heavy" ? " milestone-modal--quiet" : ""}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="milestone-heading"
+    >
       <div className="milestone-backdrop" onClick={onClose} />
       <div className="milestone-content">
-        {tone === "light" ? <div className="milestone-glow" aria-hidden="true" /> : null}
+        {tone === "light" ? (
+          <div className="milestone-glow" aria-hidden="true" />
+        ) : null}
         <p className="milestone-icon" aria-hidden="true">
           <Image src={icon} alt="" width={32} height={32} />
         </p>
         <h2 id="milestone-heading" className="milestone-heading">
-          {tone === "heavy" ? `${chapterName} — done.` : `${chapterName} complete!`}
+          {tone === "heavy"
+            ? `${chapterName} — done.`
+            : `${chapterName} complete!`}
         </h2>
         <p className="milestone-message">{message}</p>
         {showShareCta ? (
           <div className="milestone-share-wrap">
-            <p className="milestone-share-text">Share your progress with someone you trust so they know about your plan.</p>
-            <button type="button" className="btn secondary-btn milestone-share-btn" onClick={onShare}>
+            <p className="milestone-share-text">
+              Share your progress with someone you trust so they know about your
+              plan.
+            </p>
+            <button
+              type="button"
+              className="btn secondary-btn milestone-share-btn"
+              onClick={onShare}
+            >
               Invite someone you trust
             </button>
           </div>
@@ -44,7 +60,12 @@ export function MilestoneModal({
             Continue
           </button>
         </div>
-        <button type="button" className="milestone-close" aria-label="Close" onClick={onClose}>
+        <button
+          type="button"
+          className="milestone-close"
+          aria-label="Close"
+          onClick={onClose}
+        >
           &times;
         </button>
       </div>
@@ -52,9 +73,20 @@ export function MilestoneModal({
   );
 }
 
-export function UnlockModal({ chapterName, onClose }: { chapterName: string; onClose: () => void }) {
+export function UnlockModal({
+  chapterName,
+  onClose,
+}: {
+  chapterName: string;
+  onClose: () => void;
+}) {
   return (
-    <div className="unlock-modal" role="dialog" aria-modal="true" aria-labelledby="unlock-heading">
+    <div
+      className="unlock-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="unlock-heading"
+    >
       <div className="unlock-backdrop" onClick={onClose} />
       <div className="unlock-content">
         <h2 id="unlock-heading" className="unlock-heading">
@@ -79,7 +111,12 @@ export function ReliefModal({
   onInvite: () => void;
 }) {
   return (
-    <div className="relief-modal" role="dialog" aria-modal="true" aria-labelledby="relief-heading">
+    <div
+      className="relief-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="relief-heading"
+    >
       <div className="relief-backdrop" onClick={onClose} />
       <div className="relief-content">
         <div className="relief-glow" aria-hidden="true" />
@@ -96,17 +133,30 @@ export function ReliefModal({
         </p>
         <p className="relief-reinforce">{humorLine}</p>
         <div className="relief-actions">
-          <button type="button" className="btn primary-btn relief-cta" onClick={onClose}>
+          <button
+            type="button"
+            className="btn primary-btn relief-cta"
+            onClick={onClose}
+          >
             Keep going
           </button>
-          <button type="button" className="btn secondary-btn" onClick={onInvite}>
+          <button
+            type="button"
+            className="btn secondary-btn"
+            onClick={onInvite}
+          >
             Invite someone you trust
           </button>
           <button type="button" className="btn secondary-btn" onClick={onClose}>
             Finish later
           </button>
         </div>
-        <button type="button" className="relief-close" aria-label="Close" onClick={onClose}>
+        <button
+          type="button"
+          className="relief-close"
+          aria-label="Close"
+          onClick={onClose}
+        >
           &times;
         </button>
       </div>
@@ -114,9 +164,19 @@ export function ReliefModal({
   );
 }
 
-export function Toast({ message, bloom }: { message: string; bloom?: boolean }) {
+export function Toast({
+  message,
+  bloom,
+}: {
+  message: string;
+  bloom?: boolean;
+}) {
   return (
-    <div className={`toast${bloom ? " toast--bloom" : ""}`} role="status" aria-live="polite">
+    <div
+      className={`toast${bloom ? " toast--bloom" : ""}`}
+      role="status"
+      aria-live="polite"
+    >
       {message}
     </div>
   );

@@ -2,8 +2,12 @@ import { StartCtaLink } from "@/components/StartCtaLink";
 import type { Locale } from "@/lib/i18n";
 
 export function SectionCta({ locale = "en" }: { locale?: Locale }) {
-  const text = locale === "de" ? "Bereit? Starte deinen Plan. Kostenlos." : "Ready? Start your plan. It's free.";
-  const loggedOutText = locale === "de" ? "Kostenlos beitreten" : "Join the free beta";
+  const text =
+    locale === "de"
+      ? "Bereit? Starte deinen Plan. Kostenlos."
+      : "Ready? Start your plan. It's free.";
+  const loggedOutText =
+    locale === "de" ? "Kostenlos beitreten" : "Join the free beta";
   const loggedInText = locale === "de" ? "Zu deinem Plan" : "Go to your plan";
 
   return (

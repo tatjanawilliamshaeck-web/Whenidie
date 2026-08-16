@@ -16,9 +16,11 @@ export function LegalPage({
   children: React.ReactNode;
 }) {
   const prefix = locale === "de" ? "/de" : "";
-  const backLabel = locale === "de" ? "← Zurück zur Startseite" : "← Back to home";
+  const backLabel =
+    locale === "de" ? "← Zurück zur Startseite" : "← Back to home";
   const homeLabel = locale === "de" ? "Start" : "Home";
-  const updatedLabel = locale === "de" ? "Zuletzt aktualisiert" : "Last updated";
+  const updatedLabel =
+    locale === "de" ? "Zuletzt aktualisiert" : "Last updated";
 
   return (
     <main id="main-content" className="page-main">
@@ -38,7 +40,13 @@ export function LegalPage({
             </nav>
           </div>
           <div className="page-hero-brand page-hero-brand--legal">
-            <Image src="/assets/Logo.svg" alt="When I Die™" className="page-hero-logo" width={120} height={48} />
+            <Image
+              src="/assets/logo.png"
+              alt="When I Die™"
+              className="page-hero-logo"
+              width={120}
+              height={48}
+            />
           </div>
           <h1>{title}</h1>
           <p className="page-updated">

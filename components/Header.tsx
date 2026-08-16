@@ -26,7 +26,7 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
       <div className="container header-inner">
         <Link href={prefix || "/"} className="logo">
           <Image
-            src="/assets/Logo.svg"
+            src="/assets/logo.png"
             alt="When I Die™"
             className="logo-image"
             width={120}

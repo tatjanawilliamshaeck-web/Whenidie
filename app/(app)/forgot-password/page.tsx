@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
     const supabase = createClient();
     const { error: resetError } = await supabase.auth.resetPasswordForEmail(
       email.trim().toLowerCase(),
-      { redirectTo: `${window.location.origin}/login` }
+      { redirectTo: `${window.location.origin}/login` },
     );
 
     setSubmitting(false);
@@ -35,13 +35,25 @@ export default function ForgotPasswordPage() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
-      <AuthHeader links={[{ href: "/login", label: "Log in" }, { href: "/", label: "Home" }]} />
+      <AuthHeader
+        links={[
+          { href: "/login", label: "Log in" },
+          { href: "/", label: "Home" },
+        ]}
+      />
       <AuthCard
         title="Reset password"
         subtitle="Enter your email and we'll send you a link to set a new password."
         error={error}
         onDismissError={() => setError(null)}
-        success={sent ? <p>Check your email for a reset link. If you don&rsquo;t see it, check spam.</p> : null}
+        success={
+          sent ? (
+            <p>
+              Check your email for a reset link. If you don&rsquo;t see it,
+              check spam.
+            </p>
+          ) : null
+        }
         footer={<a href="/login">Back to log in</a>}
       >
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -59,7 +71,11 @@ export default function ForgotPasswordPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button type="submit" className="btn primary-btn auth-btn" disabled={submitting}>
+          <button
+            type="submit"
+            className="btn primary-btn auth-btn"
+            disabled={submitting}
+          >
             {submitting ? "Sending…" : "Send reset link"}
           </button>
         </form>

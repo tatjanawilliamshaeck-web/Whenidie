@@ -15,7 +15,10 @@ export function DaisyProgress({
   label?: string;
   petalCount?: number;
 }) {
-  const count = variant === "compact" ? Math.min(12, Math.max(1, Math.round(petalCount ?? PETAL_COUNT))) : PETAL_COUNT;
+  const count =
+    variant === "compact"
+      ? Math.min(12, Math.max(1, Math.round(petalCount ?? PETAL_COUNT)))
+      : PETAL_COUNT;
   const filled =
     variant === "compact"
       ? Math.min(count, completed)
@@ -36,11 +39,24 @@ export function DaisyProgress({
       aria-label={ariaLabel}
       title={ariaLabel}
     >
-      <div className={variant === "compact" ? "daisy-progress__row" : "daisy-progress__petals"}>
+      <div
+        className={
+          variant === "compact"
+            ? "daisy-progress__row"
+            : "daisy-progress__petals"
+        }
+      >
         {petals.map((isFilled, i) => (
-          <span key={i} className={`daisy-petal${isFilled ? " daisy-petal--filled" : ""}`}>
+          <span
+            key={i}
+            className={`daisy-petal${isFilled ? " daisy-petal--filled" : ""}`}
+          >
             <Image
-              src={isFilled ? "/assets/petal-filled.svg" : "/assets/petal-empty.svg"}
+              src={
+                isFilled
+                  ? "/assets/petal-filled.svg"
+                  : "/assets/petal-empty.svg"
+              }
               alt=""
               width={24}
               height={12}

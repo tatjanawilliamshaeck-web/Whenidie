@@ -12,7 +12,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
       <div className="container footer-inner">
         <a href="#top" className="footer-logo">
           <Image
-            src="/assets/Logo.svg"
+            src="/assets/logo.png"
             alt="When I Die™"
             className="footer-logo-image"
             width={120}

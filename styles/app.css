@@ -1,7 +1,12 @@
 /* When I Die™ – App (auth + dashboard). Brand: accent yellow, green, blue; Playfair + Inter. */
 
 .page-app {
-  background: radial-gradient(circle at top left, #e5f2ff 0, #f5f5f7 45%, #ffffff 100%);
+  background: radial-gradient(
+    circle at top left,
+    #e5f2ff 0,
+    #f5f5f7 45%,
+    #ffffff 100%
+  );
 }
 
 .page-app .app-main {
@@ -129,7 +134,9 @@
   min-height: 48px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
 }
 
 .auth-btn:active {
@@ -198,7 +205,9 @@
 }
 
 @keyframes app-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .dashboard-gate code {
@@ -432,13 +441,21 @@
 }
 
 @keyframes daisy-petal-fill {
-  0% { opacity: 0.3; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes daisy-petal-fill-scale {
-  0% { transform: rotate(-90deg) scale(0.6); }
-  100% { transform: rotate(-90deg) scale(1); }
+  0% {
+    transform: rotate(-90deg) scale(0.6);
+  }
+  100% {
+    transform: rotate(-90deg) scale(1);
+  }
 }
 
 /* Right sidebar: chapter-level (medium daisy) and question-level (compact row) */
@@ -508,7 +525,9 @@
   margin-bottom: 1rem;
 }
 
-.sidebar-progress #progress-count { color: var(--green); }
+.sidebar-progress #progress-count {
+  color: var(--green);
+}
 
 .chapter-list {
   list-style: none;
@@ -676,7 +695,9 @@
   background: var(--bg-soft);
   color: var(--fg);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .question-card-suggestion-pill:hover {
@@ -703,7 +724,7 @@
 }
 
 .question-card-story-toggle__icon::before {
-  content: '⊕';
+  content: "⊕";
   font-size: 1.1rem;
   line-height: 1;
 }
@@ -822,7 +843,7 @@
 }
 
 .autosave-indicator::before {
-  content: '';
+  content: "";
   width: 0.5em;
   height: 0.5em;
   border: 2px solid var(--green);
@@ -937,7 +958,9 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   line-height: 1.35;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .skipped-question-link:hover {
@@ -1109,7 +1132,11 @@
 }
 
 .invitation-card {
-  background: linear-gradient(135deg, rgba(249, 200, 70, 0.08) 0%, rgba(255, 255, 255, 0.95) 50%);
+  background: linear-gradient(
+    135deg,
+    rgba(249, 200, 70, 0.08) 0%,
+    rgba(255, 255, 255, 0.95) 50%
+  );
   border: 1px solid rgba(249, 200, 70, 0.25);
   border-radius: var(--radius-lg);
   padding: 2rem 1.75rem;
@@ -1339,7 +1366,9 @@
   background: #fff;
   color: var(--fg);
   cursor: pointer;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 }
 
 .message-style-pill:hover {
@@ -1539,7 +1568,9 @@
   padding: 0.2rem 0;
   cursor: pointer;
   border-radius: var(--radius-md);
-  transition: color 0.15s ease, background 0.15s ease;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
 }
 
 .chapter-nav__title-inner {
@@ -1583,7 +1614,6 @@
   color: var(--green);
 }
 
-
 .chapter-nav__question-list {
   list-style: none;
   padding: 0 0 0 0.5rem;
@@ -1610,7 +1640,9 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   line-height: 1.35;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 .nav-question:hover {
@@ -1747,7 +1779,10 @@
   border: 1px solid rgba(209, 213, 219, 0.6);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
   text-align: left;
 }
 
@@ -1816,7 +1851,10 @@
 
 .shared-overview-header {
   display: grid;
-  grid-template-columns: 1fr minmax(7rem, 1fr) minmax(5rem, auto) minmax(5.5rem, auto) minmax(9rem, auto);
+  grid-template-columns: 1fr minmax(7rem, 1fr) minmax(5rem, auto) minmax(
+      5.5rem,
+      auto
+    ) minmax(9rem, auto);
   gap: 0.75rem 1rem;
   padding: 0 0 0.6rem;
   font-size: 0.7rem;
@@ -1829,7 +1867,10 @@
 
 .shared-list--overview .shared-item {
   display: grid;
-  grid-template-columns: 1fr minmax(7rem, 1fr) minmax(5rem, auto) minmax(5.5rem, auto) minmax(9rem, auto);
+  grid-template-columns: 1fr minmax(7rem, 1fr) minmax(5rem, auto) minmax(
+      5.5rem,
+      auto
+    ) minmax(9rem, auto);
   gap: 0.75rem 1rem;
   align-items: center;
   padding: 0.75rem 0;
@@ -1878,7 +1919,9 @@
   }
   .shared-overview-header .shared-overview-sent,
   .shared-overview-header .shared-overview-opened,
-  .shared-overview-header .shared-overview-actions { display: none; }
+  .shared-overview-header .shared-overview-actions {
+    display: none;
+  }
   .shared-list--overview .shared-item {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
@@ -1888,9 +1931,17 @@
     grid-column: 1 / -1;
     font-size: 0.8rem;
   }
-  .shared-list--overview .shared-overview-sent::before { content: "Link sent: "; color: var(--muted); }
-  .shared-list--overview .shared-overview-opened { padding-top: 0.1rem; }
-  .shared-list--overview .shared-overview-opened::before { content: "Opened: "; color: var(--muted); }
+  .shared-list--overview .shared-overview-sent::before {
+    content: "Link sent: ";
+    color: var(--muted);
+  }
+  .shared-list--overview .shared-overview-opened {
+    padding-top: 0.1rem;
+  }
+  .shared-list--overview .shared-overview-opened::before {
+    content: "Opened: ";
+    color: var(--muted);
+  }
   .shared-list--overview .shared-overview-actions {
     grid-column: 1 / -1;
     margin-top: 0.35rem;
@@ -1964,7 +2015,9 @@
   padding: 0.4rem 0.6rem;
   min-height: 36px;
   border-radius: var(--radius-md);
-  transition: color 0.15s ease, background 0.15s ease;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
 }
 
 .shared-item-remove:hover {
@@ -2139,7 +2192,10 @@
   background: var(--bg-soft);
   color: var(--fg);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .answer-choice:hover {
@@ -2270,7 +2326,11 @@ body.relief-modal-open {
   transform: translateX(-50%);
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, rgba(28, 164, 90, 0.2) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(28, 164, 90, 0.2) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -2291,9 +2351,17 @@ body.relief-modal-open {
 }
 
 @keyframes relief-check {
-  0% { transform: scale(0.6); opacity: 0.6; }
-  60% { transform: scale(1.08); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .relief-heading {
@@ -2467,8 +2535,14 @@ body.milestone-modal-open {
 }
 
 @keyframes milestone-pop {
-  0% { transform: scale(0.92); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.92);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Heavy-tone chapters (who to notify, practical loose ends, personal
@@ -2484,7 +2558,11 @@ body.milestone-modal-open {
   transform: translateX(-50%);
   width: 100px;
   height: 100px;
-  background: radial-gradient(circle, rgba(234, 179, 8, 0.18) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(234, 179, 8, 0.18) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -2823,9 +2901,18 @@ body.milestone-modal-open {
 }
 
 @keyframes toast-bloom {
-  0% { transform: translateX(-50%) scale(0.92); opacity: 0; }
-  50% { transform: translateX(-50%) scale(1.02); opacity: 1; }
- 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+  0% {
+    transform: translateX(-50%) scale(0.92);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
 }
 
 .toast--bloom {

@@ -3,168 +3,186 @@ import Image from "next/image";
 import Link from "next/link";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { SubpageStickyCta } from "@/components/SubpageStickyCta";
-import { FaqCategoryAccordion, type FaqCategory } from "@/components/FaqCategoryAccordion";
 
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Frequently asked questions about When I Die™: getting started, prompts, sharing, privacy, pricing, and more.",
+    "Frequently asked questions about When I Die™: joining, pricing, how it works, sharing your plan, and more.",
 };
 
-const FAQ_CATEGORIES: FaqCategory[] = [
+const FAQ_ITEMS: { question: string; answer: React.ReactNode }[] = [
   {
-    id: "faq-getting-started",
-    label: "Getting started",
-    items: [
-      {
-        question: "How do I join?",
-        answer:
-          "Click Start or Join the free beta, add your name (the one you want on invites/obits), and you’re in. Under a minute. Snacks optional.",
-      },
-      {
-        question: "What happens after I sign up?",
-        answer:
-          "You land in your dashboard. You’ll see your progress (how many questions you’ve answered), upcoming questions, and a “Who you’ve shared with” section. Answer your first prompt whenever you’re ready; there’s no pressure to do it all at once.",
-      },
-      {
-        question: "What happens first?",
-        answer:
-          "We send your first tiny question—something friendly like the entrance song or dress code. You answer in ~2 minutes, and boom: your plan has begun.",
-      },
-      {
-        question: "What if I skip a week?",
-        answer: "No guilt. Prompts wait patiently. Come back whenever—your plan never loses progress.",
-      },
-      {
-        question: "What if I change my mind (often)?",
-        answer: "We expect it. Update any answer anytime. Your plan is living, not laminated.",
-      },
-      {
-        question: "What makes this different from other end-of-life tools?",
-        answer:
-          "We're death serious about making it fun—so you actually do it. And we're not stopping at documentation. Eventually you'll be able to lock in your wishes and connect with services (funeral, memorial, legacy) so your people can follow the plan instead of guessing.",
-      },
-    ],
+    question: "How do I join?",
+    answer: (
+      <p>
+        Click <strong>Start</strong> and get going. You could die tomorrow—or
+        live to 103 out of pure spite. Either way, you might as well have a
+        plan.
+      </p>
+    ),
   },
   {
-    id: "faq-prompts",
-    label: "Prompts",
-    items: [
-      {
-        question: "What do the prompts ask?",
-        answer: (
-          <>
-            Things like: If your funeral had a vibe, what would it be? What song should{" "}
-            <em>not</em> be played? Where should people look first for important documents? A
-            mix of personal and practical, with a little humor—so you reflect while smiling a
-            little.
-          </>
-        ),
-      },
-      {
-        question: "How long do prompts take?",
-        answer: "About 1–3 minutes. You can also write a longer note if you’re feeling it.",
-      },
-      {
-        question: "Can I snooze or skip?",
-        answer: "Absolutely. Hit “Skip” or “Remind me later.” No streaks, no shame.",
-      },
-    ],
+    question: "Is it really free?",
+    answer: (
+      <p>
+        Yes. Having an account will always be free. We believe everyone should
+        be able to give their loved ones the gift of a plan—not just people
+        willing to pay for another subscription. Peace of mind should not come
+        with a paywall.
+      </p>
+    ),
   },
   {
-    id: "faq-sharing",
-    label: "Sharing",
-    items: [
-      {
-        question: "Who can see my plan?",
-        answer:
-          "It’s private by default. You decide who to invite and exactly what they can view (everything vs. essentials).",
-      },
-      {
-        question: "What roles can I assign?",
-        answer:
-          "Owner (you): edit all, share, export, delete. Trusted person: sees only what you share. “In case of…” contact: notified if something happens (optional). You can add, remove, or change access anytime.",
-      },
-      {
-        question: "Do I have to invite people right away?",
-        answer: "Nope. Keep it private until you’re ready. Your plan is yours until you choose to share it.",
-      },
-      {
-        question: "How do I invite someone to see my plan?",
-        answer:
-          "In your dashboard, go to “Who you’ve shared with” and add their email. We’ll send them an invite; they can view (or edit, if you allow it) based on the role you set. You can revoke access anytime.",
-      },
-    ],
+    question: "How does it work?",
+    answer: (
+      <>
+        <p>
+          Once you join, you&rsquo;ll land on your dashboard. That&rsquo;s where
+          you can see your progress, answer upcoming questions, and manage who
+          you&rsquo;ve shared your plan with.
+        </p>
+        <p>
+          We ask small, manageable questions about your funeral, memorial,
+          legacy, and the things your people may need to know. Start with
+          something easy—like your entrance song or preferred dress code—and
+          little by little, your plan comes together.
+        </p>
+        <p>
+          No giant questionnaire. No three-ring binder. No need to solve your
+          entire death in one sitting.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-privacy",
-    label: "Privacy",
-    items: [
-      {
-        question: "How is my data protected?",
-        answer:
-          "Best-practice encryption in transit and at rest, strong auth, and minimal data collection—only what’s needed to make this work well.",
-      },
-      {
-        question: "Can I delete or download my plan?",
-        answer: "Yes. Download or delete anytime, no drama. It’s your data.",
-      },
-    ],
+    question: "Do I need to download an app?",
+    answer: (
+      <>
+        <p>
+          Nope. Everything happens inside your private portal on our website.
+          There&rsquo;s no app to download, and you won&rsquo;t answer questions
+          by text or email.
+        </p>
+        <p>
+          Just sign in whenever you&rsquo;re ready. Your questions, answers, and
+          progress will be there waiting for you—quietly, like a polite little
+          ghost.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-legal",
-    label: "Legal & data",
-    items: [
-      {
-        question: "Is this a legal document?",
-        answer:
-          "No. When I Die™ complements your will/advance directive by keeping the human parts clear and shareable. We don’t give medical or legal advice.",
-      },
-      {
-        question: "What do you store?",
-        answer:
-          "Your answers, sharing settings, and the metadata needed to run the service (e.g., email). No weird extras.",
-      },
-    ],
+    question: "Do I have to answer questions every week?",
+    answer: (
+      <>
+        <p>
+          Absolutely not. Answer one question, answer ten, or disappear for
+          three months because life got busy. Your progress is saved, and your
+          unanswered questions will wait patiently.
+        </p>
+        <p>
+          If it&rsquo;s been a while, we may send you a gentle reminder. We
+          nudge; you decide when to deal with your mortality. Death may be
+          inevitable, but this does not need to be finished by Friday.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-pricing",
-    label: "Pricing",
-    items: [
-      {
-        question: "Is there a free version?",
-        answer:
-          "Yes—the beta is free while we shape this with you. Paid plans will be small and transparent; you can cancel anytime. We won’t make it weird.",
-      },
-    ],
+    question: "Can I change my answers?",
+    answer: (
+      <>
+        <p>Of course. You can update any answer whenever you want.</p>
+        <p>
+          Change the flowers. Replace the playlist. Uninvite that one cousin.
+          Invite them again. Your plan is living, not laminated.
+        </p>
+      </>
+    ),
   },
   {
-    id: "faq-more",
-    label: "More",
-    items: [
-      {
-        question: "How do exports work?",
-        answer:
-          "Share a link, export a tidy PDF, or print sections. We’ll also offer simple printable kits (think “binder, but delightful”).",
-      },
-      {
-        question: "How often do you email me?",
-        answer: "Usually once a week with a prompt. You can snooze or switch to monthly check-ins.",
-      },
-      {
-        question: "How do I delete my account?",
-        answer: "Settings → Delete account. We’ll confirm (twice) and remove your data.",
-      },
-      {
-        question: "Is the site accessible?",
-        answer:
-          "We aim for clean markup, keyboard nav, and readable contrast. If we miss something, tell us and we’ll fix it.",
-      },
-      {
-        question: "Does this work for chosen family?",
-        answer: "Yes. You choose who matters and what each person can see.",
-      },
-    ],
+    question: "How will my people get my plan?",
+    answer: (
+      <>
+        <p>
+          You share it with them while you&rsquo;re still very much
+          alive—that&rsquo;s the whole point. They&rsquo;ll receive a
+          notification, and you decide whether they can see your entire plan or
+          only selected parts.
+        </p>
+        <p>
+          Nobody reports your death to us, and nothing is automatically released
+          after you&rsquo;re gone. Your plan is only useful if the right people
+          know it exists, so choose people you trust to act on your wishes.
+        </p>
+        <p>
+          We can help you record and share your plan, but we can&rsquo;t make
+          anyone follow it. Our powers are impressive, but not legally or
+          supernaturally binding.
+        </p>
+        <p>
+          And don&rsquo;t choose just one person. Even your most reliable friend
+          could lose their phone, move to a monastery, or panic under pressure.
+          Backups: not just for hard drives.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Can I download or print my plan?",
+    answer: (
+      <p>
+        Absolutely. Prefer good old-fashioned paper? Download and print your
+        plan, then keep it somewhere your people will actually find it—not
+        beneath a mysterious pile of appliance manuals.
+      </p>
+    ),
+  },
+  {
+    question: "Is this a legally binding will?",
+    answer: (
+      <>
+        <p>
+          No. Your plan helps you record and communicate your wishes, but it
+          doesn&rsquo;t replace a legal will or other official documents.
+        </p>
+        <p>
+          Think of us as the extremely helpful instructions—not the legal
+          paperwork.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Can I delete my account and information?",
+    answer: (
+      <>
+        <p>
+          Absolutely. You can permanently delete your account and information
+          whenever you want.
+        </p>
+        <p>No guilt, no awkward breakup, and no haunting emails from us.</p>
+      </>
+    ),
+  },
+  {
+    question: "What makes this different from other end-of-life tools?",
+    answer: (
+      <>
+        <p>
+          We&rsquo;re deathly serious about making planning feel human—and even
+          fun—so you&rsquo;ll actually do it.
+        </p>
+        <p>
+          Instead of handing you a mountain of paperwork and wishing you luck,
+          we help you build your plan one small question at a time. And
+          we&rsquo;re not stopping at documentation. Over time, you&rsquo;ll be
+          able to connect your wishes with funeral, memorial, and legacy
+          services—so your people can follow your plan instead of standing
+          around asking, &ldquo;What do you think they would have wanted?&rdquo;
+        </p>
+      </>
+    ),
   },
 ];
 
@@ -188,18 +206,29 @@ export default function FaqPage() {
               </nav>
             </div>
             <div className="page-hero-brand">
-              <Image src="/assets/Logo.svg" alt="When I Die™" className="page-hero-logo" width={120} height={48} />
+              <Image
+                src="/assets/logo.png"
+                alt="When I Die™"
+                className="page-hero-logo"
+                width={120}
+                height={48}
+              />
             </div>
             <p className="eyebrow">FAQ</p>
             <h1 className="page-title">Quick questions, plain answers</h1>
-            <p className="page-hero-tagline">We&rsquo;ve got answers. (And no legalese.)</p>
-            <p className="faq-intro">
-              Pick a topic to see answers. Only one section is open at a time so it stays easy to
-              scan.
+            <p className="page-hero-tagline">
+              We&rsquo;ve got answers. (And no legalese.)
             </p>
           </div>
 
-          <FaqCategoryAccordion categories={FAQ_CATEGORIES} />
+          <div className="faq-flat-list">
+            {FAQ_ITEMS.map((item) => (
+              <article className="faq-flat-item" key={item.question}>
+                <h2>{item.question}</h2>
+                <div className="faq-flat-answer">{item.answer}</div>
+              </article>
+            ))}
+          </div>
 
           <div className="faq-cta">
             <p className="faq-cta-text">Ready?</p>

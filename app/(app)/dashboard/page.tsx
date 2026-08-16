@@ -24,7 +24,12 @@ import { ChapterNav } from "@/components/dashboard/ChapterNav";
 import { QuestionCard } from "@/components/dashboard/QuestionCard";
 import { PlanPreview } from "@/components/dashboard/PlanPreview";
 import { ShareSection, type Share } from "@/components/dashboard/ShareSection";
-import { MilestoneModal, UnlockModal, ReliefModal, Toast } from "@/components/dashboard/CelebrationModals";
+import {
+  MilestoneModal,
+  UnlockModal,
+  ReliefModal,
+  Toast,
+} from "@/components/dashboard/CelebrationModals";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -44,8 +49,15 @@ export default function DashboardPage() {
   const [answers, setAnswers] = useState<AnswersMap>({});
   const [shares, setShares] = useState<Share[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [toast, setToast] = useState<{ message: string; bloom?: boolean } | null>(null);
-  const [milestone, setMilestone] = useState<{ level: number; pendingUnlock: string | null; pendingRelief: boolean } | null>(null);
+  const [toast, setToast] = useState<{
+    message: string;
+    bloom?: boolean;
+  } | null>(null);
+  const [milestone, setMilestone] = useState<{
+    level: number;
+    pendingUnlock: string | null;
+    pendingRelief: boolean;
+  } | null>(null);
   const [unlockName, setUnlockName] = useState<string | null>(null);
   const [reliefLine, setReliefLine] = useState<string | null>(null);
   const [showNotifyStep, setShowNotifyStep] = useState(false);
@@ -63,18 +75,29 @@ export default function DashboardPage() {
       if (cancelled) return;
       setUserId(user.id);
       setUserEmail(user.email || "");
-      const metaName = (user.user_metadata as { display_name?: string } | null)?.display_name;
+      const metaName = (user.user_metadata as { display_name?: string } | null)
+        ?.display_name;
       if (metaName) setDisplayName(metaName);
 
-      const [{ data: profile }, { data: answerRows }, { data: shareRows }] = await Promise.all([
-        getSupabase().from("profiles").select("display_name").eq("id", user.id).single(),
-        getSupabase().from("answers").select("question_id, value, updated_at").eq("user_id", user.id),
-        getSupabase()
-          .from("shares")
-          .select("id, email, invite_token, invite_sent_at, opened_at, allowed_question_ids")
-          .eq("user_id", user.id)
-          .order("invited_at", { ascending: false }),
-      ]);
+      const [{ data: profile }, { data: answerRows }, { data: shareRows }] =
+        await Promise.all([
+          getSupabase()
+            .from("profiles")
+            .select("display_name")
+            .eq("id", user.id)
+            .single(),
+          getSupabase()
+            .from("answers")
+            .select("question_id, value, updated_at")
+            .eq("user_id", user.id),
+          getSupabase()
+            .from("shares")
+            .select(
+              "id, email, invite_token, invite_sent_at, opened_at, allowed_question_ids",
+            )
+            .eq("user_id", user.id)
+            .order("invited_at", { ascending: false }),
+        ]);
       if (cancelled) return;
 
       if (profile?.display_name) setDisplayName(profile.display_name);
@@ -89,17 +112,24 @@ export default function DashboardPage() {
 
       let notifyDismissed = false;
       try {
-        notifyDismissed = sessionStorage.getItem("wid-notify-step-dismissed") === "1";
+        notifyDismissed =
+          sessionStorage.getItem("wid-notify-step-dismissed") === "1";
       } catch {
         // ignore
       }
       // Show once they've felt some progress (2+ answers), not as the very
       // first thing a brand-new user sees before experiencing any value.
-      if (loadedShares.length === 0 && !notifyDismissed && getAnsweredCount(map) >= 2) {
+      if (
+        loadedShares.length === 0 &&
+        !notifyDismissed &&
+        getAnsweredCount(map) >= 2
+      ) {
         setShowNotifyStep(true);
       }
 
-      const firstUnanswered = QUESTIONS.findIndex((q) => !hasAnswerValue(q, map[q.id]?.value || ""));
+      const firstUnanswered = QUESTIONS.findIndex(
+        (q) => !hasAnswerValue(q, map[q.id]?.value || ""),
+      );
       setCurrentIndex(firstUnanswered >= 0 ? firstUnanswered : 0);
 
       setLoading(false);
@@ -124,7 +154,10 @@ export default function DashboardPage() {
   }, []);
 
   const showToast = useCallback((message: string, bloom = false) => {
-    const prefixed = message.startsWith("Saved") || message.startsWith("Nice answer") ? `💛 ${message}` : message;
+    const prefixed =
+      message.startsWith("Saved") || message.startsWith("Nice answer")
+        ? `💛 ${message}`
+        : message;
     setToast({ message: prefixed, bloom });
     window.setTimeout(() => setToast(null), 2500);
   }, []);
@@ -150,39 +183,73 @@ export default function DashboardPage() {
       } catch {
         // ignore
       }
-      setReliefLine(RELIEF_HUMOR_LINES[Math.floor(Math.random() * RELIEF_HUMOR_LINES.length)]);
+      setReliefLine(
+        RELIEF_HUMOR_LINES[
+          Math.floor(Math.random() * RELIEF_HUMOR_LINES.length)
+        ],
+      );
     },
-    [answers, shares]
+    [answers, shares],
   );
 
-  async function saveAnswer(question: (typeof QUESTIONS)[number], value: string) {
+  async function saveAnswer(
+    question: (typeof QUESTIONS)[number],
+    value: string,
+  ) {
     const chaptersBefore = getQuestionsByChapter(answers);
-    const nextAnswers: AnswersMap = { ...answers, [question.id]: { value, updated_at: new Date().toISOString() } };
+    const nextAnswers: AnswersMap = {
+      ...answers,
+      [question.id]: { value, updated_at: new Date().toISOString() },
+    };
     setAnswers(nextAnswers);
 
     if (!userId) return;
-    await getSupabase().from("answers").upsert(
-      { user_id: userId, question_id: question.id, value, updated_at: new Date().toISOString() },
-      { onConflict: "user_id,question_id" }
-    );
+    await getSupabase()
+      .from("answers")
+      .upsert(
+        {
+          user_id: userId,
+          question_id: question.id,
+          value,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "user_id,question_id" },
+      );
 
     const chaptersAfter = getQuestionsByChapter(nextAnswers);
     const currentChapter = question.chapter;
     const before = chaptersBefore.find((c) => c.level === currentChapter);
     const after = chaptersAfter.find((c) => c.level === currentChapter);
-    const justCompleted = !!(before && after && !before.isComplete && after.isComplete);
+    const justCompleted = !!(
+      before &&
+      after &&
+      !before.isComplete &&
+      after.isComplete
+    );
 
-    const nextBefore = chaptersBefore.find((c) => c.level === currentChapter + 1);
+    const nextBefore = chaptersBefore.find(
+      (c) => c.level === currentChapter + 1,
+    );
     const nextAfter = chaptersAfter.find((c) => c.level === currentChapter + 1);
     let pendingUnlockName: string | null = null;
-    if (nextAfter && nextAfter.isUnlocked && nextBefore && !nextBefore.isUnlocked) {
+    if (
+      nextAfter &&
+      nextAfter.isUnlocked &&
+      nextBefore &&
+      !nextBefore.isUnlocked
+    ) {
       pendingUnlockName =
         currentChapter === 1
           ? "Explore the rest in any order—pick what matters to you next."
-          : CHAPTER_META.find((m) => m.level === nextAfter.level)?.name || "Next chapter";
+          : CHAPTER_META.find((m) => m.level === nextAfter.level)?.name ||
+            "Next chapter";
     }
-    const reliefChapterAfter = chaptersAfter.find((c) => c.level === RELIEF_CHAPTER);
-    const pendingRelief = !!(reliefChapterAfter && reliefChapterAfter.isComplete);
+    const reliefChapterAfter = chaptersAfter.find(
+      (c) => c.level === RELIEF_CHAPTER,
+    );
+    const pendingRelief = !!(
+      reliefChapterAfter && reliefChapterAfter.isComplete
+    );
 
     if (value) showToast("Saved");
     if (after && after.total > 0 && after.total - after.answered === 1) {
@@ -191,7 +258,11 @@ export default function DashboardPage() {
 
     if (justCompleted) {
       const meta = CHAPTER_META.find((m) => m.level === currentChapter);
-      setMilestone({ level: currentChapter, pendingUnlock: pendingUnlockName, pendingRelief });
+      setMilestone({
+        level: currentChapter,
+        pendingUnlock: pendingUnlockName,
+        pendingRelief,
+      });
       if (meta) showToast(`Chapter complete. ${meta.completionMessage}`);
     } else {
       if (pendingUnlockName) setUnlockName(pendingUnlockName);
@@ -201,7 +272,8 @@ export default function DashboardPage() {
     if (shares.length === 0 && getAnsweredCount(nextAnswers) === 2) {
       let notifyDismissed = false;
       try {
-        notifyDismissed = sessionStorage.getItem("wid-notify-step-dismissed") === "1";
+        notifyDismissed =
+          sessionStorage.getItem("wid-notify-step-dismissed") === "1";
       } catch {
         // ignore
       }
@@ -226,7 +298,11 @@ export default function DashboardPage() {
     goToQuestion(getFirstQuestionIndexForChapter(chapterNum));
   }
 
-  async function handleAddShare(emails: string[], allowedCategories: string[] | null, message: string) {
+  async function handleAddShare(
+    emails: string[],
+    allowedCategories: string[] | null,
+    message: string,
+  ) {
     if (!userId) return;
     const newShares: Share[] = [];
     let failures = 0;
@@ -239,8 +315,13 @@ export default function DashboardPage() {
         invite_token: crypto.randomUUID().replace(/-/g, ""),
         invite_sent_at: new Date().toISOString(),
       };
-      if (allowedCategories) payload.allowed_question_ids = questionIdsForCategories(allowedCategories);
-      const { data, error } = await getSupabase().from("shares").upsert(payload, { onConflict: "user_id,email" }).select();
+      if (allowedCategories)
+        payload.allowed_question_ids =
+          questionIdsForCategories(allowedCategories);
+      const { data, error } = await getSupabase()
+        .from("shares")
+        .upsert(payload, { onConflict: "user_id,email" })
+        .select();
       if (error || !data?.length) {
         failures += 1;
         continue;
@@ -259,11 +340,16 @@ export default function DashboardPage() {
     }
 
     if (newShares.length) {
-      setShares((prev) => [...newShares, ...prev.filter((s) => !newShares.some((n) => n.id === s.id))]);
+      setShares((prev) => [
+        ...newShares,
+        ...prev.filter((s) => !newShares.some((n) => n.id === s.id)),
+      ]);
       showToast(
         failures
           ? `Sent to ${newShares.length}, ${failures} failed.`
-          : INVITE_SUCCESS_TOASTS[Math.floor(Math.random() * INVITE_SUCCESS_TOASTS.length)]
+          : INVITE_SUCCESS_TOASTS[
+              Math.floor(Math.random() * INVITE_SUCCESS_TOASTS.length)
+            ],
       );
       window.setTimeout(() => tryShowRelief(), 800);
     } else {
@@ -280,14 +366,22 @@ export default function DashboardPage() {
     }
   }
 
-  async function handleOnboardingAddShare(emails: string[], allowedCategories: string[] | null, message: string) {
+  async function handleOnboardingAddShare(
+    emails: string[],
+    allowedCategories: string[] | null,
+    message: string,
+  ) {
     await handleAddShare(emails, allowedCategories, message);
     dismissNotifyStep();
   }
 
   async function handleRemoveShare(id: string) {
     if (!userId) return;
-    await getSupabase().from("shares").delete().eq("id", id).eq("user_id", userId);
+    await getSupabase()
+      .from("shares")
+      .delete()
+      .eq("id", id)
+      .eq("user_id", userId);
     setShares((prev) => prev.filter((s) => s.id !== id));
   }
 
@@ -300,7 +394,7 @@ export default function DashboardPage() {
     try {
       localStorage.setItem(
         "wid-print-plan",
-        JSON.stringify({ updatedAt: new Date().toISOString(), sections })
+        JSON.stringify({ updatedAt: new Date().toISOString(), sections }),
       );
     } catch {
       // ignore
@@ -325,10 +419,16 @@ export default function DashboardPage() {
   const chapters = getQuestionsByChapter(answers);
   const answeredCount = getAnsweredCount(answers);
   const currentQuestion = QUESTIONS[currentIndex];
-  const currentChapter = chapters.find((c) => c.level === currentQuestion.chapter);
+  const currentChapter = chapters.find(
+    (c) => c.level === currentQuestion.chapter,
+  );
   const nextUnansweredIndex = getNextUnansweredIndex(answers, currentIndex);
-  const unansweredInChapter = currentChapter ? currentChapter.total - currentChapter.answered : 0;
-  const skipped = QUESTIONS.map((q, idx) => ({ q, idx })).filter(({ q }) => !hasAnswerValue(q, getAnswerFor(answers, q)));
+  const unansweredInChapter = currentChapter
+    ? currentChapter.total - currentChapter.answered
+    : 0;
+  const skipped = QUESTIONS.map((q, idx) => ({ q, idx })).filter(
+    ({ q }) => !hasAnswerValue(q, getAnswerFor(answers, q)),
+  );
   const planSections = getPlanSections(answers);
 
   return (
@@ -339,42 +439,76 @@ export default function DashboardPage() {
       <header className="site-header">
         <div className="container header-inner">
           <Link href="/dashboard" className="logo">
-            <Image src="/assets/Logo.svg" alt="When I Die™" className="logo-image" width={120} height={48} />
+            <Image
+              src="/assets/logo.png"
+              alt="When I Die™"
+              className="logo-image"
+              width={120}
+              height={48}
+            />
           </Link>
           <nav className="nav">
             <span className="nav-user">{userEmail}</span>
             <Link href="/">Home</Link>
-            <button type="button" className="btn secondary-btn btn--small" onClick={handleLogout}>
+            <button
+              type="button"
+              className="btn secondary-btn btn--small"
+              onClick={handleLogout}
+            >
               Log out
             </button>
           </nav>
         </div>
         <div className="announcement-bar">
-          <span className="announcement-bar__text">No doom. No guilt. Snacks encouraged.</span>
+          <span className="announcement-bar__text">
+            No doom. No guilt. Snacks encouraged.
+          </span>
         </div>
       </header>
 
       <main className="app-main dashboard-main" id="main-content">
         <div className="container">
           <div className="dashboard-layout">
-            <aside className="dashboard-sidebar" aria-label="Progress and milestones">
-              <div className="progress-cycle" role="region" aria-labelledby="progress-cycle-label">
-                <h2 id="progress-cycle-label" className="progress-cycle__heading">
+            <aside
+              className="dashboard-sidebar"
+              aria-label="Progress and milestones"
+            >
+              <div
+                className="progress-cycle"
+                role="region"
+                aria-labelledby="progress-cycle-label"
+              >
+                <h2
+                  id="progress-cycle-label"
+                  className="progress-cycle__heading"
+                >
                   Progress
                 </h2>
                 <div
                   className="daisy-progress-wrap daisy-progress-wrap--hero"
                   role="progressbar"
-                  aria-valuenow={QUESTIONS.length > 0 ? Math.round((answeredCount / QUESTIONS.length) * 100) : 0}
+                  aria-valuenow={
+                    QUESTIONS.length > 0
+                      ? Math.round((answeredCount / QUESTIONS.length) * 100)
+                      : 0
+                  }
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-label="Overall progress"
                 >
-                  <DaisyProgress total={QUESTIONS.length} completed={answeredCount} variant="hero" />
+                  <DaisyProgress
+                    total={QUESTIONS.length}
+                    completed={answeredCount}
+                    variant="hero"
+                  />
                   <span className="progress-cycle__center progress-cycle__center--daisy">
-                    <span className="progress-cycle__count">{answeredCount}</span>
+                    <span className="progress-cycle__count">
+                      {answeredCount}
+                    </span>
                     <span className="progress-cycle__sep">/</span>
-                    <span className="progress-cycle__total">{QUESTIONS.length}</span>
+                    <span className="progress-cycle__total">
+                      {QUESTIONS.length}
+                    </span>
                   </span>
                 </div>
                 <p className="progress-cycle__label">answered</p>
@@ -407,13 +541,21 @@ export default function DashboardPage() {
                   heading="Who should we tell you've started a plan?"
                   intro="They'll get a short note letting them know, and can check in on your progress anytime. They won't see your actual answers unless you choose to share them."
                   footer={
-                    <button type="button" className="btn ghost-btn btn--small" onClick={dismissNotifyStep} style={{ marginTop: "0.5rem" }}>
+                    <button
+                      type="button"
+                      className="btn ghost-btn btn--small"
+                      onClick={dismissNotifyStep}
+                      style={{ marginTop: "0.5rem" }}
+                    >
                       Skip for now
                     </button>
                   }
                 />
               ) : (
-                <section className="dashboard-section dashboard-question-current" id="question-current-section">
+                <section
+                  className="dashboard-section dashboard-question-current"
+                  id="question-current-section"
+                >
                   <QuestionCard
                     key={currentQuestion.id}
                     question={currentQuestion}
@@ -424,7 +566,12 @@ export default function DashboardPage() {
                     onPrev={() => goToQuestion(currentIndex - 1)}
                     onNext={() => {
                       if (currentIndex >= QUESTIONS.length - 1) {
-                        document.getElementById("plan-preview-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        document
+                          .getElementById("plan-preview-section")
+                          ?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         return;
                       }
                       goToQuestion(currentIndex + 1);
@@ -433,11 +580,25 @@ export default function DashboardPage() {
                 </section>
               )}
 
-              <section className="dashboard-section dashboard-preview dashboard-preview--compact" id="plan-preview-section" aria-labelledby="plan-preview-heading">
+              <section
+                className="dashboard-section dashboard-preview dashboard-preview--compact"
+                id="plan-preview-section"
+                aria-labelledby="plan-preview-heading"
+              >
                 <div className="plan-preview-watermark" aria-hidden="true" />
-                <h2 id="plan-preview-heading" className="plan-preview-heading-with-icon">
-                  <Image src="/assets/Logo.svg" alt="" className="plan-preview-heading-daisy" width={80} height={32} aria-hidden="true" /> Your
-                  Plan
+                <h2
+                  id="plan-preview-heading"
+                  className="plan-preview-heading-with-icon"
+                >
+                  <Image
+                    src="/assets/logo.png"
+                    alt=""
+                    className="plan-preview-heading-daisy"
+                    width={80}
+                    height={32}
+                    aria-hidden="true"
+                  />{" "}
+                  Your Plan
                 </h2>
                 <PlanPreview
                   sections={planSections}
@@ -448,24 +609,39 @@ export default function DashboardPage() {
               </section>
             </div>
 
-            <aside className="dashboard-sidebar dashboard-sidebar--right" aria-label="Inspiration and progress">
+            <aside
+              className="dashboard-sidebar dashboard-sidebar--right"
+              aria-label="Inspiration and progress"
+            >
               <div className="chapter-progress-wrap">
                 <h3 className="chapter-progress__heading">Progress</h3>
                 {currentChapter && currentChapter.total > 0 ? (
-                  <DaisyProgress total={currentChapter.total} completed={currentChapter.answered} variant="chapter" />
+                  <DaisyProgress
+                    total={currentChapter.total}
+                    completed={currentChapter.answered}
+                    variant="chapter"
+                  />
                 ) : null}
                 <p className="chapter-progress__text">
-                  {currentChapter ? `${currentChapter.answered} of ${currentChapter.total} questions answered in this chapter` : "0 of 0 questions answered in this chapter"}
+                  {currentChapter
+                    ? `${currentChapter.answered} of ${currentChapter.total} questions answered in this chapter`
+                    : "0 of 0 questions answered in this chapter"}
                 </p>
               </div>
 
               {currentQuestion.suggestions.length > 0 ? (
                 <div className="question-inspiration">
-                  <h3 className="question-inspiration__title">Need inspiration?</h3>
-                  <p className="question-inspiration__text">{currentQuestion.suggestions.join(" · ")}</p>
+                  <h3 className="question-inspiration__title">
+                    Need inspiration?
+                  </h3>
+                  <p className="question-inspiration__text">
+                    {currentQuestion.suggestions.join(" · ")}
+                  </p>
                 </div>
               ) : (
-                <p className="right-sidebar-fallback">Take your time. You can come back and edit anytime.</p>
+                <p className="right-sidebar-fallback">
+                  Take your time. You can come back and edit anytime.
+                </p>
               )}
 
               {unansweredInChapter > 0 || nextUnansweredIndex >= 0 ? (
@@ -476,7 +652,11 @@ export default function DashboardPage() {
                       : "This chapter is complete. Jump to the next unanswered question elsewhere."}
                   </p>
                   {nextUnansweredIndex >= 0 ? (
-                    <button type="button" className="btn secondary-btn btn--small" onClick={() => goToQuestion(nextUnansweredIndex)}>
+                    <button
+                      type="button"
+                      className="btn secondary-btn btn--small"
+                      onClick={() => goToQuestion(nextUnansweredIndex)}
+                    >
                       Jump to next unanswered question
                     </button>
                   ) : null}
@@ -486,11 +666,20 @@ export default function DashboardPage() {
               {skipped.length > 0 ? (
                 <div className="skipped-questions-wrap">
                   <h3 className="skipped-questions-heading">Come back to</h3>
-                  <ul className="skipped-questions-list" aria-label="Skipped or unanswered questions">
+                  <ul
+                    className="skipped-questions-list"
+                    aria-label="Skipped or unanswered questions"
+                  >
                     {skipped.map(({ q, idx }) => (
                       <li key={q.id}>
-                        <button type="button" className="skipped-question-link" onClick={() => goToQuestion(idx)}>
-                          {q.title.length > 42 ? `${q.title.slice(0, 39)}…` : q.title}
+                        <button
+                          type="button"
+                          className="skipped-question-link"
+                          onClick={() => goToQuestion(idx)}
+                        >
+                          {q.title.length > 42
+                            ? `${q.title.slice(0, 39)}…`
+                            : q.title}
                         </button>
                       </li>
                     ))}
@@ -503,7 +692,10 @@ export default function DashboardPage() {
           {!showNotifyStep ? (
             <>
               <div className="invitation-bridge" aria-hidden="true">
-                <span className="invitation-bridge__text">Your plan gets even better when someone you trust knows about it.</span>
+                <span className="invitation-bridge__text">
+                  Your plan gets even better when someone you trust knows about
+                  it.
+                </span>
               </div>
 
               <ShareSection
@@ -526,21 +718,30 @@ export default function DashboardPage() {
             return (
               <MilestoneModal
                 chapterName={meta?.name || `Chapter ${milestone.level}`}
-                message={meta?.completionMessage || "You completed this chapter."}
+                message={
+                  meta?.completionMessage || "You completed this chapter."
+                }
                 icon={meta?.icon || "/assets/icon-document.svg"}
                 tone={meta?.tone || "light"}
                 showShareCta={shares.length === 0}
                 onClose={closeMilestone}
                 onShare={() => {
                   setMilestone(null);
-                  document.getElementById("dashboard-shared")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  document
+                    .getElementById("dashboard-shared")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
               />
             );
           })()
         : null}
 
-      {unlockName ? <UnlockModal chapterName={unlockName} onClose={() => setUnlockName(null)} /> : null}
+      {unlockName ? (
+        <UnlockModal
+          chapterName={unlockName}
+          onClose={() => setUnlockName(null)}
+        />
+      ) : null}
 
       {reliefLine ? (
         <ReliefModal
@@ -548,7 +749,9 @@ export default function DashboardPage() {
           onClose={() => setReliefLine(null)}
           onInvite={() => {
             setReliefLine(null);
-            document.getElementById("dashboard-shared")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            document
+              .getElementById("dashboard-shared")
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
         />
       ) : null}

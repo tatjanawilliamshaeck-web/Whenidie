@@ -219,9 +219,6 @@ export default function HomePageDe() {
               loggedOutText="Meinen Plan anfangen"
               loggedInText="Zu deinem Plan"
             />
-            <a href="/de/faq" className="small-link-a">
-              Alle FAQs ansehen →
-            </a>
           </div>
         </div>
       </section>

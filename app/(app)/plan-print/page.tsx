@@ -30,7 +30,11 @@ export default function PlanPrintPage() {
     setPlan({ updatedAt: new Date().toISOString(), sections: [] });
   }, []);
 
-  const date = plan ? new Date(plan.updatedAt).toLocaleDateString(undefined, { dateStyle: "long" }) : "";
+  const date = plan
+    ? new Date(plan.updatedAt).toLocaleDateString(undefined, {
+        dateStyle: "long",
+      })
+    : "";
 
   return (
     <div className="page-print">
@@ -38,27 +42,51 @@ export default function PlanPrintPage() {
         <a href="/dashboard" className="btn secondary-btn">
           ← Back to dashboard
         </a>
-        <button type="button" className="btn primary-btn" onClick={() => window.print()}>
+        <button
+          type="button"
+          className="btn primary-btn"
+          onClick={() => window.print()}
+        >
           Print / Save as PDF
         </button>
-        <p className="print-actions-hint">Use the button above to save this page as a PDF.</p>
+        <p className="print-actions-hint">
+          Use the button above to save this page as a PDF.
+        </p>
       </div>
       <div className="print-content">
         <div className="print-header">
-          <Image src="/assets/Logo.svg" alt="When I Die™" width={120} height={48} className="print-logo" />
+          <Image
+            src="/assets/logo.png"
+            alt="When I Die™"
+            width={120}
+            height={48}
+            className="print-logo"
+          />
           <p className="print-brand">When I Die™</p>
           <h1 className="print-title">Your Personal Plan</h1>
-          <p className="print-subtitle">No doom. No guilt. Snacks encouraged.</p>
+          <p className="print-subtitle">
+            No doom. No guilt. Snacks encouraged.
+          </p>
           <p className="print-date">Generated {date}</p>
         </div>
         <div className="print-body">
           {!plan || plan.sections.length === 0 ? (
-            <p className="print-empty">No answers yet. Add answers in your dashboard to see your plan here.</p>
+            <p className="print-empty">
+              No answers yet. Add answers in your dashboard to see your plan
+              here.
+            </p>
           ) : (
             plan.sections.map((section) => (
               <section className="print-section" key={section.name}>
                 <h2 className="print-section-title">
-                  <Image src="/assets/Logo.svg" alt="" width={20} height={20} className="print-section-daisy" /> {section.name}
+                  <Image
+                    src="/assets/logo.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="print-section-daisy"
+                  />{" "}
+                  {section.name}
                 </h2>
                 {section.items.map((item) => (
                   <div className="print-plan-item" key={item.title}>
@@ -71,7 +99,10 @@ export default function PlanPrintPage() {
           )}
         </div>
         <footer className="print-footer">
-          <p>This document was created with When I Die™. Your answers are private. We never sell your data.</p>
+          <p>
+            This document was created with When I Die™. Your answers are
+            private. We never sell your data.
+          </p>
         </footer>
       </div>
     </div>

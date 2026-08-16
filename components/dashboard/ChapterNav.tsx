@@ -41,11 +41,27 @@ export function ChapterNav({
               }}
             >
               <span className="chapter-nav__title-inner">
-                <Image src="/assets/Logo.svg" alt="" className="chapter-nav__daisy-icon" width={48} height={19} aria-hidden="true" />
+                <Image
+                  src="/assets/logo.png"
+                  alt=""
+                  className="chapter-nav__daisy-icon"
+                  width={48}
+                  height={19}
+                  aria-hidden="true"
+                />
                 <span className="chapter-nav__icon-cell">
-                  <Image src={chapter.icon} alt="" className="chapter-nav__chapter-icon" width={20} height={20} aria-hidden="true" />
+                  <Image
+                    src={chapter.icon}
+                    alt=""
+                    className="chapter-nav__chapter-icon"
+                    width={20}
+                    height={20}
+                    aria-hidden="true"
+                  />
                 </span>
-                <span className="chapter-nav__chapter-text">{chapter.name}</span>
+                <span className="chapter-nav__chapter-text">
+                  {chapter.name}
+                </span>
               </span>
             </span>
             <ul className="chapter-nav__question-list">
@@ -54,7 +70,8 @@ export function ChapterNav({
                 const answered = hasAnswerValue(q, answers[q.id]?.value || "");
                 const isCurrent = idx === currentIndex;
                 const icon = isCurrent ? "→" : answered ? "✓" : "○";
-                const shortTitle = q.title.length > 48 ? `${q.title.slice(0, 45)}…` : q.title;
+                const shortTitle =
+                  q.title.length > 48 ? `${q.title.slice(0, 45)}…` : q.title;
                 const cls = `nav-question${answered ? " nav-question--answered" : " nav-question--unanswered"}${isCurrent ? " nav-question--current" : ""}`;
                 return (
                   <li key={q.id}>

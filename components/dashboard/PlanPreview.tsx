@@ -24,10 +24,14 @@ export function PlanPreview({
     return (
       <div className="plan-preview-empty-state">
         <span className="plan-preview-empty-daisy" aria-hidden="true">
-          <Image src="/assets/Logo.svg" alt="" width={120} height={48} />
+          <Image src="/assets/logo.png" alt="" width={120} height={48} />
         </span>
         <p className="plan-preview-empty">Your plan is just beginning.</p>
-        <button type="button" className="btn primary-btn plan-preview-empty-cta" onClick={onStartFirst}>
+        <button
+          type="button"
+          className="btn primary-btn plan-preview-empty-cta"
+          onClick={onStartFirst}
+        >
           Start your first answer
         </button>
       </div>
@@ -37,11 +41,16 @@ export function PlanPreview({
   return (
     <>
       <div className="plan-summary-daisy-wrap">
-        <DaisyProgress total={totalQuestions} completed={totalAnswered} variant="hero" />
+        <DaisyProgress
+          total={totalQuestions}
+          completed={totalAnswered}
+          variant="hero"
+        />
       </div>
       <div id="plan-header" className="plan-header">
         <p className="plan-header-date">
-          Last updated: {new Date().toLocaleDateString(undefined, { dateStyle: "long" })}
+          Last updated:{" "}
+          {new Date().toLocaleDateString(undefined, { dateStyle: "long" })}
         </p>
         <div className="plan-preview-actions">
           <a href="#question-current-section" className="btn secondary-btn">
@@ -53,10 +62,18 @@ export function PlanPreview({
         </div>
       </div>
       <div className="plan-expand-collapse">
-        <button type="button" className="btn ghost-btn btn--small" onClick={() => setAllOpen(true)}>
+        <button
+          type="button"
+          className="btn ghost-btn btn--small"
+          onClick={() => setAllOpen(true)}
+        >
           Expand all
         </button>
-        <button type="button" className="btn ghost-btn btn--small" onClick={() => setAllOpen(false)}>
+        <button
+          type="button"
+          className="btn ghost-btn btn--small"
+          onClick={() => setAllOpen(false)}
+        >
           Collapse all
         </button>
       </div>
@@ -64,8 +81,22 @@ export function PlanPreview({
         {sectionsWithAnswers.map((s) => (
           <details className="plan-section" key={s.level} open={allOpen}>
             <summary className="plan-section__summary">
-              <Image src="/assets/Logo.svg" alt="" className="plan-section__daisy-icon" width={48} height={19} aria-hidden="true" />
-              <Image src={s.icon} alt="" className="plan-section__icon" width={20} height={20} aria-hidden="true" />
+              <Image
+                src="/assets/logo.png"
+                alt=""
+                className="plan-section__daisy-icon"
+                width={48}
+                height={19}
+                aria-hidden="true"
+              />
+              <Image
+                src={s.icon}
+                alt=""
+                className="plan-section__icon"
+                width={20}
+                height={20}
+                aria-hidden="true"
+              />
               <span className="plan-section__title">{s.name}</span>
               {s.total > 0 ? (
                 <span className="plan-section__count">
