@@ -82,12 +82,9 @@ export default function HowItWorksPage() {
                   anything anytime—your plan is living, not laminated.
                 </p>
                 <p className="step-detail">
-                  In your dashboard you&rsquo;ll see exactly where you are:
-                  which questions you&rsquo;ve answered, which are upcoming, and
-                  a simple &ldquo;Your plan so far&rdquo; view. Later
-                  we&rsquo;ll add export (PDF, print) and the ability to lock in
-                  wishes and connect with services so your people can follow the
-                  plan instead of guessing.
+                  Later we&rsquo;ll add export (PDF, print) and the ability to
+                  lock in wishes and connect with services so your people can
+                  follow the plan instead of guessing.
                 </p>
               </div>
             </li>
@@ -102,11 +99,9 @@ export default function HowItWorksPage() {
                   They&rsquo;ll thank you later.
                 </p>
                 <p className="step-detail">
-                  In your dashboard you&rsquo;ll have a &ldquo;Who you&rsquo;ve
-                  shared with&rdquo; section: see who has access, what role they
-                  have, and when you invited them. Revoke access or add someone
-                  new in a few clicks. No one sees your plan until you invite
-                  them—and you can keep it 100% private as long as you want.
+                  No one sees your plan until you invite them—and you can keep
+                  it 100% private for as long as you want. (Yes, even from your
+                  mother.)
                 </p>
               </div>
             </li>
@@ -148,42 +143,41 @@ export default function HowItWorksPage() {
             </ul>
           </div>
 
-          <hr className="section-divider" aria-hidden="true" />
-
-          <p className="eyebrow">What you&rsquo;ll see on the site</p>
-          <h2>
-            Your dashboard: progress, questions, and who&rsquo;s in the loop
-          </h2>
-          <p className="section-copy section-intro">
-            Once you have an account, you get a single place to see how
-            you&rsquo;re doing and what&rsquo;s next.
+          <p
+            className="section-copy section-intro"
+            style={{ marginTop: "2rem" }}
+          >
+            All three of those live in one place—your dashboard—so you never
+            have to go spelunking for your own life plan:
           </p>
           <ul className="detail-list">
             <li>
               <strong>Progress</strong> — A clear &ldquo;X of Y answered&rdquo;
-              so you know where you are in your journey. No guilt if you skip a
-              week; the number just waits for you.
+              so you know where you stand. Skip a week and the number just waits
+              for you, no judgment, no red exclamation marks.
             </li>
             <li>
               <strong>Upcoming questions</strong> — The next prompts you
-              haven&rsquo;t answered yet. Tap one to answer it now or leave it
-              for later.
+              haven&rsquo;t answered yet. Tap one to deal with it now, or let it
+              marinate.
             </li>
             <li>
               <strong>Answered</strong> — Everything you&rsquo;ve already
-              written. Tap to edit anytime. Your plan updates as you go.
+              confessed to the internet. Tap to edit anytime; your plan is a
+              living document, not a legal deposition.
             </li>
             <li>
-              <strong>Who you&rsquo;ve shared with</strong> — People
-              you&rsquo;ve invited to view (or help with) your plan. See who has
-              access and change it whenever you want.
+              <strong>Who you&rsquo;ve shared with</strong> — Everyone
+              you&rsquo;ve let peek behind the curtain. See who has access, and
+              revoke it the second that friendship goes sideways.
             </li>
           </ul>
           <p className="section-copy">
             We&rsquo;re building this to feel human and light—not like a
-            spreadsheet or a legal form. One day we may add a more personalized,
-            conversational flow (e.g. an AI-guided chat); for now, it&rsquo;s a
-            clear list of questions you can tackle at your own pace.
+            spreadsheet, and definitely not like a legal form. One day there
+            might be a more personalized, conversational flow (an AI gently
+            interrogating you about your funeral playlist). For now: a clear
+            list of questions, tackled at your own pace, no cubicle required.
           </p>
         </div>
       </section>

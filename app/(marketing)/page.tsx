@@ -10,8 +10,9 @@ export default function HomePage() {
             <p className="eyebrow">A gift to the people you love.</p>
             <h1>Make life easier for the people who care about you.</h1>
             <p className="hero-subtitle">
-              Start in 10 minutes. Capture the essentials—who to call, where
-              things are—so your family never has to guess.
+              Start, and in 10 minutes you&rsquo;ll have the essentials covered:
+              who to call, what to do with your body, and how you want the party
+              to feel. Your family won&rsquo;t have to guess.
             </p>
             <div className="hero-actions">
               <StartCtaLink
