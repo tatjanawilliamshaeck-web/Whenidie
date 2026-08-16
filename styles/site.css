@@ -1503,49 +1503,6 @@ h2 {
   margin-bottom: 0;
 }
 
-.plan-mock {
-  margin-top: 2rem;
-  padding: 1.2rem 1.25rem;
-  background: #ffffff;
-  border-radius: var(--radius-md);
-  border: 2px solid rgba(45, 190, 96, 0.35);
-  max-width: 280px;
-}
-
-.plan-mock-title {
-  margin: 0 0 0.6rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--green);
-}
-
-.plan-mock-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.plan-mock-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.2rem 0;
-}
-
-.plan-check {
-  color: var(--green);
-  font-weight: 700;
-}
-
-.plan-dot {
-  color: var(--accent-strong);
-  font-size: 0.85rem;
-}
-
 /* FAQ */
 
 .faq-flat-list {

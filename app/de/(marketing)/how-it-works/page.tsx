@@ -129,42 +129,6 @@ export default function HowItWorksPageDe() {
             </li>
           </ol>
 
-          <div className="plan-mock" aria-hidden="true">
-            <p className="plan-mock-title">Dein Plan bisher</p>
-            <ul className="plan-mock-list">
-              <li>
-                <span className="plan-check" aria-hidden="true">
-                  ✓
-                </span>{" "}
-                Einzugslied
-              </li>
-              <li>
-                <span className="plan-check" aria-hidden="true">
-                  ✓
-                </span>{" "}
-                Snacks und Stimmung
-              </li>
-              <li>
-                <span className="plan-check" aria-hidden="true">
-                  ✓
-                </span>{" "}
-                Wer reden darf
-              </li>
-              <li>
-                <span className="plan-dot" aria-hidden="true">
-                  ○
-                </span>{" "}
-                Wer zuerst angerufen werden soll
-              </li>
-              <li>
-                <span className="plan-dot" aria-hidden="true">
-                  ○
-                </span>{" "}
-                Wo sich alles versteckt
-              </li>
-            </ul>
-          </div>
-
           <p className="section-closer">
             Ein paar überraschend unterhaltsame Fragen. Ein wirklich hilfreicher
             Plan. Und vielleicht sogar bessere Laune als vorher.

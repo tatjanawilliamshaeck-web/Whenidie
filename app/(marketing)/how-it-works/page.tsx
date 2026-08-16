@@ -113,42 +113,6 @@ export default function HowItWorksPage() {
             </li>
           </ol>
 
-          <div className="plan-mock" aria-hidden="true">
-            <p className="plan-mock-title">Your plan so far</p>
-            <ul className="plan-mock-list">
-              <li>
-                <span className="plan-check" aria-hidden="true">
-                  ✓
-                </span>{" "}
-                Entrance song
-              </li>
-              <li>
-                <span className="plan-check" aria-hidden="true">
-                  ✓
-                </span>{" "}
-                Snacks &amp; vibes
-              </li>
-              <li>
-                <span className="plan-check" aria-hidden="true">
-                  ✓
-                </span>{" "}
-                Who should speak
-              </li>
-              <li>
-                <span className="plan-dot" aria-hidden="true">
-                  ○
-                </span>{" "}
-                Who to call
-              </li>
-              <li>
-                <span className="plan-dot" aria-hidden="true">
-                  ○
-                </span>{" "}
-                Where things live
-              </li>
-            </ul>
-          </div>
-
           <p className="section-closer">
             A few enjoyable questions. One very useful plan. And, with any luck,
             a slightly brighter day.
