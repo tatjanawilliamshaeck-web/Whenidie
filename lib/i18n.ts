@@ -1,16 +1,49 @@
 export type Locale = "en" | "de";
 
-export const NAV_LABELS: Record<Locale, { home: string; howItWorks: string; about: string; faq: string; start: string; yourPlan: string }> = {
-  en: { home: "Home", howItWorks: "How it works", about: "About", faq: "FAQ", start: "Start", yourPlan: "Your plan" },
-  de: { home: "Start", howItWorks: "So funktioniert's", about: "Über uns", faq: "FAQ", start: "Loslegen", yourPlan: "Dein Plan" },
+export const NAV_LABELS: Record<
+  Locale,
+  {
+    home: string;
+    howItWorks: string;
+    about: string;
+    faq: string;
+    start: string;
+    yourPlan: string;
+  }
+> = {
+  en: {
+    home: "Home",
+    howItWorks: "How it works",
+    about: "About",
+    faq: "FAQ",
+    start: "Start",
+    yourPlan: "Your plan",
+  },
+  de: {
+    home: "Start",
+    howItWorks: "So funktioniert’s",
+    about: "Über uns",
+    faq: "FAQ",
+    start: "Loslegen",
+    yourPlan: "Dein Plan",
+  },
 };
 
 export const ANNOUNCEMENT: Record<Locale, string> = {
   en: "No doom. No guilt. Snacks encouraged.",
-  de: "Kein Weltuntergang. Kein schlechtes Gewissen. Snacks erwünscht.",
+  de: "Kein Weltuntergang. Kein schlechtes Gewissen. Snacks ausdrücklich erwünscht.",
 };
 
-export const FOOTER: Record<Locale, { tagline: string; contact: string; privacy: string; terms: string; rights: string }> = {
+export const FOOTER: Record<
+  Locale,
+  {
+    tagline: string;
+    contact: string;
+    privacy: string;
+    terms: string;
+    rights: string;
+  }
+> = {
   en: {
     tagline: "Built slowly and thoughtfully. Snacks encouraged.",
     contact: "Contact",
@@ -19,7 +52,7 @@ export const FOOTER: Record<Locale, { tagline: string; contact: string; privacy:
     rights: "All rights reserved.",
   },
   de: {
-    tagline: "Langsam und mit Bedacht gebaut. Snacks erwünscht.",
+    tagline: "Langsam, sorgfältig und mit ausreichend Snacks gebaut.",
     contact: "Kontakt",
     privacy: "Datenschutz",
     terms: "AGB",

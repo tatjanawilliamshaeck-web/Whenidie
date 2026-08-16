@@ -3,7 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { SubpageStickyCta } from "@/components/SubpageStickyCta";
-import { FaqCategoryAccordion, type FaqCategory } from "@/components/FaqCategoryAccordion";
+import {
+  FaqCategoryAccordion,
+  type FaqCategory,
+} from "@/components/FaqCategoryAccordion";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -19,30 +22,32 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Wie mache ich mit?",
         answer:
-          "Klick auf Start oder Kostenlos beitreten, gib deinen Namen ein (den, den du auf Einladungen/Nachrufen haben möchtest), und du bist dabei. Unter einer Minute. Snacks optional.",
+          "Klick auf Start oder Kostenlos beitreten, gib deinen Namen ein — den, unter dem du auf Einladungen und im Nachruf stehen möchtest — und schon bist du dabei. Dauert unter einer Minute. Snacks optional, aber empfohlen.",
       },
       {
         question: "Was passiert nach der Anmeldung?",
         answer:
-          "Du landest in deinem Dashboard. Du siehst deinen Fortschritt (wie viele Fragen du beantwortet hast), kommende Fragen und einen Bereich „Mit wem du geteilt hast“. Beantworte deine erste Frage, wann immer du bereit bist; du musst nicht alles auf einmal machen.",
+          "Du landest direkt in deinem Dashboard: Fortschritt, kommende Fragen und ein Bereich „Mit wem du geteilt hast“. Beantworte deine erste Frage, wann immer du bereit bist — niemand verlangt, dass du gleich dein ganzes Leben aufarbeitest.",
       },
       {
         question: "Was passiert zuerst?",
         answer:
-          "Wir schicken dir deine erste kleine Frage — etwas Freundliches wie das Einzugslied oder die Kleiderordnung. Du beantwortest sie in ~2 Minuten, und schon hat dein Plan begonnen.",
+          "Wir schicken dir eine erste kleine Frage — etwas Entspanntes wie das Einzugslied oder die Kleiderordnung. Zwei Minuten, eine Antwort, und dein Plan hat offiziell begonnen.",
       },
       {
         question: "Was, wenn ich eine Woche aussetze?",
-        answer: "Kein schlechtes Gewissen. Fragen warten geduldig. Komm zurück, wann immer du willst — dein Plan verliert nie den Fortschritt.",
+        answer:
+          "Kein schlechtes Gewissen nötig. Die Fragen laufen dir nicht davon. Komm zurück, wann immer du willst — dein Fortschritt bleibt genau da, wo du ihn gelassen hast.",
       },
       {
         question: "Was, wenn ich (oft) meine Meinung ändere?",
-        answer: "Damit rechnen wir. Ändere jede Antwort jederzeit. Dein Plan lebt, er ist nicht einlaminiert.",
+        answer:
+          "Damit rechnen wir fest. Ändere jede Antwort, so oft du willst. Dein Plan ist lebendig, nicht einlaminiert.",
       },
       {
         question: "Was unterscheidet das von anderen End-of-Life-Tools?",
         answer:
-          "Wir nehmen es todernst, das Ganze witzig zu machen — damit du es wirklich machst. Und wir hören nicht bei der Dokumentation auf. Irgendwann kannst du deine Wünsche verbindlich festlegen und mit Dienstleistern (Beerdigung, Gedenkfeier, Vermächtnis) verknüpfen, damit deine Liebsten dem Plan folgen können, statt zu raten.",
+          "Wir nehmen es todernst, das Thema unterhaltsam zu machen — damit du es wirklich durchziehst. Und wir hören nicht bei der Dokumentation auf: Perspektivisch kannst du deine Wünsche verbindlich festlegen und mit Anbietern verknüpfen (Bestattung, Gedenkfeier, Vermächtnis), damit deine Liebsten einem Plan folgen können, statt zu raten.",
       },
     ],
   },
@@ -54,20 +59,23 @@ const FAQ_CATEGORIES: FaqCategory[] = [
         question: "Was wird gefragt?",
         answer: (
           <>
-            Zum Beispiel: Wenn deine Beerdigung eine Stimmung hätte — welche wäre das? Welches
-            Lied sollte <em>auf keinen Fall</em> laufen? Wo sollten Menschen zuerst nach wichtigen
-            Unterlagen suchen? Eine Mischung aus Persönlichem und Praktischem, mit ein bisschen
-            Humor — damit du nachdenkst und dabei lächelst.
+            Zum Beispiel: Wie soll dein großer Abgang aussehen? Welcher Song
+            soll <em>nur über deine Leiche</em> gespielt werden? Wo sollten
+            Menschen zuerst nach wichtigen Unterlagen suchen? Eine Mischung aus
+            Persönlichem und Praktischem, mit gerade genug Humor, damit du
+            nachdenkst und dabei lächelst.
           </>
         ),
       },
       {
         question: "Wie lange dauern die Fragen?",
-        answer: "Etwa 1–3 Minuten. Du kannst auch mehr schreiben, wenn dir danach ist.",
+        answer:
+          "Etwa ein bis drei Minuten. Wenn du mehr zu sagen hast, ist auch dafür Platz.",
       },
       {
         question: "Kann ich pausieren oder überspringen?",
-        answer: "Klar. Klick auf „Überspringen“ oder „Später erinnern“. Keine Serien, kein schlechtes Gewissen.",
+        answer:
+          "Klar. Klick auf „Überspringen“ oder „Später erinnern“. Keine Serien zum Verteidigen, kein schlechtes Gewissen.",
       },
     ],
   },
@@ -78,21 +86,22 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Wer kann meinen Plan sehen?",
         answer:
-          "Standardmäßig privat. Du entscheidest, wen du einlädst und genau, was sie sehen können (alles oder nur das Wichtigste).",
+          "Standardmäßig privat. Du entscheidest, wen du einlädst und genau, was diese Person sehen darf — alles oder nur das Wichtigste.",
       },
       {
         question: "Welche Rollen kann ich vergeben?",
         answer:
-          "Eigentümer:in (du): bearbeitet alles, teilt, exportiert, löscht. Vertraute Person: sieht nur, was du teilst. „Im Notfall“-Kontakt: wird benachrichtigt, falls etwas passiert (optional). Du kannst Zugriff jederzeit hinzufügen, entfernen oder ändern.",
+          "Eigentümer:in (du): bearbeitet, teilt, exportiert und löscht alles. Vertraute Person: sieht nur, was du freigibst. „Im Notfall“-Kontakt: wird bei Bedarf benachrichtigt (optional). Zugriff kannst du jederzeit hinzufügen, entfernen oder ändern.",
       },
       {
         question: "Muss ich sofort Menschen einladen?",
-        answer: "Nein. Halte es privat, bis du bereit bist. Dein Plan gehört dir, bis du dich entscheidest, ihn zu teilen.",
+        answer:
+          "Nein. Er bleibt privat, bis du so weit bist. Dein Plan gehört dir — geteilt wird erst, wenn du es entscheidest.",
       },
       {
         question: "Wie lade ich jemanden ein, meinen Plan zu sehen?",
         answer:
-          "Geh in deinem Dashboard zu „Mit wem du geteilt hast“ und füge die E-Mail-Adresse hinzu. Wir schicken eine Einladung; die Person kann ansehen (oder bearbeiten, falls erlaubt), je nach vergebener Rolle. Du kannst den Zugriff jederzeit entziehen.",
+          "Geh in deinem Dashboard zu „Mit wem du geteilt hast“ und füge die E-Mail-Adresse hinzu. Wir verschicken eine Einladung; die Person sieht (oder bearbeitet, falls erlaubt) je nach zugewiesener Rolle. Zugriff kannst du jederzeit wieder entziehen.",
       },
     ],
   },
@@ -103,27 +112,28 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Wie sind meine Daten geschützt?",
         answer:
-          "Verschlüsselung nach bewährten Standards bei Übertragung und Speicherung, starke Authentifizierung und minimale Datenerhebung — nur das, was nötig ist, damit alles gut funktioniert.",
+          "Verschlüsselung nach bewährten Standards bei Übertragung und Speicherung, starke Authentifizierung und minimale Datenerhebung — nur das, was für den Betrieb des Dienstes nötig ist.",
       },
       {
         question: "Kann ich meinen Plan löschen oder herunterladen?",
-        answer: "Ja. Jederzeit herunterladen oder löschen, ganz ohne Drama. Es sind deine Daten.",
+        answer:
+          "Ja. Du kannst deinen Plan jederzeit herunterladen oder löschen. Es sind deine Daten.",
       },
     ],
   },
   {
     id: "faq-legal",
-    label: "Recht & Daten",
+    label: "Recht und Daten",
     items: [
       {
         question: "Ist das ein rechtsgültiges Dokument?",
         answer:
-          "Nein. When I Die™ ergänzt dein Testament/deine Patientenverfügung, indem es die menschlichen Teile klar und teilbar macht. Wir geben keine medizinische oder rechtliche Beratung.",
+          "Nein. When I Die™ ergänzt dein Testament oder deine Patientenverfügung, indem es die menschlichen Teile klar und teilbar macht. Wir geben keine medizinische oder rechtliche Beratung.",
       },
       {
         question: "Was speichert ihr?",
         answer:
-          "Deine Antworten, deine Freigabe-Einstellungen und die Metadaten, die der Dienst braucht (z. B. E-Mail-Adresse). Keine seltsamen Extras.",
+          "Deine Antworten, deine Freigabe-Einstellungen und die Metadaten, die der Dienst braucht (zum Beispiel deine E-Mail-Adresse). Nichts, was du nicht erwarten würdest.",
       },
     ],
   },
@@ -134,7 +144,7 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Gibt es eine kostenlose Version?",
         answer:
-          "Ja — die Beta ist kostenlos, während wir das gemeinsam mit euch gestalten. Kostenpflichtige Pläne werden klein und transparent sein; jederzeit kündbar. Wir machen es nicht kompliziert.",
+          "Ja — die Beta ist kostenlos, während wir sie gemeinsam mit euch weiterentwickeln. Kostenpflichtige Pläne kommen später dazu: klein, transparent und jederzeit kündbar. Kompliziert machen wir höchstens den Tod — nicht die Preise.",
       },
     ],
   },
@@ -145,24 +155,27 @@ const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Wie funktioniert der Export?",
         answer:
-          "Teile einen Link, exportiere ein übersichtliches PDF, oder drucke Abschnitte aus. Später bieten wir auch einfache druckbare Sets an (denk an „Ordner, aber mit Stil“).",
+          "Teile einen Link, exportiere ein übersichtliches PDF oder drucke einzelne Abschnitte aus. Später kommen einfache druckbare Sets dazu — Ordner, aber mit Stil.",
       },
       {
         question: "Wie oft schreibt ihr mir?",
-        answer: "Meist einmal pro Woche mit einer Frage. Du kannst pausieren oder auf monatliche Erinnerungen umstellen.",
+        answer:
+          "Meist einmal pro Woche mit einer Frage. Du kannst pausieren oder auf monatliche Erinnerungen umstellen.",
       },
       {
         question: "Wie lösche ich mein Konto?",
-        answer: "Einstellungen → Konto löschen. Wir bestätigen (zweimal) und entfernen deine Daten.",
+        answer:
+          "Einstellungen → Konto löschen. Wir bestätigen zweimal und entfernen anschließend deine Daten.",
       },
       {
         question: "Ist die Seite barrierefrei?",
         answer:
-          "Wir achten auf sauberes Markup, Tastaturnavigation und lesbaren Kontrast. Wenn wir etwas übersehen, sag uns Bescheid — wir beheben es.",
+          "Wir achten auf sauberes Markup, Tastaturnavigation und lesbaren Kontrast. Fällt dir etwas auf, das wir übersehen haben? Sag uns Bescheid, wir beheben es.",
       },
       {
         question: "Funktioniert das auch für die Wahlfamilie?",
-        answer: "Ja. Du entscheidest, wer wichtig ist und was jede Person sehen kann.",
+        answer:
+          "Ja. Du entscheidest, wer wichtig ist — und was jede Person sehen darf.",
       },
     ],
   },
@@ -188,14 +201,25 @@ export default function FaqPageDe() {
               </nav>
             </div>
             <div className="page-hero-brand">
-              <Image src="/assets/Logo.svg" alt="When I Die™" className="page-hero-logo" width={120} height={48} />
+              <Image
+                src="/assets/Logo.svg"
+                alt="When I Die™"
+                className="page-hero-logo"
+                width={120}
+                height={48}
+              />
             </div>
             <p className="eyebrow">FAQ</p>
-            <h1 className="page-title">Kurze Fragen, klare Antworten</h1>
-            <p className="page-hero-tagline">Wir haben Antworten. (Und kein Juristendeutsch.)</p>
+            <h1 className="page-title">
+              Fragen, die du dich bisher nicht zu fragen getraut hast
+            </h1>
+            <p className="page-hero-tagline">
+              Wir haben Antworten. Ganz ohne Juristendeutsch, Weihrauch oder
+              betretenes Schweigen.
+            </p>
             <p className="faq-intro">
-              Wähl ein Thema, um Antworten zu sehen. Immer nur ein Abschnitt ist geöffnet, damit
-              es übersichtlich bleibt.
+              Wähl ein Thema, um Antworten zu sehen. Immer nur ein Abschnitt ist
+              geöffnet, damit es übersichtlich bleibt.
             </p>
           </div>
 

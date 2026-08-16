@@ -5,7 +5,7 @@ import { SectionCta } from "@/components/SectionCta";
 import { SubpageStickyCta } from "@/components/SubpageStickyCta";
 
 export const metadata: Metadata = {
-  title: "So funktioniert's",
+  title: "So funktioniert’s",
   description:
     "So funktioniert When I Die™: eine kleine Frage nach der anderen, ein lebendiger Plan, einfaches Teilen. Kostenlos beitreten. Kein schlechtes Gewissen.",
 };
@@ -14,85 +14,103 @@ export default function HowItWorksPageDe() {
   return (
     <main id="main-content" className="page-how-it-works">
       <PageHero
-        crumb="So funktioniert's"
-        eyebrow="So funktioniert's"
-        title="Einfache Schritte, wann immer du Lust hast"
-        tagline="Wir wissen — niemand will seinen Samstag mit Beerdigungsplanung verbringen. Deshalb haben wir es lustig, menschlich und überraschend angenehm gemacht."
+        crumb="So funktioniert’s"
+        eyebrow="So funktioniert’s"
+        title="Der Tod kommt früh genug. Dein Plan darf vorher fertig sein."
+        tagline="Niemand möchte den Samstag mit der eigenen Beerdigung verbringen. Wir auch nicht. Deshalb bekommst du kleine Fragen statt großer Formulare – mit etwas Humor und ganz ohne Orgelmusik."
         locale="de"
       >
         <p className="section-copy section-intro">
-          Fragen kommen per E-Mail oder auf der Website — deine Wahl. Beantworte sie, wenn es passt.
-          Dein Plan aktualisiert sich mit der Zeit. Keine deprimierenden Broschüren.
+          Die Fragen kommen per E-Mail oder warten auf der Website – du
+          entscheidest. Antworte, wenn es gerade passt. Mit jeder Antwort nimmt
+          dein Plan mehr Gestalt an. Ganz ohne Amtsflur-Gefühl und
+          Beerdigungsbroschüre.
         </p>
         <p className="section-copy" style={{ marginTop: "0.75rem" }}>
-          Du siehst deinen Fortschritt auf einen Blick: wie viele Fragen du beantwortet hast, was
-          als Nächstes kommt, und wen (falls überhaupt jemanden) du eingeladen hast, deinen Plan zu
-          sehen. Alles an einem Ort — deinem Dashboard — damit du nie den Überblick verlierst.
+          Du siehst auf einen Blick, wie viele Fragen du beantwortet hast, was
+          als Nächstes kommt und wen du bereits eingeweiht hast. Alles lebt an
+          einem Ort – deinem Dashboard. Immerhin sollst du deinen Plan finden
+          können, ohne dafür einen eigenen Plan zu brauchen.
         </p>
       </PageHero>
 
       <section className="section muted">
         <div className="container">
           <p className="eyebrow">Die drei Säulen</p>
-          <h2 className="section-title">Fragen → Plan → Menschen</h2>
+          <h2 className="section-title">
+            Fragen beantworten → Kram regeln → Ruhe haben
+          </h2>
           <ol className="steps">
             <li>
               <span className="step-number">1</span>
               <div>
-                <h3>Beantworte eine kleine Frage nach der anderen</h3>
+                <h3>Eine kleine Frage nach der anderen</h3>
                 <p>
-                  Einzugslied, Snacks, wer sprechen soll und wer lieber nicht — sanfte Fragen, die
-                  die Tür öffnen. Jede Frage kommt mit Beispielen, damit du nie ratlos vor einem
-                  leeren Feld sitzt. Die meisten dauern ein bis drei Minuten. Schreib mehr, wenn dir
-                  danach ist, oder klick auf &bdquo;Überspringen&ldquo; und komm später zurück.
-                  Keine Serien, kein schlechtes Gewissen.
+                  Mal geht es darum, wer zuerst angerufen werden soll. Mal um
+                  dein Einzugslied, die Snacks oder die Person, die wirklich
+                  kein Mikrofon bekommen darf. Antworte kurz oder ausführlich,
+                  überspring Fragen und komm später wieder. Kein Verhör, kein
+                  Totenschein, kein Zeitdruck.
                 </p>
                 <p className="step-detail">
-                  Beispielfragen, die dich erwarten: <em>&bdquo;Wenn deine Beerdigung eine Stimmung
-                  hätte — welche wäre das?&ldquo;</em> ·{" "}
-                  <em>&bdquo;Welches Lied sollte auf keinen Fall laufen?&ldquo;</em> ·{" "}
-                  <em>&bdquo;Wo sollte jemand zuerst nach wichtigen Unterlagen suchen?&ldquo;</em> ·{" "}
-                  <em>&bdquo;Wer sollte sprechen — und wer lieber nicht?&ldquo;</em> Eine Mischung
-                  aus Persönlichem und Praktischem, mit ein bisschen Humor, damit du nachdenkst und
-                  dabei lächelst.
+                  Beispielfragen, die dich erwarten:{" "}
+                  <em>
+                    &bdquo;Wenn deine Beerdigung eine Stimmung hätte — welche
+                    wäre das?&ldquo;
+                  </em>{" "}
+                  ·{" "}
+                  <em>
+                    &bdquo;Welches Lied sollte auf keinen Fall laufen?&ldquo;
+                  </em>{" "}
+                  ·{" "}
+                  <em>
+                    &bdquo;Wo sollte jemand zuerst nach wichtigen Unterlagen
+                    suchen?&ldquo;
+                  </em>{" "}
+                  ·{" "}
+                  <em>
+                    &bdquo;Wer sollte sprechen — und wer lieber nicht?&ldquo;
+                  </em>{" "}
+                  Eine Mischung aus Persönlichem und Praktischem, mit ein
+                  bisschen Humor, damit du nachdenkst und dabei lächelst.
                 </p>
               </div>
             </li>
             <li>
               <span className="step-number">2</span>
               <div>
-                <h3>Sieh zu, wie ein lebendiger Plan entsteht</h3>
+                <h3>Sieh zu, wie dein Plan lebendig wird</h3>
                 <p>
-                  Jede Antwort fließt in einen übersichtlichen, verständlichen Plan, der klingt wie
-                  du. Eine Mischung aus Konkretem (wo alles ist, wie man an Konten kommt) und
-                  Persönlichem (Briefe, Geschichten, &bdquo;bitte nicht dieses eine Foto
-                  verwenden&ldquo;). Ändere jederzeit alles — dein Plan lebt, er ist nicht
-                  einlaminiert.
+                  Jede Antwort landet automatisch an der richtigen Stelle. Nach
+                  und nach entsteht ein klarer Plan, der nach dir klingt – und
+                  den andere tatsächlich verstehen können.
                 </p>
                 <p className="step-detail">
-                  In deinem Dashboard siehst du genau, wo du stehst: welche Fragen du beantwortet
-                  hast, welche noch kommen, und eine einfache &bdquo;Dein Plan bisher&ldquo;-Ansicht.
-                  Später kommen Export (PDF, Druck) und die Möglichkeit dazu, Wünsche verbindlich
-                  festzulegen und mit Dienstleistern zu verknüpfen, damit deine Liebsten dem Plan
-                  folgen können, statt zu raten.
+                  In deinem Dashboard siehst du genau, wo du stehst: welche
+                  Fragen du beantwortet hast, welche noch kommen, und eine
+                  einfache &bdquo;Dein Plan bisher&ldquo;-Ansicht. Später kommen
+                  Export (PDF, Druck) und die Möglichkeit dazu, Wünsche
+                  verbindlich festzulegen und mit Dienstleistern zu verknüpfen,
+                  damit deine Liebsten dem Plan folgen können, statt zu raten.
                 </p>
               </div>
             </li>
             <li>
               <span className="step-number">3</span>
               <div>
-                <h3>Teile, wenn du bereit bist</h3>
+                <h3>Teile ihn, wenn du bereit bist</h3>
                 <p>
-                  Lade deine Leute ein und bestimme, was sie sehen: alles, oder nur das Wichtigste.
-                  Du kannst Ansichts-, Bearbeitungs- oder &bdquo;im Notfall&ldquo;-Rollen vergeben.
-                  Füge jederzeit Menschen hinzu oder entferne sie. Sie werden es dir später danken.
+                  Lade einen Menschen ein, dem du vertraust. Dein Plan bleibt
+                  privat, bis du ihn freigibst. Du entscheidest, wer was sehen
+                  darf.
                 </p>
                 <p className="step-detail">
-                  In deinem Dashboard gibt es einen Bereich &bdquo;Mit wem du geteilt hast&ldquo;: sieh, wer
-                  Zugriff hat, welche Rolle sie haben, und wann du sie eingeladen hast. Zugriff
-                  entziehen oder jemand Neues hinzufügen — in wenigen Klicks. Niemand sieht deinen
-                  Plan, bevor du ihn einlädst — und du kannst ihn so lange privat halten, wie du
-                  möchtest.
+                  In deinem Dashboard gibt es einen Bereich &bdquo;Mit wem du
+                  geteilt hast&ldquo;: sieh, wer Zugriff hat, welche Rolle sie
+                  haben, und wann du sie eingeladen hast. Zugriff entziehen oder
+                  jemand Neues hinzufügen — in wenigen Klicks. Niemand sieht
+                  deinen Plan, bevor du ihn einlädst — und du kannst ihn so
+                  lange privat halten, wie du möchtest.
                 </p>
               </div>
             </li>
@@ -102,19 +120,34 @@ export default function HowItWorksPageDe() {
             <p className="plan-mock-title">Dein Plan bisher</p>
             <ul className="plan-mock-list">
               <li>
-                <span className="plan-check" aria-hidden="true">✓</span> Einzugslied
+                <span className="plan-check" aria-hidden="true">
+                  ✓
+                </span>{" "}
+                Einzugslied
               </li>
               <li>
-                <span className="plan-check" aria-hidden="true">✓</span> Snacks &amp; Stimmung
+                <span className="plan-check" aria-hidden="true">
+                  ✓
+                </span>{" "}
+                Snacks und Stimmung
               </li>
               <li>
-                <span className="plan-check" aria-hidden="true">✓</span> Wer sprechen soll
+                <span className="plan-check" aria-hidden="true">
+                  ✓
+                </span>{" "}
+                Wer reden darf
               </li>
               <li>
-                <span className="plan-dot" aria-hidden="true">○</span> Wen man anrufen soll
+                <span className="plan-dot" aria-hidden="true">
+                  ○
+                </span>{" "}
+                Wer zuerst angerufen werden soll
               </li>
               <li>
-                <span className="plan-dot" aria-hidden="true">○</span> Wo alles ist
+                <span className="plan-dot" aria-hidden="true">
+                  ○
+                </span>{" "}
+                Wo sich alles versteckt
               </li>
             </ul>
           </div>
@@ -127,44 +160,52 @@ export default function HowItWorksPageDe() {
 
           <hr className="section-divider" aria-hidden="true" />
 
-          <p className="eyebrow">Das siehst du auf der Website</p>
-          <h2>Dein Dashboard: Fortschritt, Fragen und wer im Bilde ist</h2>
+          <p className="eyebrow">
+            Das erwartet dich – ganz ohne düstere Überraschungen
+          </p>
+          <h2>
+            Dein Dashboard: Fortschritt, Fragen und wer bereits eingeweiht ist
+          </h2>
           <p className="section-copy section-intro">
-            Sobald du ein Konto hast, bekommst du einen einzigen Ort, um zu sehen, wo du stehst und
-            was als Nächstes kommt.
+            Sobald du ein Konto hast, bekommst du einen einzigen Ort, um zu
+            sehen, wo du stehst und was als Nächstes kommt.
           </p>
           <ul className="detail-list">
             <li>
-              <strong>Fortschritt</strong> — Ein klares &bdquo;X von Y beantwortet&ldquo;, damit du
-              weißt, wo du stehst. Kein schlechtes Gewissen, wenn du eine Woche aussetzt — die Zahl
-              wartet einfach auf dich.
+              <strong>Fortschritt</strong> — Ein klares &bdquo;X von Y
+              beantwortet&ldquo;, damit du weißt, wo du stehst. Kein schlechtes
+              Gewissen, wenn du eine Woche aussetzt — die Zahl wartet einfach
+              auf dich.
             </li>
             <li>
-              <strong>Kommende Fragen</strong> — Die nächsten Fragen, die du noch nicht beantwortet
-              hast. Tippe auf eine, um sie jetzt zu beantworten, oder lass sie für später liegen.
+              <strong>Kommende Fragen</strong> — Die nächsten Fragen, die du
+              noch nicht beantwortet hast. Tippe auf eine, um sie jetzt zu
+              beantworten, oder lass sie für später liegen.
             </li>
             <li>
-              <strong>Beantwortet</strong> — Alles, was du bereits geschrieben hast. Jederzeit
-              bearbeitbar. Dein Plan aktualisiert sich mit der Zeit.
+              <strong>Beantwortet</strong> — Alles, was du bereits geschrieben
+              hast. Jederzeit bearbeitbar. Dein Plan aktualisiert sich mit der
+              Zeit.
             </li>
             <li>
-              <strong>Mit wem du geteilt hast</strong> — Menschen, die du eingeladen hast, deinen
-              Plan zu sehen (oder dir zu helfen). Sieh, wer Zugriff hat, und ändere es, wann immer
-              du willst.
+              <strong>Mit wem du geteilt hast</strong> — Menschen, die du
+              eingeladen hast, deinen Plan zu sehen (oder dir zu helfen). Sieh,
+              wer Zugriff hat, und ändere es, wann immer du willst.
             </li>
           </ul>
           <p className="section-copy">
-            Wir bauen das so, dass es sich menschlich und leicht anfühlt — nicht wie eine
-            Tabellenkalkulation oder ein Formular. Eines Tages kommt vielleicht ein
-            persönlicherer, gesprächsähnlicher Ablauf dazu (z. B. KI-geführt); für jetzt ist es
-            eine klare Liste von Fragen, die du in deinem eigenen Tempo angehen kannst.
+            Wir bauen das so, dass es sich menschlich und leicht anfühlt — nicht
+            wie eine Tabellenkalkulation oder ein Formular. Eines Tages kommt
+            vielleicht ein persönlicherer, gesprächsähnlicher Ablauf dazu (z. B.
+            KI-geführt); für jetzt ist es eine klare Liste von Fragen, die du in
+            deinem eigenen Tempo angehen kannst.
           </p>
         </div>
       </section>
 
       <SectionCta locale="de" />
       <SubpageStickyCta
-        text="Bring deine Angelegenheiten in Ordnung. Kostenlos."
+        text="Regel deinen Kram. Deine Erben haben schon genug zu tun."
         loggedOutText="Kostenlos beitreten"
         loggedInText="Zu deinem Plan"
       />
