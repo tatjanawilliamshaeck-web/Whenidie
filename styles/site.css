@@ -286,7 +286,7 @@ a:hover {
 /* Hero */
 
 .hero {
-  padding: 4.2rem 0 3.3rem;
+  padding: 2.25rem 0 1.25rem;
   position: relative;
 }
 
@@ -591,7 +591,7 @@ h1 {
 /* Section dividers: extremely subtle – spacing + soft line */
 .page-home .section-divider {
   height: 0;
-  margin: 3rem 0;
+  margin: 0.75rem 0;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -968,11 +968,11 @@ h1 {
 /* Sections */
 
 .section {
-  padding: 4rem 0 3.5rem;
+  padding: 1.75rem 0 1.5rem;
 }
 
 .section--compact {
-  padding: 2.5rem 0 2rem;
+  padding: 1.75rem 0 1.5rem;
 }
 
 .section.muted {
@@ -1019,7 +1019,7 @@ h2 {
 
 /* Manifesto block */
 .section--manifesto.manifesto-block {
-  padding: 3.5rem 0;
+  padding: 1.25rem 0;
 }
 
 .manifesto-brand {
@@ -1344,7 +1344,7 @@ h2 {
 }
 
 .section-divider {
-  margin: 2.5rem 0;
+  margin: 1.5rem 0;
   border: 0;
   border-top: 1px solid rgba(55, 65, 81, 0.12);
 }
@@ -1613,74 +1613,6 @@ h2 {
   cursor: pointer;
 }
 
-/* Conversion block (bottom) */
-.conversion-block {
-  padding: 4rem 0;
-}
-
-.conversion-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 3rem;
-  align-items: start;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.conversion-primary h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--fg);
-}
-
-.conversion-primary .section-copy {
-  margin: 0 0 1.25rem;
-}
-
-.conversion-cta {
-  display: inline-block;
-}
-
-.conversion-secondary {
-  padding: 1.25rem 1.35rem;
-  background: var(--bg-soft);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(209, 213, 219, 0.5);
-}
-
-.conversion-secondary-label {
-  margin: 0 0 0.35rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-}
-
-.conversion-secondary-text {
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
-}
-
-/* Stay in touch */
-
-.stay-in-touch {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.contact-card {
-  border-radius: 18px;
-  background: linear-gradient(145deg, #ffffff, #f9fafb);
-  border: 1px solid rgba(229, 231, 235, 0.95);
-  padding: 1.4rem 1.3rem 1.2rem;
-  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
-  font-size: 0.9rem;
-  color: var(--muted);
-}
 
 .contact-card-cta {
   margin-bottom: 1.25rem;
@@ -1842,72 +1774,13 @@ h2 {
     border-top: 2px solid rgba(249, 200, 70, 0.35);
     border-radius: var(--radius-md);
   }
-  .conversion-inner {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .conversion-secondary {
-    padding: 1.35rem 1.25rem;
-  }
-}
-
-.email-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.email-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--fg);
-}
-
-.email-input-row {
-  display: flex;
-  gap: 0.6rem;
-}
-
-.email-input {
-  flex: 1;
-  padding: 0.65rem 0.8rem;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(209, 213, 219, 0.9);
-  font-size: 0.9rem;
-}
-
-.email-input:focus {
-  outline: none;
-  border-color: var(--accent-strong);
-  box-shadow: 0 0 0 1px rgba(52, 160, 255, 0.5);
-}
-
-.email-button {
-  white-space: nowrap;
-}
-
-.form-success {
-  padding: 0.5rem 0 0;
-}
-
-.form-success-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--green);
-}
-
-.form-success-text {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--muted);
 }
 
 /* Footer */
 
 .site-footer {
   border-top: 1px solid rgba(229, 231, 235, 0.95);
-  padding: 2.2rem 0 2.4rem;
+  padding: 1.5rem 0 1.75rem;
   background: linear-gradient(to bottom, #ffffff, #f9fafb);
   position: relative;
 }

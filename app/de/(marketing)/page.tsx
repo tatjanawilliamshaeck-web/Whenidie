@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { StickyCta } from "@/components/StickyCta";
-import { WaitlistForm } from "@/components/WaitlistForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
 
 export const metadata: Metadata = {
@@ -205,7 +204,7 @@ export default function HomePageDe() {
           <p className="eyebrow">FAQ</p>
           <h2>Ein paar Fragen</h2>
           <FaqAccordion items={HOME_FAQ} />
-          <div className="faq-cta">
+          <div className="faq-cta" id="stay-in-touch">
             <StartCtaLink
               className="btn primary-btn faq-cta-btn wid-cta-start"
               loggedOutText="Plan starten"
@@ -214,27 +213,6 @@ export default function HomePageDe() {
             <a href="/de/faq" className="small-link-a">
               Alle FAQs ansehen →
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section conversion-block" id="stay-in-touch">
-        <div className="container conversion-inner">
-          <div className="conversion-primary">
-            <h2>Plan starten</h2>
-            <p className="section-copy">Beantworte deine erste Frage in unter einer Minute. Privat, keine Kreditkarte nötig.</p>
-            <StartCtaLink
-              className="btn primary-btn conversion-cta wid-cta-start"
-              loggedOutText="Plan starten"
-              loggedInText="Zu deinem Plan"
-            />
-          </div>
-          <div className="conversion-secondary">
-            <p className="conversion-secondary-label">Produkt-Updates erhalten</p>
-            <p className="section-copy conversion-secondary-text">
-              Wir melden uns, wenn es neue Fragen oder Funktionen gibt.
-            </p>
-            <WaitlistForm locale="de" />
           </div>
         </div>
       </section>

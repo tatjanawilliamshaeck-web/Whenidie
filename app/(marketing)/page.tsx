@@ -1,6 +1,5 @@
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { StickyCta } from "@/components/StickyCta";
-import { WaitlistForm } from "@/components/WaitlistForm";
 import { FaqAccordion } from "@/components/FaqAccordion";
 
 const HOME_FAQ = [
@@ -198,7 +197,7 @@ export default function HomePage() {
           <p className="eyebrow">FAQ</p>
           <h2>A few questions</h2>
           <FaqAccordion items={HOME_FAQ} />
-          <div className="faq-cta">
+          <div className="faq-cta" id="stay-in-touch">
             <StartCtaLink
               className="btn primary-btn faq-cta-btn wid-cta-start"
               loggedOutText="Start your plan"
@@ -207,27 +206,6 @@ export default function HomePage() {
             <a href="/faq" className="small-link-a">
               See all FAQs →
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section conversion-block" id="stay-in-touch">
-        <div className="container conversion-inner">
-          <div className="conversion-primary">
-            <h2>Start your plan</h2>
-            <p className="section-copy">Answer your first question in under a minute. Private, no credit card.</p>
-            <StartCtaLink
-              className="btn primary-btn conversion-cta wid-cta-start"
-              loggedOutText="Start your plan"
-              loggedInText="Go to your plan"
-            />
-          </div>
-          <div className="conversion-secondary">
-            <p className="conversion-secondary-label">Get product updates</p>
-            <p className="section-copy conversion-secondary-text">
-              We&rsquo;ll nudge you when we add new prompts or features.
-            </p>
-            <WaitlistForm />
           </div>
         </div>
       </section>
