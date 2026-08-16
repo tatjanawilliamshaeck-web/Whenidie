@@ -1387,7 +1387,7 @@ h2 {
   gap: 1.4rem;
 }
 
-.steps li {
+.steps > li {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
@@ -1435,6 +1435,39 @@ h2 {
   font-size: 0.85rem !important;
   color: var(--muted);
   font-style: italic;
+}
+
+.step-detail-lead {
+  margin: 0.6rem 0 0 !important;
+  font-size: 0.9rem !important;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.step-detail-list {
+  list-style: disc;
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.step-detail-list li {
+  margin-bottom: 0.25rem;
+}
+
+.step-detail-list li::marker {
+  color: var(--green);
+}
+
+.section-closer {
+  margin: 2rem 0 0;
+  font-family: var(--font-playfair), system-ui, serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--fg);
+  text-align: center;
 }
 
 .section-divider {
