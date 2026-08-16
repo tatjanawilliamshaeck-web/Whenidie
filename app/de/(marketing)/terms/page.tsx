@@ -17,7 +17,7 @@ export default function TermsPageDe() {
 
       <h2>Was When I Die™ ist</h2>
       <p>
-        When I Die™ ist eine Web-App, die dir hilft, durch kleine wöchentliche Fragen einen
+        When I Die™ ist eine Website, die dir hilft, durch kleine wöchentliche Fragen einen
         persönlichen Plan zu erstellen. Der Plan ist für dich und die Menschen, mit denen du ihn
         teilen möchtest. Er ist <strong>kein</strong> Testament, keine Patientenverfügung und
         keine rechtliche oder medizinische Beratung. Er ergänzt diese, ersetzt sie aber nicht.
@@ -36,7 +36,7 @@ export default function TermsPageDe() {
       <h2>Nutzung der Website und Warteliste</h2>
       <p>
         Du darfst diese Website für persönliche, nicht kommerzielle Zwecke nutzen. Wenn du der
-        Warteliste beitrittst oder die App nutzt, gibst du uns deine E-Mail-Adresse, und wir
+        Warteliste beitrittst oder ein Konto erstellst, gibst du uns deine E-Mail-Adresse, und wir
         speichern deine Plandaten, damit du darauf zugreifen und sie mit anderen teilen kannst.
         Du kannst dich jederzeit von Marketing-E-Mails abmelden. Unsere{" "}
         <a href="/de/privacy">Datenschutzerklärung</a> erklärt, wie wir mit deinen Daten umgehen.
@@ -51,7 +51,7 @@ export default function TermsPageDe() {
 
       <h2>Keine Gewährleistung</h2>
       <p>
-        Die Seite und jede zukünftige App werden &bdquo;wie besehen&ldquo; bereitgestellt. Wir
+        Die Seite wird &bdquo;wie besehen&ldquo; bereitgestellt. Wir
         geben unser Bestes, um alles sicher und funktionsfähig zu halten, garantieren aber keinen
         unterbrechungs- oder fehlerfreien Dienst. Nutzung auf eigenes Risiko.
       </p>

@@ -16,7 +16,7 @@ export default function TermsPage() {
 
       <h2>What When I Die™ is</h2>
       <p>
-        When I Die™ is a web app that helps you build a personal plan through small weekly
+        When I Die™ is a website that helps you build a personal plan through small weekly
         prompts. The plan is for you and the people you choose to share it with. It is{" "}
         <strong>not</strong> a will, advance directive, or legal or medical advice. It
         complements those; it doesn&rsquo;t replace them. Talk to a lawyer or doctor for legal or
@@ -34,7 +34,7 @@ export default function TermsPage() {
       <h2>Using the website and waitlist</h2>
       <p>
         You may use this website for personal, non-commercial purposes. When you join the
-        waitlist or use the app, you give us your email and we store your plan data so you can
+        waitlist or create an account, you give us your email and we store your plan data so you can
         access it and share with others. You can unsubscribe from marketing emails anytime. Our{" "}
         <a href="/privacy">Privacy</a> policy explains how we handle your data.
       </p>
@@ -48,7 +48,7 @@ export default function TermsPage() {
 
       <h2>No warranty</h2>
       <p>
-        The site and any future app are provided &ldquo;as is.&rdquo; We do our best to keep
+        The site is provided &ldquo;as is.&rdquo; We do our best to keep
         things secure and working, but we don&rsquo;t guarantee uninterrupted or error-free
         service. Use at your own risk.
       </p>

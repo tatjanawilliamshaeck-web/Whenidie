@@ -20,7 +20,7 @@ export default function HowItWorksPage() {
         tagline="I don't want to spend my Saturday planning my funeral. We get it. So we made it funny, human, and surprisingly enjoyable."
       >
         <p className="section-copy section-intro">
-          Prompts arrive by email or in the app—your choice. Answer when it fits. Your plan
+          Prompts arrive by email or on the site—your choice. Answer when it fits. Your plan
           updates as you go. No depressing pamphlets.
         </p>
         <p className="section-copy" style={{ marginTop: "0.75rem" }}>
@@ -85,7 +85,7 @@ export default function HowItWorksPage() {
                   Add or remove people anytime. They&rsquo;ll thank you later.
                 </p>
                 <p className="step-detail">
-                  In the app you&rsquo;ll have a &ldquo;Who you&rsquo;ve shared with&rdquo;
+                  In your dashboard you&rsquo;ll have a &ldquo;Who you&rsquo;ve shared with&rdquo;
                   section: see who has access, what role they have, and when you invited them.
                   Revoke access or add someone new in a few clicks. No one sees your plan until
                   you invite them—and you can keep it 100% private as long as you want.
@@ -123,7 +123,7 @@ export default function HowItWorksPage() {
 
           <hr className="section-divider" aria-hidden="true" />
 
-          <p className="eyebrow">What you&rsquo;ll see in the app</p>
+          <p className="eyebrow">What you&rsquo;ll see on the site</p>
           <h2>Your dashboard: progress, questions, and who&rsquo;s in the loop</h2>
           <p className="section-copy section-intro">
             Once you have an account, you get a single place to see how you&rsquo;re doing and

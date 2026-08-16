@@ -21,7 +21,7 @@ export default function HowItWorksPageDe() {
         locale="de"
       >
         <p className="section-copy section-intro">
-          Fragen kommen per E-Mail oder in der App — deine Wahl. Beantworte sie, wenn es passt.
+          Fragen kommen per E-Mail oder auf der Website — deine Wahl. Beantworte sie, wenn es passt.
           Dein Plan aktualisiert sich mit der Zeit. Keine deprimierenden Broschüren.
         </p>
         <p className="section-copy" style={{ marginTop: "0.75rem" }}>
@@ -88,7 +88,7 @@ export default function HowItWorksPageDe() {
                   Füge jederzeit Menschen hinzu oder entferne sie. Sie werden es dir später danken.
                 </p>
                 <p className="step-detail">
-                  In der App gibt es einen Bereich &bdquo;Mit wem du geteilt hast&ldquo;: sieh, wer
+                  In deinem Dashboard gibt es einen Bereich &bdquo;Mit wem du geteilt hast&ldquo;: sieh, wer
                   Zugriff hat, welche Rolle sie haben, und wann du sie eingeladen hast. Zugriff
                   entziehen oder jemand Neues hinzufügen — in wenigen Klicks. Niemand sieht deinen
                   Plan, bevor du ihn einlädst — und du kannst ihn so lange privat halten, wie du
@@ -127,7 +127,7 @@ export default function HowItWorksPageDe() {
 
           <hr className="section-divider" aria-hidden="true" />
 
-          <p className="eyebrow">Das siehst du in der App</p>
+          <p className="eyebrow">Das siehst du auf der Website</p>
           <h2>Dein Dashboard: Fortschritt, Fragen und wer im Bilde ist</h2>
           <p className="section-copy section-intro">
             Sobald du ein Konto hast, bekommst du einen einzigen Ort, um zu sehen, wo du stehst und

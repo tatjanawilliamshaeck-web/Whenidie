@@ -17,12 +17,12 @@ export default function PrivacyPageDe() {
       <h2>Was wir erfassen</h2>
       <p>
         <strong>Warteliste und Kontakt.</strong> Wenn du der Warteliste beitrittst, erfassen wir
-        deine E-Mail-Adresse. Wir nutzen sie nur, um dich beim Start der App zu benachrichtigen
+        deine E-Mail-Adresse. Wir nutzen sie nur, um dich beim Start zu benachrichtigen
         und gelegentliche Updates zu senden (z. B. früher Zugang, Produktneuigkeiten). Wir
         verkaufen deine E-Mail-Adresse an niemanden.
       </p>
       <p>
-        <strong>Wenn du die App nutzt.</strong> Wenn du ein Konto erstellst, erfassen wir deine
+        <strong>Wenn du ein Konto erstellst.</strong> Wir erfassen deine
         E-Mail-Adresse und (optional) einen Anzeigenamen. Wir speichern deine Antworten auf
         Fragen und, falls du Menschen einlädst, deren E-Mail-Adressen und Zugriffsrechte. Wir
         nutzen das nur, um den Dienst zu betreiben.
@@ -31,7 +31,7 @@ export default function PrivacyPageDe() {
       <h2>Wie wir deine Daten nutzen</h2>
       <ul>
         <li>Um dir Start- und Produkt-Updates zu schicken (Warteliste)</li>
-        <li>Um die App zu betreiben: deinen Plan speichern, deinen Fortschritt anzeigen und Teilen mit von dir gewählten Menschen ermöglichen</li>
+        <li>Um die Website zu betreiben: deinen Plan speichern, deinen Fortschritt anzeigen und Teilen mit von dir gewählten Menschen ermöglichen</li>
         <li>Um den Dienst zu betreiben und zu verbessern (z. B. Fehler beheben, Funktionen hinzufügen)</li>
         <li>Um auf deine Nachrichten zu antworten (z. B. hello@whenidie.us)</li>
       </ul>
@@ -45,9 +45,9 @@ export default function PrivacyPageDe() {
 
       <h2>Deine Wahlmöglichkeiten</h2>
       <p>
-        Du kannst dich jederzeit von E-Mails abmelden (Link in jeder E-Mail). In der App kannst
+        Du kannst dich jederzeit von E-Mails abmelden (Link in jeder E-Mail). In deinem Dashboard kannst
         du deine Antworten jederzeit ändern oder löschen. Du kannst uns bitten, dein Konto und
-        deine Daten zu löschen — über die App-Einstellungen oder per E-Mail an{" "}
+        deine Daten zu löschen — über deine Kontoeinstellungen oder per E-Mail an{" "}
         <a href="mailto:hello@whenidie.us">hello@whenidie.us</a>. Wir bestätigen und entfernen
         sie.
       </p>

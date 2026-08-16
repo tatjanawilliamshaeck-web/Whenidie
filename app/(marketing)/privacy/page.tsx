@@ -17,11 +17,11 @@ export default function PrivacyPage() {
       <h2>What we collect</h2>
       <p>
         <strong>Waitlist and contact.</strong> If you join the waitlist, we collect your email
-        address. We use it only to notify you when the app launches and to send occasional
+        address. We use it only to notify you when we launch and to send occasional
         updates (e.g. early access, product news). We don&rsquo;t sell your email to anyone.
       </p>
       <p>
-        <strong>If you use the app.</strong> When you create an account, we collect your email
+        <strong>If you create an account.</strong> We collect your email
         and (optionally) a display name. We store your answers to prompts and, if you invite
         people, their emails and access levels. We use this only to run the service.
       </p>
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
       <h2>How we use your information</h2>
       <ul>
         <li>To send you launch and product updates (waitlist)</li>
-        <li>To run the app: store your plan, show your progress, and let you share with people you choose</li>
+        <li>To run the site: store your plan, show your progress, and let you share with people you choose</li>
         <li>To run and improve the service (e.g. fixing bugs, adding features)</li>
         <li>To respond to your messages (e.g. hello@whenidie.us)</li>
       </ul>
@@ -43,9 +43,9 @@ export default function PrivacyPage() {
 
       <h2>Your choices</h2>
       <p>
-        You can unsubscribe from emails at any time (link in every email). In the app you can
+        You can unsubscribe from emails at any time (link in every email). In your dashboard you can
         update or delete your answers anytime. You can ask us to delete your account and
-        data—via app settings or email <a href="mailto:hello@whenidie.us">hello@whenidie.us</a>.
+        data—via your account settings or email <a href="mailto:hello@whenidie.us">hello@whenidie.us</a>.
         We&rsquo;ll confirm and remove it.
       </p>
 
