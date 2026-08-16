@@ -24,20 +24,6 @@ const HOME_FAQ = [
     question: "Ist es kostenlos?",
     answer: "Ja, aktuell schon. Kostenpflichtige Pläne kommen später dazu — transparent, jederzeit kündbar.",
   },
-  {
-    question: "Was macht das anders als andere Tools?",
-    answer:
-      "Wir machen es menschlich und ein bisschen witzig, damit du es wirklich machst. Eine Frage nach der anderen, in deinen Worten, keine deprimierenden Checklisten. Dein Plan ist teilbar und druckbar, wenn du bereit bist.",
-  },
-  {
-    question: "Wie fange ich an?",
-    answer:
-      "Registrieren, erste Frage in unter einer Minute beantworten. Dein Plan wächst mit der Zeit. Überspring, was du willst, und komm später zurück.",
-  },
-  {
-    question: "Kann ich meine Daten löschen?",
-    answer: "Ja. Lade deinen Plan jederzeit herunter oder lösche ihn.",
-  },
 ];
 
 export default function HomePageDe() {
@@ -165,53 +151,6 @@ export default function HomePageDe() {
         </div>
       </section>
 
-      <div className="section-divider" aria-hidden="true" />
-
-      <section className="section" id="inside-your-plan">
-        <div className="container">
-          <p className="eyebrow">In deinem Plan</p>
-          <h2>Echte Fragen. Echte Kategorien.</h2>
-          <p className="section-copy section-intro">
-            Dein Plan ist in Kapitel unterteilt. Hier ein kleiner Vorgeschmack, was wir fragen.
-          </p>
-          <div className="inside-plan-grid">
-            <article className="inside-plan-category">
-              <h3>Die Basics</h3>
-              <ul className="inside-plan-prompts">
-                <li>Wer sollte zuerst angerufen werden?</li>
-                <li>Wo sind deine wichtigen Unterlagen?</li>
-                <li>Was würde jemanden verwirren, der in dein Leben eintaucht?</li>
-              </ul>
-            </article>
-            <article className="inside-plan-category">
-              <h3>Dein legendärer Abschied</h3>
-              <ul className="inside-plan-prompts">
-                <li>Welches Lied soll bei deinem Abschied laufen?</li>
-                <li>Welche Stimmung soll die Feier haben?</li>
-                <li>
-                  Was darf <em>auf keinen Fall</em> passieren?
-                </li>
-              </ul>
-            </article>
-            <article className="inside-plan-category">
-              <h3>Die Geschichten, die zählen</h3>
-              <ul className="inside-plan-prompts">
-                <li>Welche Geschichte aus deinem Leben sollten sich die Menschen merken?</li>
-                <li>Welchen Rat würdest du hinterlassen?</li>
-                <li>Worüber hättest du gern öfter gesprochen?</li>
-              </ul>
-            </article>
-          </div>
-          <div className="section-cta">
-            <StartCtaLink
-              className="btn primary-btn wid-cta-start"
-              loggedOutText="Mit dem Wichtigsten beginnen"
-              loggedInText="Zu deinem Plan"
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="section muted" id="what-you-get">
         <div className="container">
           <p className="eyebrow">Das bekommst du</p>
@@ -259,18 +198,6 @@ export default function HomePageDe() {
         </div>
       </section>
 
-      <section className="section muted section--compact" id="whats-next">
-        <div className="container">
-          <p className="eyebrow">Wohin die Reise geht</p>
-          <h2>Nicht nur dokumentieren. Wirklich möglich machen.</h2>
-          <p className="section-copy">
-            Wir arbeiten darauf hin, dass du deine Wünsche verbindlich festlegen und mit
-            Dienstleistern verknüpfen kannst — damit deine Liebsten dem Plan folgen können, statt zu
-            raten. Aktuell konzentrieren wir uns darauf, dir zu helfen, das Wichtige festzuhalten.
-          </p>
-        </div>
-      </section>
-
       <div className="section-divider" aria-hidden="true" />
 
       <section className="section muted" id="faq">
@@ -284,6 +211,9 @@ export default function HomePageDe() {
               loggedOutText="Plan starten"
               loggedInText="Zu deinem Plan"
             />
+            <a href="/de/faq" className="small-link-a">
+              Alle FAQs ansehen →
+            </a>
           </div>
         </div>
       </section>

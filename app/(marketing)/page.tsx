@@ -17,20 +17,6 @@ const HOME_FAQ = [
     question: "Is it free?",
     answer: "Yes for now. We’ll add paid plans later—transparent, cancel anytime.",
   },
-  {
-    question: "What makes this different from other tools?",
-    answer:
-      "We make it human and a bit fun so you actually do it. One prompt at a time, your voice, no depressing checklists. Your plan is shareable and printable when you’re ready.",
-  },
-  {
-    question: "How do I start?",
-    answer:
-      "Sign up, answer your first question in under a minute. Your plan builds as you go. Skip anything and come back later.",
-  },
-  {
-    question: "Can I delete my data?",
-    answer: "Yes. Download or delete your plan anytime.",
-  },
 ];
 
 export default function HomePage() {
@@ -159,53 +145,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="section-divider" aria-hidden="true" />
-
-      <section className="section" id="inside-your-plan">
-        <div className="container">
-          <p className="eyebrow">Inside your plan</p>
-          <h2>Real questions. Real categories.</h2>
-          <p className="section-copy section-intro">
-            Your plan is organized into chapters. Here&rsquo;s a taste of what we ask.
-          </p>
-          <div className="inside-plan-grid">
-            <article className="inside-plan-category">
-              <h3>Basic Adulting</h3>
-              <ul className="inside-plan-prompts">
-                <li>Who should people contact first?</li>
-                <li>Where are your important documents?</li>
-                <li>What would confuse someone stepping into your life?</li>
-              </ul>
-            </article>
-            <article className="inside-plan-category">
-              <h3>Your Legendary Send-Off</h3>
-              <ul className="inside-plan-prompts">
-                <li>What song should play at your send-off?</li>
-                <li>What vibe should the event have?</li>
-                <li>
-                  What should absolutely <em>not</em> happen?
-                </li>
-              </ul>
-            </article>
-            <article className="inside-plan-category">
-              <h3>The Stories That Matter</h3>
-              <ul className="inside-plan-prompts">
-                <li>What&rsquo;s a story from your life people should remember?</li>
-                <li>What advice would you leave behind?</li>
-                <li>What do you wish people asked you more about?</li>
-              </ul>
-            </article>
-          </div>
-          <div className="section-cta">
-            <StartCtaLink
-              className="btn primary-btn wid-cta-start"
-              loggedOutText="Begin with the essentials"
-              loggedInText="Go to your plan"
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="section muted" id="what-you-get">
         <div className="container">
           <p className="eyebrow">What you get</p>
@@ -252,18 +191,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section muted section--compact" id="whats-next">
-        <div className="container">
-          <p className="eyebrow">Where we&rsquo;re headed</p>
-          <h2>Not just document. Make it happen.</h2>
-          <p className="section-copy">
-            We&rsquo;re building toward a place where you can lock in your wishes and connect with
-            services—so your people can follow the plan instead of guessing. For now, we&rsquo;re
-            focused on helping you capture what matters.
-          </p>
-        </div>
-      </section>
-
       <div className="section-divider" aria-hidden="true" />
 
       <section className="section muted" id="faq">
@@ -277,6 +204,9 @@ export default function HomePage() {
               loggedOutText="Start your plan"
               loggedInText="Go to your plan"
             />
+            <a href="/faq" className="small-link-a">
+              See all FAQs →
+            </a>
           </div>
         </div>
       </section>
