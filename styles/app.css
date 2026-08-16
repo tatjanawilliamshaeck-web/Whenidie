@@ -4,7 +4,7 @@
   background: radial-gradient(
     circle at top left,
     #e5f2ff 0,
-    #f5f5f7 45%,
+    var(--bg) 45%,
     #ffffff 100%
   );
 }
@@ -181,7 +181,7 @@
 .auth-success {
   padding: 1rem;
   margin-bottom: 1rem;
-  background: rgba(28, 164, 90, 0.12);
+  background: rgba(45, 190, 96, 0.12);
   color: var(--green);
   border-radius: var(--radius-md);
   font-size: 0.9rem;
@@ -603,7 +603,7 @@
 
 .chapter-list .level-progress-item--clickable:hover,
 .chapter-list .level-progress-item--done:hover {
-  background: rgba(28, 164, 90, 0.06);
+  background: rgba(45, 190, 96, 0.06);
   color: var(--green);
 }
 
@@ -617,7 +617,7 @@
 }
 
 .milestone-item--current {
-  background: rgba(52, 160, 255, 0.08);
+  background: rgba(67, 167, 216, 0.08);
   color: var(--fg);
 }
 
@@ -702,7 +702,7 @@
 
 .question-card-suggestion-pill:hover {
   border-color: var(--accent-strong);
-  background: rgba(52, 160, 255, 0.08);
+  background: rgba(67, 167, 216, 0.08);
 }
 
 .question-card-story-toggle {
@@ -816,7 +816,7 @@
 /* Primary CTA (Next) uses brand yellow from .primary-btn in styles.css */
 .question-nav-actions .primary-btn {
   background: var(--accent);
-  color: #111827;
+  color: var(--fg);
   box-shadow: var(--shadow-soft);
 }
 
@@ -857,7 +857,7 @@
   margin-top: 1rem;
   padding: 1rem;
   background: var(--accent-soft);
-  border: 1px solid rgba(249, 200, 70, 0.25);
+  border: 1px solid rgba(255, 198, 41, 0.25);
   border-radius: var(--radius-md);
   font-size: 0.9rem;
   color: var(--muted);
@@ -964,7 +964,7 @@
 }
 
 .skipped-question-link:hover {
-  background: rgba(52, 160, 255, 0.08);
+  background: rgba(67, 167, 216, 0.08);
   color: var(--fg);
   text-decoration: none;
 }
@@ -1000,8 +1000,8 @@
   height: 28px;
   padding: 0;
   border: none;
-  background: rgba(17, 24, 39, 0.12);
-  color: #111827;
+  background: rgba(23, 25, 24, 0.12);
+  color: var(--fg);
   font-size: 1.25rem;
   line-height: 1;
   border-radius: 50%;
@@ -1013,7 +1013,7 @@
 }
 
 .page-dashboard .announcement-bar__dismiss:hover {
-  background: rgba(17, 24, 39, 0.2);
+  background: rgba(23, 25, 24, 0.2);
 }
 
 .page-dashboard .announcement-bar[hidden] {
@@ -1043,7 +1043,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: rgba(17, 24, 39, 0.25);
+  background: rgba(23, 25, 24, 0.25);
   cursor: pointer;
   pointer-events: auto;
 }
@@ -1134,10 +1134,10 @@
 .invitation-card {
   background: linear-gradient(
     135deg,
-    rgba(249, 200, 70, 0.08) 0%,
+    rgba(255, 198, 41, 0.08) 0%,
     rgba(255, 255, 255, 0.95) 50%
   );
-  border: 1px solid rgba(249, 200, 70, 0.25);
+  border: 1px solid rgba(255, 198, 41, 0.25);
   border-radius: var(--radius-lg);
   padding: 2rem 1.75rem;
   box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
@@ -1191,8 +1191,8 @@
   gap: 0.5rem;
   padding: 0.6rem 0.75rem;
   margin-bottom: 1rem;
-  background: rgba(28, 164, 90, 0.08);
-  border: 1px solid rgba(28, 164, 90, 0.25);
+  background: rgba(45, 190, 96, 0.08);
+  border: 1px solid rgba(45, 190, 96, 0.25);
   border-radius: 8px;
   font-size: 0.9rem;
   color: var(--fg);
@@ -1373,12 +1373,12 @@
 
 .message-style-pill:hover {
   border-color: var(--accent-strong);
-  background: rgba(52, 160, 255, 0.06);
+  background: rgba(67, 167, 216, 0.06);
 }
 
 .message-style-pill.active {
   border-color: var(--accent-strong);
-  background: rgba(52, 160, 255, 0.12);
+  background: rgba(67, 167, 216, 0.12);
   color: var(--fg);
 }
 
@@ -1430,7 +1430,7 @@
 .recent-activity {
   margin-bottom: 1rem;
   padding: 0.6rem 0.75rem;
-  background: rgba(28, 164, 90, 0.06);
+  background: rgba(45, 190, 96, 0.06);
   border-radius: 8px;
   font-size: 0.85rem;
 }
@@ -1646,7 +1646,7 @@
 }
 
 .nav-question:hover {
-  background: rgba(28, 164, 90, 0.06);
+  background: rgba(45, 190, 96, 0.06);
   color: var(--fg);
 }
 
@@ -1663,7 +1663,7 @@
 
 .nav-question--current {
   font-weight: 600;
-  background: rgba(28, 164, 90, 0.08);
+  background: rgba(45, 190, 96, 0.08);
   color: var(--green);
 }
 
@@ -1789,7 +1789,7 @@
 .question-card:hover {
   background: #fff;
   border-color: var(--green);
-  box-shadow: 0 2px 8px rgba(28, 164, 90, 0.12);
+  box-shadow: 0 2px 8px rgba(45, 190, 96, 0.12);
 }
 
 .question-card:focus-visible {
@@ -2088,7 +2088,7 @@
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(17, 24, 39, 0.28);
+  background: rgba(23, 25, 24, 0.28);
 }
 
 .modal-content {
@@ -2205,7 +2205,7 @@
 
 .answer-choice--active {
   border-color: var(--green);
-  background: rgba(28, 164, 90, 0.08);
+  background: rgba(45, 190, 96, 0.08);
   color: var(--green);
   font-weight: 500;
 }
@@ -2300,7 +2300,7 @@ body.relief-modal-open {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: rgba(17, 24, 39, 0.28);
+  background: rgba(23, 25, 24, 0.28);
   cursor: pointer;
 }
 
@@ -2328,7 +2328,7 @@ body.relief-modal-open {
   height: 120px;
   background: radial-gradient(
     circle,
-    rgba(28, 164, 90, 0.2) 0%,
+    rgba(45, 190, 96, 0.2) 0%,
     transparent 70%
   );
   pointer-events: none;
@@ -2346,7 +2346,7 @@ body.relief-modal-open {
   color: #fff;
   background: var(--green);
   border-radius: 50%;
-  box-shadow: 0 4px 14px rgba(28, 164, 90, 0.4);
+  box-shadow: 0 4px 14px rgba(45, 190, 96, 0.4);
   animation: relief-check 0.4s ease-out;
 }
 
@@ -2432,7 +2432,7 @@ body.relief-modal-open {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--green);
-  background: rgba(28, 164, 90, 0.12);
+  background: rgba(45, 190, 96, 0.12);
   border-radius: 999px;
 }
 
@@ -2516,7 +2516,7 @@ body.milestone-modal-open {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: rgba(17, 24, 39, 0.28);
+  background: rgba(23, 25, 24, 0.28);
   cursor: pointer;
 }
 
@@ -2966,13 +2966,13 @@ body.milestone-modal-open {
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--green);
-  background: rgba(28, 164, 90, 0.15);
+  background: rgba(45, 190, 96, 0.15);
   border-radius: var(--radius-pill);
 }
 
 .question-card--start-here {
   border-color: var(--green);
-  box-shadow: 0 0 0 1px rgba(28, 164, 90, 0.2);
+  box-shadow: 0 0 0 1px rgba(45, 190, 96, 0.2);
 }
 
 .view-invite-message {

@@ -28,7 +28,7 @@ export function AuthHeader({
         </nav>
       </div>
       <div className="announcement-bar">
-        No doom. No guilt. Snacks encouraged.
+        Your life, your wishes, your extremely specific playlist.
       </div>
     </header>
   );

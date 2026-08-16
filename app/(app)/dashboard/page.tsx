@@ -461,7 +461,7 @@ export default function DashboardPage() {
         </div>
         <div className="announcement-bar">
           <span className="announcement-bar__text">
-            No doom. No guilt. Snacks encouraged.
+            Your life, your wishes, your extremely specific playlist.
           </span>
         </div>
       </header>

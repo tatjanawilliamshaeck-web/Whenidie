@@ -65,7 +65,7 @@ export default function PlanPrintPage() {
           <p className="print-brand">When I Die™</p>
           <h1 className="print-title">Your Personal Plan</h1>
           <p className="print-subtitle">
-            No doom. No guilt. Snacks encouraged.
+            Your life, your wishes, your extremely specific playlist.
           </p>
           <p className="print-date">Generated {date}</p>
         </div>

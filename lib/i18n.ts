@@ -30,7 +30,7 @@ export const NAV_LABELS: Record<
 };
 
 export const ANNOUNCEMENT: Record<Locale, string> = {
-  en: "No doom. No guilt. Snacks encouraged.",
+  en: "Your life, your wishes, your extremely specific playlist.",
   de: "Kein Weltuntergang. Kein schlechtes Gewissen. Snacks ausdrücklich erwünscht.",
 };
 

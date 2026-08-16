@@ -21,7 +21,7 @@ export function inviteEmailHtml({
           <table role="presentation" width="480" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:18px;overflow:hidden;">
             <tr>
               <td style="background:#f9c846;padding:14px 24px;text-align:center;font-weight:700;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;color:#111827;">
-                No doom. No guilt. Snacks encouraged.
+                Your life, your wishes, your extremely specific playlist.
               </td>
             </tr>
             <tr>
