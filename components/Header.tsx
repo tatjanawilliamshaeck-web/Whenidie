@@ -5,22 +5,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { StartCtaLink } from "@/components/StartCtaLink";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { NAV_LABELS, ANNOUNCEMENT, type Locale } from "@/lib/i18n";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
-];
-
-export function Header() {
+export function Header({ locale = "en" }: { locale?: Locale }) {
   const pathname = usePathname();
   const [navOpen, setNavOpen] = useState(false);
+  const labels = NAV_LABELS[locale];
+  const prefix = locale === "de" ? "/de" : "";
+
+  const navLinks = [
+    { href: prefix || "/", label: labels.home },
+    { href: `${prefix}/how-it-works`, label: labels.howItWorks },
+    { href: `${prefix}/about`, label: labels.about },
+    { href: `${prefix}/faq`, label: labels.faq },
+  ];
 
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Link href="/" className="logo">
+        <Link href={prefix || "/"} className="logo">
           <Image
             src="/assets/Logo.svg"
             alt="When I Die™"
@@ -42,7 +46,7 @@ export function Header() {
           <span className="nav-toggle-bar" />
         </button>
         <nav className={`nav${navOpen ? " nav-open" : ""}`} id="main-nav">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -54,12 +58,13 @@ export function Header() {
           ))}
           <StartCtaLink
             className="nav-cta wid-cta-start"
-            loggedOutText="Start"
-            loggedInText="Your plan"
+            loggedOutText={labels.start}
+            loggedInText={labels.yourPlan}
           />
+          <LanguageSwitcher locale={locale} />
         </nav>
       </div>
-      <div className="announcement-bar">No doom. No guilt. Snacks encouraged.</div>
+      <div className="announcement-bar">{ANNOUNCEMENT[locale]}</div>
     </header>
   );
 }

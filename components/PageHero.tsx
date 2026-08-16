@@ -1,31 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Locale } from "@/lib/i18n";
 
 export function PageHero({
   crumb,
   eyebrow,
   title,
   tagline,
+  locale = "en",
   children,
 }: {
   crumb: string;
   eyebrow: string;
   title: string;
   tagline?: string;
+  locale?: Locale;
   children?: React.ReactNode;
 }) {
+  const prefix = locale === "de" ? "/de" : "";
+  const backLabel = locale === "de" ? "← Zurück zur Startseite" : "← Back to home";
+  const homeLabel = locale === "de" ? "Start" : "Home";
+
   return (
     <section className="section page-hero-section">
       <div className="container">
         <div className="page-hero-inner">
           <div className="page-hero-nav">
-            <Link href="/" className="back-link">
-              ← Back to home
+            <Link href={prefix || "/"} className="back-link">
+              {backLabel}
             </Link>
             <nav aria-label="Breadcrumb" className="breadcrumb">
               <ol>
                 <li>
-                  <Link href="/">Home</Link>
+                  <Link href={prefix || "/"}>{homeLabel}</Link>
                 </li>
                 <li aria-current="page">{crumb}</li>
               </ol>

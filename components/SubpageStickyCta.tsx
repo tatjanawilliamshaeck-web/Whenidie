@@ -3,7 +3,15 @@
 import { useEffect, useState } from "react";
 import { StartCtaLink } from "@/components/StartCtaLink";
 
-export function SubpageStickyCta({ text }: { text: string }) {
+export function SubpageStickyCta({
+  text,
+  loggedOutText = "Join the free beta",
+  loggedInText = "Go to your plan",
+}: {
+  text: string;
+  loggedOutText?: string;
+  loggedInText?: string;
+}) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -22,8 +30,8 @@ export function SubpageStickyCta({ text }: { text: string }) {
       <span className="sticky-cta-text">{text}</span>
       <StartCtaLink
         className="btn primary-btn sticky-cta-btn wid-cta-start"
-        loggedOutText="Join the free beta"
-        loggedInText="Go to your plan"
+        loggedOutText={loggedOutText}
+        loggedInText={loggedInText}
       />
     </div>
   );

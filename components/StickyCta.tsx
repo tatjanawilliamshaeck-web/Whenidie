@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { StartCtaLink } from "@/components/StartCtaLink";
+import type { Locale } from "@/lib/i18n";
 
-export function StickyCta({ watchSectionId }: { watchSectionId: string }) {
+export function StickyCta({ watchSectionId, locale = "en" }: { watchSectionId: string; locale?: Locale }) {
   const [visible, setVisible] = useState(false);
   const inViewRef = useRef(false);
 
@@ -34,17 +35,17 @@ export function StickyCta({ watchSectionId }: { watchSectionId: string }) {
     };
   }, [watchSectionId]);
 
+  const text = locale === "de" ? "Starte deinen Plan in unter einer Minute." : "Start your plan in under a minute.";
+  const loggedOutText = locale === "de" ? "Plan starten" : "Start your plan";
+  const loggedInText = locale === "de" ? "Zu deinem Plan" : "Go to your plan";
+
   return (
     <div
       className={`sticky-cta-bar sticky-cta-bar--subtle${visible ? " is-visible" : ""}`}
       aria-hidden={!visible}
     >
-      <span className="sticky-cta-text">Start your plan in under a minute.</span>
-      <StartCtaLink
-        className="btn secondary-btn sticky-cta-btn wid-cta-start"
-        loggedOutText="Start your plan"
-        loggedInText="Go to your plan"
-      />
+      <span className="sticky-cta-text">{text}</span>
+      <StartCtaLink className="btn secondary-btn sticky-cta-btn wid-cta-start" loggedOutText={loggedOutText} loggedInText={loggedInText} />
     </div>
   );
 }

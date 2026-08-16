@@ -2,16 +2,16 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { LocaleHtmlLang } from "@/components/LocaleHtmlLang";
 
-export default function MarketingLayout({ children }: { children: React.ReactNode }) {
+export default function GermanMarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <LocaleHtmlLang locale="en" />
+      <LocaleHtmlLang locale="de" />
       <a href="#top" className="skip-link">
-        Skip to main content
+        Zum Hauptinhalt springen
       </a>
-      <Header />
+      <Header locale="de" />
       {children}
-      <Footer />
+      <Footer locale="de" />
     </>
   );
 }

@@ -235,6 +235,38 @@ a:hover {
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.7);
 }
 
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: 0.5rem;
+}
+
+.lang-switcher-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  font-size: 1.05rem;
+  border-radius: 999px;
+  opacity: 0.45;
+  filter: grayscale(60%);
+  transition: opacity 0.15s ease, filter 0.15s ease, background-color 0.15s ease;
+}
+
+.lang-switcher-flag:hover {
+  opacity: 0.8;
+  filter: grayscale(0%);
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.lang-switcher-flag--active {
+  opacity: 1;
+  filter: grayscale(0%);
+  background: rgba(249, 200, 70, 0.15);
+}
+
 .nav-cta:hover {
   background: #f3b62e;
   transform: translateY(-1px) scale(1.01);
