@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 
@@ -38,15 +37,6 @@ export function PageHero({
                 <li aria-current="page">{crumb}</li>
               </ol>
             </nav>
-          </div>
-          <div className="page-hero-brand">
-            <Image
-              src="/assets/logo.png"
-              alt="When I Die™"
-              className="page-hero-logo"
-              width={120}
-              height={48}
-            />
           </div>
           <p className="eyebrow">{eyebrow}</p>
           <h1 className="page-title">{title}</h1>

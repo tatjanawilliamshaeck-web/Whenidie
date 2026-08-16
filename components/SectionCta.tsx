@@ -7,7 +7,7 @@ export function SectionCta({ locale = "en" }: { locale?: Locale }) {
       ? "Bereit? Starte deinen Plan. Kostenlos."
       : "Ready? Start your plan. It's free.";
   const loggedOutText =
-    locale === "de" ? "Kostenlos beitreten" : "Join the free beta";
+    locale === "de" ? "Kostenlos beitreten" : "Start your plan";
   const loggedInText = locale === "de" ? "Zu deinem Plan" : "Go to your plan";
 
   return (

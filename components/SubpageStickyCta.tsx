@@ -5,7 +5,7 @@ import { StartCtaLink } from "@/components/StartCtaLink";
 
 export function SubpageStickyCta({
   text,
-  loggedOutText = "Join the free beta",
+  loggedOutText = "Start your plan",
   loggedInText = "Go to your plan",
 }: {
   text: string;

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { SubpageStickyCta } from "@/components/SubpageStickyCta";
@@ -204,15 +203,6 @@ export default function FaqPage() {
                   <li aria-current="page">FAQ</li>
                 </ol>
               </nav>
-            </div>
-            <div className="page-hero-brand">
-              <Image
-                src="/assets/logo.png"
-                alt="When I Die™"
-                className="page-hero-logo"
-                width={120}
-                height={48}
-              />
             </div>
             <p className="eyebrow">FAQ</p>
             <h1 className="page-title">Quick questions, plain answers</h1>

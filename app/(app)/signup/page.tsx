@@ -123,7 +123,7 @@ export default function SignupPage() {
         ]}
       />
       <AuthCard
-        title="Join the free beta"
+        title="Start your plan"
         subtitle="Start your plan in under a minute. Free. No doom, no guilt."
         error={error}
         onDismissError={() => setError(null)}

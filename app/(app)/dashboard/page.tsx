@@ -204,17 +204,15 @@ export default function DashboardPage() {
     setAnswers(nextAnswers);
 
     if (!userId) return;
-    await getSupabase()
-      .from("answers")
-      .upsert(
-        {
-          user_id: userId,
-          question_id: question.id,
-          value,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: "user_id,question_id" },
-      );
+    await getSupabase().from("answers").upsert(
+      {
+        user_id: userId,
+        question_id: question.id,
+        value,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,question_id" },
+    );
 
     const chaptersAfter = getQuestionsByChapter(nextAnswers);
     const currentChapter = question.chapter;

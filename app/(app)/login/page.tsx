@@ -82,7 +82,7 @@ function LoginForm() {
       onDismissError={() => setError(null)}
       footer={
         <>
-          Don&rsquo;t have an account? <a href="/signup">Join the free beta</a>
+          Don&rsquo;t have an account? <a href="/signup">Start your plan</a>
         </>
       }
     >
@@ -159,7 +159,7 @@ export default function LoginPage() {
       </a>
       <AuthHeader
         links={[
-          { href: "/signup", label: "Join the free beta" },
+          { href: "/signup", label: "Start your plan" },
           { href: "/", label: "Home" },
         ]}
       />

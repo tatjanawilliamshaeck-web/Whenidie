@@ -22,7 +22,7 @@ export default function AboutPage() {
           className="section-copy"
           style={{ maxWidth: "48rem", marginTop: "1rem" }}
         >
-          When I Die™ isn&rsquo;t just estate planning or a digital vault.
+          When I Die™ isn&rsquo;t an estate planning or a digital vault.
           It&rsquo;s <strong>life closure planning with personality</strong>—the
           first thing that doesn&rsquo;t feel like it was designed by a law firm
           or a hospice pamphlet. We built it after seeing how chaotic things get

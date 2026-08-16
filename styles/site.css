@@ -1445,20 +1445,31 @@ h2 {
 }
 
 .step-detail-list {
-  list-style: disc;
+  list-style: none;
   margin: 0.4rem 0 0;
-  padding-left: 1.2rem;
+  padding-left: 0;
   font-size: 0.9rem;
   color: var(--muted);
   line-height: 1.6;
 }
 
 .step-detail-list li {
-  margin-bottom: 0.25rem;
+  position: relative;
+  margin-bottom: 0.35rem;
+  padding-left: 1.5rem;
 }
 
-.step-detail-list li::marker {
-  color: var(--green);
+.step-detail-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 15px;
+  height: 15px;
+  background-image: url("/icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 4px;
 }
 
 .section-closer {
@@ -1979,19 +1990,6 @@ h2 {
     padding: 1.75rem 0 2.25rem;
   }
 
-  .page-hero-brand {
-    margin-bottom: 1rem;
-  }
-
-  .page-hero-logo {
-    width: 48px;
-    height: 48px;
-  }
-
-  .page-hero-wordmark {
-    font-size: 1.15rem;
-  }
-
   .page-hero-nav {
     margin-bottom: 1.25rem;
   }
@@ -2072,28 +2070,6 @@ h2 {
   margin-bottom: 0;
 }
 
-.page-hero-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1.25rem;
-}
-
-.page-hero-logo {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.page-hero-wordmark {
-  font-family: var(--font-playfair), system-ui, serif;
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--green);
-  letter-spacing: 0.02em;
-}
-
 .page-hero-section .eyebrow {
   margin-bottom: 0.5rem;
 }
@@ -2168,19 +2144,6 @@ h2 {
 
 .page-hero-nav--legal .breadcrumb {
   margin-bottom: 0;
-}
-
-.page-hero-brand--legal {
-  margin-bottom: 1.25rem;
-}
-
-.page-hero-brand--legal .page-hero-logo {
-  width: 48px;
-  height: 48px;
-}
-
-.page-hero-brand--legal .page-hero-wordmark {
-  font-size: 1.15rem;
 }
 
 .page-content h1 {
