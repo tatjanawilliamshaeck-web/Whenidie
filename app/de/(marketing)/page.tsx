@@ -1,31 +1,12 @@
 import type { Metadata } from "next";
 import { StartCtaLink } from "@/components/StartCtaLink";
 import { StickyCta } from "@/components/StickyCta";
-import { FaqAccordion } from "@/components/FaqAccordion";
 
 export const metadata: Metadata = {
   title: { absolute: "When I Die™ – Bring deinen letzten Willen in Bestform" },
   description:
     "In zehn Minuten ist das Wichtigste geklärt: Wer muss Bescheid wissen? Wo liegt der ganze Kram? Und soll bei deiner Beerdigung wirklich Coldplay laufen? When I Die™.",
 };
-
-const HOME_FAQ = [
-  {
-    question: "Was für Fragen stellt ihr?",
-    answer:
-      "Praktische Fragen: Wer muss angerufen werden? Wo liegen wichtige Unterlagen? Und persönliche Fragen: Welcher Song soll laufen? Welche Stimmung soll dein Abschied haben? Wer bekommt auf keinen Fall ein Mikrofon? Warm, konkret und mit gerade genug Humor, damit du nicht sofort den Browser schließt.",
-  },
-  {
-    question: "Wer kann meinen Plan sehen?",
-    answer:
-      "Nur Menschen, die du ausdrücklich einlädst. Dein Plan bleibt standardmäßig privat und du bestimmst, was jede Person sehen darf.",
-  },
-  {
-    question: "Ist es kostenlos?",
-    answer:
-      "Im Moment schon. Später kommen kostenpflichtige Pläne dazu – transparent und jederzeit kündbar. Sterben ist schließlich schon teuer genug.",
-  },
-];
 
 export default function HomePageDe() {
   return (
@@ -230,12 +211,9 @@ export default function HomePageDe() {
 
       <div className="section-divider" aria-hidden="true" />
 
-      <section className="section muted" id="faq">
+      <section className="section" id="stay-in-touch">
         <div className="container">
-          <p className="eyebrow">FAQ</p>
-          <h2>Ein paar Fragen</h2>
-          <FaqAccordion items={HOME_FAQ} />
-          <div className="faq-cta" id="stay-in-touch">
+          <div className="faq-cta">
             <StartCtaLink
               className="btn primary-btn faq-cta-btn wid-cta-start"
               loggedOutText="Meinen Plan anfangen"
