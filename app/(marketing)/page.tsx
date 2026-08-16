@@ -82,24 +82,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section section--manifesto manifesto-block">
-        <div className="container">
-          <p className="manifesto-brand">When I Die™</p>
-          <p className="manifesto-line">
-            Not a will.
-            <br />
-            Not a vault.
-            <br />
-            Not a depressing checklist.
-          </p>
-          <p className="manifesto-punch">
-            It&rsquo;s a human way to leave clarity, personality, and less chaos behind.
-          </p>
-        </div>
-      </section>
-
-      <div className="section-divider" aria-hidden="true" />
-
       <section className="section" id="how-it-works">
         <div className="container">
           <p className="eyebrow">How it works</p>

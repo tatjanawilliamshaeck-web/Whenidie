@@ -1017,35 +1017,6 @@ h2 {
   max-width: 32rem;
 }
 
-/* Manifesto block */
-.section--manifesto.manifesto-block {
-  padding: 1.25rem 0;
-}
-
-.manifesto-brand {
-  margin: 0 0 0.5rem;
-  font-family: var(--font-playfair), system-ui, serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--green);
-}
-
-.manifesto-line {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  color: var(--fg);
-  line-height: 1.4;
-}
-
-.manifesto-punch {
-  margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: var(--muted);
-  max-width: 28rem;
-}
-
 .anti-positioning-brand {
   margin: 1.75rem 0 0.5rem;
   font-family: var(--font-playfair), system-ui, serif;

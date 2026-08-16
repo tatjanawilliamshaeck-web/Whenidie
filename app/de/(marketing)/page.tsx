@@ -18,7 +18,7 @@ const HOME_FAQ = [
   {
     question: "Wer kann meinen Plan sehen?",
     answer:
-      "Nur Menschen, die du ausdrücklich einlädst. Dein Plan bleibt standardmäßig privat und du bestimmst, was jede Person sehen darf. Privat bis ins Grab – im besten Sinne.",
+      "Nur Menschen, die du ausdrücklich einlädst. Dein Plan bleibt standardmäßig privat und du bestimmst, was jede Person sehen darf.",
   },
   {
     question: "Ist es kostenlos?",
@@ -58,8 +58,7 @@ export default function HomePageDe() {
               Privat bis ins Grab. Geteilt wird nur, was du freigibst.
             </p>
             <p className="hero-secondary-line">
-              Heute eine Frage. Morgen vielleicht noch eine. Du hast ja
-              hoffentlich noch Zeit.
+              Heute eine Frage. Morgen vielleicht noch eine.
             </p>
           </div>
           <div className="hero-right">
@@ -114,26 +113,6 @@ export default function HomePageDe() {
         </div>
       </section>
 
-      <section className="section section--manifesto manifesto-block">
-        <div className="container">
-          <p className="manifesto-brand">When I Die™</p>
-          <p className="manifesto-line">
-            Kein Testament.
-            <br />
-            Kein digitaler Tresor.
-            <br />
-            Kein Ordner mit der Aufschrift &sbquo;Falls ich mal tot bin&lsquo;.
-          </p>
-          <p className="manifesto-punch">
-            Einfach ein Plan, der nach dir klingt. Damit deine Liebsten später
-            trauern können, statt zwischen Kontoauszügen und Passwortzetteln
-            deinen letzten Escape Room zu lösen.
-          </p>
-        </div>
-      </section>
-
-      <div className="section-divider" aria-hidden="true" />
-
       <section className="section" id="how-it-works">
         <div className="container">
           <p className="eyebrow">So funktioniert&rsquo;s</p>
@@ -147,10 +126,8 @@ export default function HomePageDe() {
                   Das Wichtigste schaffen die meisten in etwa zehn Minuten.
                 </p>
                 <p>
-                  Wer soll angerufen werden? Wo liegen die Unterlagen? Was soll
-                  passieren? Zehn Minuten, ein paar Antworten – und deine
-                  Familie muss später nicht dein gesamtes Leben archäologisch
-                  ausgraben.
+                  Ein paar Antworten – und deine Familie muss später nicht dein
+                  gesamtes Leben archäologisch ausgraben.
                 </p>
               </div>
             </li>
@@ -234,8 +211,7 @@ export default function HomePageDe() {
             finden, die vorher niemand stellen wollte. Wo liegen die Unterlagen?
             Was war gewünscht? Und warum gibt es drei Ordner mit der Aufschrift
             &sbquo;Wichtig&lsquo;? When I Die™ sorgt dafür, dass deine Liebsten
-            später einen Plan haben – statt den schwierigsten Escape Room ihres
-            Lebens.
+            später einen Plan haben – statt nur Rätselraten.
           </p>
           <blockquote className="founder-quote founder-quote--highlight">
             <p>
